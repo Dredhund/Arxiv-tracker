@@ -114,10 +114,11 @@ def call_llm_bilingual_summary(
         {"role": "user", "content":
             "Given the paper metadata below, write TWO concise one-paragraph digests:\n"
             "1) English paragraph first.\n"
-            "2) Then a Simplified Chinese paragraph.\n"
+            "2) Then a Simplified Chinese paragraph(必须用简体中文，不要用英文).\n"
+            "3) innovations_zh: 关键技术与创新点(3-5 条，每条一句话，简体中文)\n"
             "- Each paragraph must briefly cover: motivation, method, and main experimental results.\n"
             "- Do not include links, bullet lists, markdown, or headings. Plain sentences only.\n"
-            '- Return STRICT JSON: {\"digest_en\": \"...\", \"digest_zh\": \"...\"}\n\n'
+            '- Return STRICT JSON: {"digest_en": "...", "digest_zh": "...", "innovations_zh": "1. xxx\n2. xxx"}\n\n'
             f"DATA:\n{json.dumps(user_payload, ensure_ascii=False)}"
         }
     ]
@@ -128,9 +129,10 @@ def call_llm_bilingual_summary(
     )
     data = _json_loose(text)
     return {
-        "digest_en": (data.get("digest_en") or "").strip(),
-        "digest_zh": (data.get("digest_zh") or "").strip(),
-    }
+    "digest_en": ...,
+    "digest_zh": ...,
+    "innovations_zh": (data.get("innovations_zh") or "").strip(),
+}
 
 # ========== 两阶段摘要（保留你原有接口与行为） ==========
 

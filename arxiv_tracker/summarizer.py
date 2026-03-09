@@ -126,4 +126,4 @@ def build_two_stage_summary(item: Dict[str, Any], mode: str, lang: str, scope: s
 
     # 非 llm 模式也输出同样结构（兜底）
     h = heuristic_paragraphs(item)
-    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "tldr":"", "full_md":""}
+    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": data.get("innovations_zh",""),"tldr":"", "full_md":""}

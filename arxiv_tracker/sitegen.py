@@ -179,8 +179,12 @@ def _card(it: Dict[str, Any],
         if digest_zh:
             parts.append(f'<div class="mono" style="margin-top:8px">{_esc(digest_zh)}</div>')
         parts.append('</details>')
-
-    parts.append('</div>')
+    # 在 Summary / 总结 的 </details> 之后添加
+    innovations = (sum_zh or sum_en or {}).get("innovations_zh") or ""
+    if innovations:
+        parts.append('<details class="detail"><summary>关键技术与创新点</summary>')
+        parts.append(f'<div class="mono">{_esc(innovations)}</div></details>')
+        parts.append('</div>')
     return "\n".join(parts)
 
 
