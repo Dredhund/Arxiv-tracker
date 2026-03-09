@@ -3,6 +3,7 @@ import os, re
 from typing import Dict, Any, Optional
 from .llm import call_llm_two_stage
 from .llm import call_llm_bilingual_summary
+from .llm import call_llm_translate_text
 
 KNOWN_DATASETS = [
     "COCO","LVIS","ADE20K","Cityscapes","ScanNet","ImageNet","OpenImages",
@@ -26,11 +27,11 @@ def _first_sentence(text: str, max_chars=1024):
 
 
 def heuristic_paragraphs(item: Dict[str, Any]) -> Dict[str, str]:
-    # 无 LLM 时的兜底：英文取摘要首句；中文为空（或直接复用摘要首句）
+    # 无 LLM 时的兜底：英文取摘要首句；中文为空
     absu = item.get("summary") or ""
     en = _first_sentence(absu) or (item.get("title") or "")
-    zh = ""  # 如果你想兜底中文可放机器翻译，这里保持空即可
-    return {"digest_en": en, "digest_zh": zh}
+    zh = ""
+    return {"digest_en": en, "digest_zh": zh, "innovations_zh": ""}
     
 def _detect(items, text):
     T = (text or "").lower()
@@ -117,13 +118,32 @@ def build_two_stage_summary(item: Dict[str, Any], mode: str, lang: str, scope: s
                     system_prompt_zh=cfg.get("system_prompt_zh", ""),
                     system_prompt_en=cfg.get("system_prompt_en", "")
                 )
-                return {"digest_en": data.get("digest_en",""), "digest_zh": data.get("digest_zh",""), "tldr":"", "full_md":""}
+                digest_en = data.get("digest_en", "") or ""
+                digest_zh = data.get("digest_zh", "") or ""
+                innovations_zh = data.get("innovations_zh", "") or ""
+                # 兜底：digest_zh 为空时，用 LLM 翻译 digest_en
+                if not digest_zh and digest_en:
+                    try:
+                        digest_zh = call_llm_translate_text(
+                            text=digest_en,
+                            target_lang="zh",
+                            base_url=cfg.get("base_url", ""),
+                            model=cfg.get("model", ""),
+                            api_key=api_key,
+                        )
+                    except Exception:
+                        pass
+                return {
+                    "digest_en": digest_en,
+                    "digest_zh": digest_zh,
+                    "innovations_zh": innovations_zh,
+                    "tldr": "",
+                    "full_md": "",
+                }
             except Exception:
                 pass
-        # LLM 不可用时兜底
         h = heuristic_paragraphs(item)
-        return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "tldr":"", "full_md":""}
+        return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "tldr": "", "full_md": ""}
 
-    # 非 llm 模式也输出同样结构（兜底）
     h = heuristic_paragraphs(item)
-    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": data.get("innovations_zh",""),"tldr":"", "full_md":""}
+    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "tldr": "", "full_md": ""}

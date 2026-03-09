@@ -101,7 +101,17 @@ def call_llm_bilingual_summary(
     comments= item.get("comments") or ""
     venue   = item.get("venue_inferred") or (item.get("journal_ref") or "")
 
-    sys_prompt = system_prompt_en or "You are a precise academic assistant. Summarize papers concisely."
+    # 优先使用中文 system prompt，强调双语输出
+    base_prompt = (
+        system_prompt_zh
+        or system_prompt_en
+        or "You are a precise academic assistant. Summarize papers concisely."
+    )
+    sys_prompt = (
+        base_prompt
+        + "\n\n**重要/CRITICAL**: 你必须输出 digest_en（英文）和 digest_zh（简体中文）。"
+        "digest_zh 必须用简体中文书写，不能为空或英文。"
+    )
 
     user_payload = {
         "title": title,
@@ -112,13 +122,13 @@ def call_llm_bilingual_summary(
     messages = [
         {"role": "system", "content": sys_prompt},
         {"role": "user", "content":
-            "Given the paper metadata below, write TWO concise one-paragraph digests:\n"
-            "1) English paragraph first.\n"
-            "2) Then a Simplified Chinese paragraph(必须用简体中文，不要用英文).\n"
-            "3) innovations_zh: 关键技术与创新点(3-5 条，每条一句话，简体中文)\n"
-            "- Each paragraph must briefly cover: motivation, method, and main experimental results.\n"
-            "- Do not include links, bullet lists, markdown, or headings. Plain sentences only.\n"
-            '- Return STRICT JSON: {"digest_en": "...", "digest_zh": "...", "innovations_zh": "1. xxx\n2. xxx"}\n\n'
+            "根据以下论文元数据，输出两段总结 + 关键技术与创新点：\n"
+            "1) digest_en: 英文段落（约 80-150 词）\n"
+            "2) digest_zh: 简体中文段落（约 80-150 字），必须用中文\n"
+            "3) innovations_zh: 关键技术与创新点，3-5 条，每条一句话，简体中文\n"
+            "- 每段需包含：研究动机、核心方法、主要实验结果\n"
+            "- 纯文本，不要链接、列表、markdown 标题\n"
+            '- 严格返回 JSON: {"digest_en": "...", "digest_zh": "...", "innovations_zh": "1. xxx\\n2. xxx"}\n\n'
             f"DATA:\n{json.dumps(user_payload, ensure_ascii=False)}"
         }
     ]
@@ -129,10 +139,10 @@ def call_llm_bilingual_summary(
     )
     data = _json_loose(text)
     return {
-    "digest_en": ...,
-    "digest_zh": ...,
-    "innovations_zh": (data.get("innovations_zh") or "").strip(),
-}
+        "digest_en": (data.get("digest_en") or "").strip(),
+        "digest_zh": (data.get("digest_zh") or "").strip(),
+        "innovations_zh": (data.get("innovations_zh") or "").strip(),
+    }
 
 # ========== 两阶段摘要（保留你原有接口与行为） ==========
 
@@ -203,6 +213,35 @@ def call_llm_two_stage(item: Dict[str, Any], lang: str, scope: str,
     else:
         full_md = text
     return {"tldr": tldr, "full_md": full_md}
+
+# ========== 单段文本翻译（digest 兜底） ==========
+
+def call_llm_translate_text(
+    text: str,
+    target_lang: str,
+    *,
+    base_url: str,
+    model: str,
+    api_key: str,
+) -> str:
+    """将单段英文文本翻译为中文，用于 digest_zh 兜底。"""
+    if not text or not text.strip():
+        return ""
+    sys_prompt = "你是学术翻译助手。将以下英文段落准确翻译为简体中文，保持术语准确、语句通顺。"
+    inst = f"Translate to Simplified Chinese. Return ONLY the Chinese text, no JSON, no explanation.\n\n{text}"
+    messages = [
+        {"role": "system", "content": sys_prompt},
+        {"role": "user", "content": inst},
+    ]
+    try:
+        result = _chat_completions_request(
+            base_url=base_url, api_key=api_key, model=model,
+            messages=messages, temperature=0.0, max_tokens=500,
+        )
+        return (result or "").strip()
+    except Exception:
+        return ""
+
 
 # ========== 标题/摘要中文翻译 ==========
 
