@@ -205,19 +205,27 @@ def _card(it: Dict[str, Any],
         parts.append('</details>')
 
     # ✅ 只渲染双语总结（英文→中文）- LaTeX 转 HTML
-    if digest_en or digest_zh:
+    # digest_zh 为空时，用翻译的摘要 zh_abs 兜底
+    display_zh = digest_zh or zh_abs
+    if digest_en or display_zh:
         parts.append('<details class="detail"><summary>Summary / 总结</summary>')
         if digest_en:
             parts.append(f'<div class="mono">{_latex_to_html(digest_en)}</div>')
-        if digest_zh:
-            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(digest_zh)}</div>')
+        if display_zh:
+            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(display_zh)}</div>')
         parts.append('</details>')
 
-    # 关键技术与创新点（可选）
-    innovations = (sum_zh or sum_en or {}).get("innovations_zh") or ""
+    # 关键技术与创新点：优先中文，无则英文兜底
+    innovations_zh = (sum_zh or sum_en or {}).get("innovations_zh") or ""
+    innovations_en = (sum_zh or sum_en or {}).get("innovations_en") or ""
+    innovations = innovations_zh or innovations_en
     if innovations:
-        parts.append('<details class="detail"><summary>关键技术与创新点</summary>')
-        parts.append(f'<div class="mono">{_latex_to_html(innovations)}</div></details>')
+        parts.append('<details class="detail" open><summary>关键技术与创新点</summary>')
+        if innovations_zh:
+            parts.append(f'<div class="mono">{_latex_to_html(innovations_zh)}</div>')
+        elif innovations_en:
+            parts.append(f'<div class="mono">{_latex_to_html(innovations_en)}</div>')
+        parts.append('</details>')
 
     parts.append('</div>')
     return "\n".join(parts)

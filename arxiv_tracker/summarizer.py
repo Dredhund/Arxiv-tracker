@@ -5,6 +5,13 @@ from .llm import call_llm_two_stage
 from .llm import call_llm_bilingual_summary
 from .llm import call_llm_translate_text
 
+_CJK_RE = re.compile(r"[\u4e00-\u9fff]")
+
+
+def _has_cjk(s: str) -> bool:
+    """判断文本是否包含中文字符"""
+    return bool(_CJK_RE.search(s or ""))
+
 KNOWN_DATASETS = [
     "COCO","LVIS","ADE20K","Cityscapes","ScanNet","ImageNet","OpenImages",
     "Pascal VOC","NYUv2","KITTI","GQA","VQAv2","RefCOCO","RefCOCO+","RefCOCOg",
@@ -31,7 +38,7 @@ def heuristic_paragraphs(item: Dict[str, Any]) -> Dict[str, str]:
     absu = item.get("summary") or ""
     en = _first_sentence(absu) or (item.get("title") or "")
     zh = ""
-    return {"digest_en": en, "digest_zh": zh, "innovations_zh": ""}
+    return {"digest_en": en, "digest_zh": zh, "innovations_zh": "", "innovations_en": ""}
     
 def _detect(items, text):
     T = (text or "").lower()
@@ -121,8 +128,9 @@ def build_two_stage_summary(item: Dict[str, Any], mode: str, lang: str, scope: s
                 digest_en = data.get("digest_en", "") or ""
                 digest_zh = data.get("digest_zh", "") or ""
                 innovations_zh = data.get("innovations_zh", "") or ""
-                # 兜底：digest_zh 为空时，用 LLM 翻译 digest_en
-                if not digest_zh and digest_en:
+                innovations_en = data.get("innovations_en", "") or ""
+                # 兜底：digest_zh 为空或不含中文时，用 LLM 翻译 digest_en
+                if digest_en and (not digest_zh or not _has_cjk(digest_zh)):
                     try:
                         digest_zh = call_llm_translate_text(
                             text=digest_en,
@@ -137,13 +145,14 @@ def build_two_stage_summary(item: Dict[str, Any], mode: str, lang: str, scope: s
                     "digest_en": digest_en,
                     "digest_zh": digest_zh,
                     "innovations_zh": innovations_zh,
+                    "innovations_en": innovations_en,
                     "tldr": "",
                     "full_md": "",
                 }
             except Exception:
                 pass
         h = heuristic_paragraphs(item)
-        return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "tldr": "", "full_md": ""}
+        return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "innovations_en": "", "tldr": "", "full_md": ""}
 
     h = heuristic_paragraphs(item)
-    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "tldr": "", "full_md": ""}
+    return {"digest_en": h["digest_en"], "digest_zh": h["digest_zh"], "innovations_zh": "", "innovations_en": "", "tldr": "", "full_md": ""}

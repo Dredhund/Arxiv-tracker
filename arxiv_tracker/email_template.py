@@ -71,6 +71,9 @@ def _render_card(it: Dict[str, Any],
     # 新双语总结
     digest_en = (sum_en or {}).get("digest_en") or (sum_zh or {}).get("digest_en") or ""
     digest_zh = (sum_zh or {}).get("digest_zh") or (sum_en or {}).get("digest_zh") or ""
+    innovations_zh = (sum_zh or sum_en or {}).get("innovations_zh") or ""
+    innovations_en = (sum_zh or sum_en or {}).get("innovations_en") or ""
+    innovations = innovations_zh or innovations_en
 
     out = [f'<div class="card">']
     out.append(f'<div class="title"><a href="{_esc(title_link)}">{_esc(title)}</a></div>')
@@ -99,6 +102,11 @@ def _render_card(it: Dict[str, Any],
         if digest_zh:
             inner += "<div style='white-space:pre-wrap;margin-top:8px'>" + _latex_to_html(digest_zh) + "</div>"
         out.append('<div class="section"><h4>Summary / 总结</h4>'+ inner +'</div>')
+
+    # 关键技术与创新点
+    if innovations:
+        out.append('<div class="section"><h4>关键技术与创新点</h4>'
+                   '<div style="white-space:pre-wrap">' + _latex_to_html(innovations) + '</div></div>')
 
     out.append('</div>')
     return "\n".join(out)

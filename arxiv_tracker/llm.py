@@ -126,22 +126,24 @@ def call_llm_bilingual_summary(
             "1) digest_en: 英文段落（约 80-150 词）\n"
             "2) digest_zh: 简体中文段落（约 80-150 字），必须用中文\n"
             "3) innovations_zh: 关键技术与创新点，3-5 条，每条一句话，简体中文\n"
+            "4) innovations_en: 同上，英文版，3-5 条，每条一句话（用于兜底）\n"
             "- 每段需包含：研究动机、核心方法、主要实验结果\n"
             "- 纯文本，不要链接、列表、markdown 标题\n"
-            '- 严格返回 JSON: {"digest_en": "...", "digest_zh": "...", "innovations_zh": "1. xxx\\n2. xxx"}\n\n'
+            '- 严格返回 JSON: {"digest_en": "...", "digest_zh": "...", "innovations_zh": "1. xxx\\n2. xxx", "innovations_en": "1. xxx\\n2. xxx"}\n\n'
             f"DATA:\n{json.dumps(user_payload, ensure_ascii=False)}"
         }
     ]
 
     text = _chat_completions_request(
         base_url=base_url, api_key=api_key, model=model, messages=messages,
-        temperature=0.2, max_tokens=600
+        temperature=0.2, max_tokens=1100
     )
     data = _json_loose(text)
     return {
         "digest_en": (data.get("digest_en") or "").strip(),
         "digest_zh": (data.get("digest_zh") or "").strip(),
         "innovations_zh": (data.get("innovations_zh") or "").strip(),
+        "innovations_en": (data.get("innovations_en") or "").strip(),
     }
 
 # ========== 两阶段摘要（保留你原有接口与行为） ==========
