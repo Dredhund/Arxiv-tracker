@@ -83,6 +83,36 @@ def _strip_redundant_links(md: str) -> str:
         out.append(line)
     return "\n".join(out)
 
+
+def _latex_to_html(s: str) -> str:
+    """
+    将 arXiv 摘要中的常见 LaTeX 转为 HTML，便于正确显示。
+    先整体转义防 XSS，再替换 LaTeX 命令。
+    """
+    if not s:
+        return ""
+    s = html.escape(s)
+    # 超链接（先处理）
+    s = re.sub(
+        r"\\hyperlink\{([^}]*)\}\{([^}]*)\}",
+        lambda m: f'<a href="{m.group(1)}">{m.group(2)}</a>',
+        s,
+    )
+    s = re.sub(
+        r"\\url\{([^}]*)\}",
+        lambda m: f'<a href="{m.group(1)}">{m.group(1)}</a>',
+        s,
+    )
+    # 文本格式
+    s = re.sub(r"\\textbf\{([^}]*)\}", r"<b>\1</b>", s)
+    s = re.sub(r"\\emph\{([^}]*)\}", r"<em>\1</em>", s)
+    s = re.sub(r"\\textit\{([^}]*)\}", r"<i>\1</i>", s)
+    # 行内公式 \(...\) 和 $...$
+    s = re.sub(r"\\\(([^)]*)\\\)", r"\1", s)
+    s = re.sub(r"\$([^$]+)\$", r"\1", s)
+    return s
+
+
 def _css(accent: str = "#2563eb") -> str:
     return f"""
 :root {{
@@ -159,32 +189,37 @@ def _card(it: Dict[str, Any],
     links = _join_links(it)
     if links: parts.append(f'<div class="links" style="margin-top:8px">{links}</div>')
 
-    # 摘要（英文原文，可折叠）
+    # 摘要（英文原文，可折叠）- LaTeX 转 HTML
     if absu:
+        absu_html = _latex_to_html(absu)
         parts.append('<details class="detail"><summary>Abstract</summary>')
-        parts.append(f'<div class="mono">{_esc(absu)}</div></details>')
+        parts.append(f'<div class="mono">{absu_html}</div></details>')
 
-    # 中文标题/摘要（可选）
+    # 中文标题/摘要（可选）- LaTeX 转 HTML
     if zh_abs or zh_title:
         parts.append('<details class="detail"><summary>中文标题/摘要</summary>')
-        if zh_title: parts.append(f'<div class="mono"><b>标题：</b>{_esc(zh_title)}</div>')
-        if zh_abs:   parts.append(f'<div class="mono" style="margin-top:8px">{_esc(zh_abs)}</div>')
+        if zh_title:
+            parts.append(f'<div class="mono"><b>标题：</b>{_latex_to_html(zh_title)}</div>')
+        if zh_abs:
+            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(zh_abs)}</div>')
         parts.append('</details>')
 
-    # ✅ 只渲染双语总结（英文→中文），去掉 TL;DR & 方法卡
+    # ✅ 只渲染双语总结（英文→中文）- LaTeX 转 HTML
     if digest_en or digest_zh:
         parts.append('<details class="detail"><summary>Summary / 总结</summary>')
         if digest_en:
-            parts.append(f'<div class="mono">{_esc(digest_en)}</div>')
+            parts.append(f'<div class="mono">{_latex_to_html(digest_en)}</div>')
         if digest_zh:
-            parts.append(f'<div class="mono" style="margin-top:8px">{_esc(digest_zh)}</div>')
+            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(digest_zh)}</div>')
         parts.append('</details>')
-    # 在 Summary / 总结 的 </details> 之后添加
+
+    # 关键技术与创新点（可选）
     innovations = (sum_zh or sum_en or {}).get("innovations_zh") or ""
     if innovations:
         parts.append('<details class="detail"><summary>关键技术与创新点</summary>')
-        parts.append(f'<div class="mono">{_esc(innovations)}</div></details>')
-        parts.append('</div>')
+        parts.append(f'<div class="mono">{_latex_to_html(innovations)}</div></details>')
+
+    parts.append('</div>')
     return "\n".join(parts)
 
 
