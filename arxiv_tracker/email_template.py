@@ -73,7 +73,6 @@ def _render_card(it: Dict[str, Any],
     digest_zh = (sum_zh or {}).get("digest_zh") or (sum_en or {}).get("digest_zh") or ""
     innovations_zh = (sum_zh or sum_en or {}).get("innovations_zh") or ""
     innovations_en = (sum_zh or sum_en or {}).get("innovations_en") or ""
-    innovations = innovations_zh or innovations_en
 
     out = [f'<div class="card">']
     out.append(f'<div class="title"><a href="{_esc(title_link)}">{_esc(title)}</a></div>')
@@ -86,13 +85,14 @@ def _render_card(it: Dict[str, Any],
     if links: out.append(f'<div class="links" style="margin:8px 0">{links}</div>')
 
     if summary:
-        out.append('<div class="section"><h4>Abstract</h4><div style="white-space:pre-wrap">'
-                   + _latex_to_html(summary) + '</div></div>')
-    if zh_title or zh_sum:
-        zh_parts = []
-        if zh_title: zh_parts.append(f"<p><b>标题：</b>{_latex_to_html(zh_title)}</p>")
-        if zh_sum:   zh_parts.append("<div style='white-space:pre-wrap'>"+_latex_to_html(zh_sum)+"</div>")
-        out.append('<div class="section"><h4>中文标题/摘要</h4>'+"".join(zh_parts)+'</div>')
+        out.append('<div class="section"><h4>Abstract / 摘要</h4><div style="white-space:pre-wrap">'
+                   + _latex_to_html(summary) + '</div>')
+        if zh_title or zh_sum:
+            if zh_title:
+                out.append("<div style='white-space:pre-wrap;margin-top:8px'><b>标题：</b>" + _latex_to_html(zh_title) + "</div>")
+            if zh_sum:
+                out.append("<div style='white-space:pre-wrap;margin-top:8px'>" + _latex_to_html(zh_sum) + "</div>")
+        out.append('</div>')
 
     # ✅ 仅 Summary / 总结（英文→中文）
     if digest_en or digest_zh:
@@ -103,10 +103,14 @@ def _render_card(it: Dict[str, Any],
             inner += "<div style='white-space:pre-wrap;margin-top:8px'>" + _latex_to_html(digest_zh) + "</div>"
         out.append('<div class="section"><h4>Summary / 总结</h4>'+ inner +'</div>')
 
-    # 关键技术与创新点
-    if innovations:
-        out.append('<div class="section"><h4>关键技术与创新点</h4>'
-                   '<div style="white-space:pre-wrap">' + _latex_to_html(innovations) + '</div></div>')
+    # 关键技术与创新点（双语）
+    if innovations_en or innovations_zh:
+        inner = ""
+        if innovations_en:
+            inner += "<div style='white-space:pre-wrap'>" + _latex_to_html(innovations_en) + "</div>"
+        if innovations_zh:
+            inner += "<div style='white-space:pre-wrap;margin-top:8px'>" + _latex_to_html(innovations_zh) + "</div>"
+        out.append('<div class="section"><h4>关键技术与创新点 / Key Innovations</h4>' + inner + '</div>')
 
     out.append('</div>')
     return "\n".join(out)

@@ -1,0 +1,686 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-03-09 17:29</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20260309_1729</div>
+    <div class="row"><div class="card">
+<div class="title">SCoUT: Scalable Communication via Utility-Guided Temporal Grouping in Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Manav Vora, Gokul Puthumanaillam, Hiroyasu Tsukamoto, Melkior Ornik</div>
+<div class="meta-line">First: 2026-03-05T05:33:28+00:00 · Latest: 2026-03-05T05:33:28+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.04833v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.04833v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://scout-comm.github.io/}{https://scout-comm.github.io/">Project1</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Communication can improve coordination in partially observed multi-agent reinforcement learning (MARL), but learning <em>when</em> and <em>who</em> to communicate with requires choosing among many possible sender-recipient pairs, and the effect of any single message on future reward is hard to isolate. We introduce <b>SCoUT</b> (<b>S</b>calable <b>Co</b>mmunication via <b>U</b>tility-guided <b>T</b>emporal grouping), which addresses both these challenges via temporal and agent abstraction within traditional MARL. During training, SCoUT resamples <i>soft</i> agent groups every K environment steps (macro-steps) via Gumbel-Softmax; these groups are latent clusters that induce an affinity used as a differentiable prior over recipients. Using the same assignments, a group-aware critic predicts values for each agent group and maps them to per-agent baselines through the same soft assignments, reducing critic complexity and variance. Each agent is trained with a three-headed policy: environment action, send decision, and recipient selection. To obtain precise communication learning signals, we derive counterfactual communication advantages by analytically removing each sender&#x27;s contribution from the recipient&#x27;s aggregated messages. This counterfactual computation enables precise credit assignment for both send and recipient-selection decisions. At execution time, all centralized training components are discarded and only the per-agent policy is run, preserving decentralized execution. Project website, videos and code: <a href="https://scout-comm.github.io/">https://scout-comm.github.io/</a></div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Communication can improve coordination in partially observed multi-agent reinforcement learning (MARL), but learning <em>when</em> and <em>who</em> to communicate with requires choosing among many possible sender-recipient pairs, and the effect of any single message on future reward is hard to isolate.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Multi-Agent Reinforcement Learning in Intelligent Transportation Systems: A Comprehensive Survey</div>
+<div class="meta-line">Authors: Rexcharles Donatus, Kumater Ter, Daniel Udekwe</div>
+<div class="meta-line">First: 2025-08-27T23:04:34+00:00 · Latest: 2026-03-04T23:12:00+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2508.20315v2">Abs</a> · <a href="https://arxiv.org/pdf/2508.20315v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">The growing complexity of urban mobility and the demand for efficient, sustainable, and adaptive solutions have positioned Intelligent Transportation Systems (ITS) at the forefront of modern infrastructure innovation. At the core of ITS lies the challenge of autonomous decision-making across dynamic, large scale, and uncertain environments where multiple agents traffic signals, autonomous vehicles, or fleet units must coordinate effectively. Multi Agent Reinforcement Learning (MARL) offers a promising paradigm for addressing these challenges by enabling distributed agents to jointly learn optimal strategies that balance individual objectives with system wide efficiency. This paper presents a comprehensive survey of MARL applications in ITS. We introduce a structured taxonomy that categorizes MARL approaches according to coordination models and learning algorithms, spanning value based, policy based, actor critic, and communication enhanced frameworks. Applications are reviewed across key ITS domains, including traffic signal control, connected and autonomous vehicle coordination, logistics optimization, and mobility on demand systems. Furthermore, we highlight widely used simulation platforms such as SUMO, CARLA, and CityFlow that support MARL experimentation, along with emerging benchmarks. The survey also identifies core challenges, including scalability, non stationarity, credit assignment, communication constraints, and the sim to real transfer gap, which continue to hinder real world deployment.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The growing complexity of urban mobility and the demand for efficient, sustainable, and adaptive solutions have positioned Intelligent Transportation Systems (ITS) at the forefront of modern infrastructure innovation.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">GRAND: Guidance, Rebalancing, and Assignment for Networked Dispatch in Multi-Agent Path Finding</div>
+<div class="meta-line">Authors: Johannes Gaber, Meshal Alharbi, Daniele Gammelli, Gioele Zardini</div>
+<div class="meta-line">First: 2025-12-02T19:44:57+00:00 · Latest: 2026-03-04T22:19:25+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2512.03194v3">Abs</a> · <a href="https://arxiv.org/pdf/2512.03194v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large robot fleets are now common in warehouses and other logistics settings, where small control gains translate into large operational impacts. In this article, we address task scheduling for lifelong Multi-Agent Pickup-and-Delivery (MAPD) and propose a hybrid method that couples learning-based global guidance with lightweight optimization. A graph neural network policy trained via reinforcement learning outputs a desired distribution of free agents over an aggregated warehouse graph. This signal is converted into region-to-region rebalancing through a minimum-cost flow, and finalized by small, local assignment problems, preserving accuracy while keeping per-step latency within a 1 s compute budget. We call this approach GRAND: a hierarchical algorithm that relies on Guidance, Rebalancing, and Assignment to explicitly leverage the workspace Network structure and Dispatch agents to tasks. On congested warehouse benchmarks from the League of Robot Runners (LoRR) with up to 500 agents, our approach improves throughput by up to 10% over the 2024 winning scheduler while maintaining real-time execution. The results indicate that coupling graph-structured learned guidance with tractable solvers reduces congestion and yields a practical, scalable blueprint for high-throughput scheduling in large fleets.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large robot fleets are now common in warehouses and other logistics settings, where small control gains translate into large operational impacts.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Offline-to-Online Multi-Agent Reinforcement Learning with Offline Value Function Memory and Sequential Exploration</div>
+<div class="meta-line">Authors: Hai Zhong, Xun Wang, Zhuoran Li, Longbo Huang</div>
+<div class="meta-line">First: 2024-10-25T10:24:19+00:00 · Latest: 2026-03-04T16:33:38+00:00</div>
+<div class="meta-line">Comments: Include detailed hyperparameter configurations</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2410.19450v3">Abs</a> · <a href="https://arxiv.org/pdf/2410.19450v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Offline-to-Online Reinforcement Learning has emerged as a powerful paradigm, leveraging offline data for initialization and online fine-tuning to enhance both sample efficiency and performance. However, most existing research has focused on single-agent settings, with limited exploration of the multi-agent extension, i.e., Offline-to-Online Multi-Agent Reinforcement Learning (O2O MARL). In O2O MARL, two critical challenges become more prominent as the number of agents increases: (i) the risk of unlearning pre-trained Q-values due to distributional shifts during the transition from offline-to-online phases, and (ii) the difficulty of efficient exploration in the large joint state-action space. To tackle these challenges, we propose a novel O2O MARL framework called Offline Value Function Memory with Sequential Exploration (OVMSE). First, we introduce the Offline Value Function Memory (OVM) mechanism to compute target Q-values, preserving knowledge gained during offline training, ensuring smoother transitions, and enabling efficient fine-tuning. Second, we propose a decentralized Sequential Exploration (SE) strategy tailored for O2O MARL, which effectively utilizes the pre-trained offline policy for exploration, thereby significantly reducing the joint state-action space to be explored. Extensive experiments on the StarCraft Multi-Agent Challenge (SMAC) demonstrate that OVMSE significantly outperforms existing baselines, achieving superior sample efficiency and overall performance.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Offline-to-Online Reinforcement Learning has emerged as a powerful paradigm, leveraging offline data for initialization and online fine-tuning to enhance both sample efficiency and performance.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Cognition to Control - Multi-Agent Learning for Human-Humanoid Collaborative Transport</div>
+<div class="meta-line">Authors: Hao Zhang, Ding Zhao, H. Eric Tseng</div>
+<div class="meta-line">First: 2026-03-04T06:24:55+00:00 · Latest: 2026-03-04T06:24:55+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.03768v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.03768v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Effective human-robot collaboration (HRC) requires translating high-level intent into contact-stable whole-body motion while continuously adapting to a human partner. Many vision-language-action (VLA) systems learn end-to-end mappings from observations and instructions to actions, but they often emphasize reactive (System 1-like) behavior and leave under-specified how sustained System 2-style deliberation can be integrated with reliable, low-latency continuous control. This gap is acute in multi-agent HRC, where long-horizon coordination decisions and physical execution must co-evolve under contact, feasibility, and safety constraints. We address this limitation with cognition-to-control (C2C), a three-layer hierarchy that makes the deliberation-to-control pathway explicit: (i) a VLM-based grounding layer that maintains persistent scene referents and infers embodiment-aware affordances/constraints; (ii) a deliberative skill/coordination layer-the System 2 core-that optimizes long-horizon skill choices and sequences under human-robot coupling via decentralized MARL cast as a Markov potential game with a shared potential encoding task progress; and (iii) a whole-body control layer that executes the selected skills at high frequency while enforcing kinematic/dynamic feasibility and contact stability. The deliberative layer is realized as a residual policy relative to a nominal controller, internalizing partner dynamics without explicit role assignment. Experiments on collaborative manipulation tasks show higher success and robustness than single-agent and end-to-end baselines, with stable coordination and emergent leader-follower behaviors.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Effective human-robot collaboration (HRC) requires translating high-level intent into contact-stable whole-body motion while continuously adapting to a human partner.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Learning Approximate Nash Equilibria in Cooperative Multi-Agent Reinforcement Learning via Mean-Field Subsampling</div>
+<div class="meta-line">Authors: Emile Anand, Ishani Karmarkar</div>
+<div class="meta-line">First: 2026-03-04T06:14:24+00:00 · Latest: 2026-03-04T06:14:24+00:00</div>
+<div class="meta-line">Comments: 48 pages, 4 figures, 2 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.03759v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.03759v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Many large-scale platforms and networked control systems have a centralized decision maker interacting with a massive population of agents under strict observability constraints. Motivated by such applications, we study a cooperative Markov game with a global agent and n homogeneous local agents in a communication-constrained regime, where the global agent only observes a subset of k local agent states per time step. We propose an alternating learning framework (\texttt{ALTERNATING-MARL}), where the global agent performs subsampled mean-field Q-learning against a fixed local policy, and local agents update by optimizing in an induced MDP. We prove that these approximate best-response dynamics converge to an \widetilde{O}(1/\sqrt{k})-approximate Nash Equilibrium, while yielding a separation in the sample complexities between the joint state space and action space. Finally, we validate our results in numerical simulations for multi-robot control and federated optimization.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Many large-scale platforms and networked control systems have a centralized decision maker interacting with a massive population of agents under strict observability constraints.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">HALyPO: Heterogeneous-Agent Lyapunov Policy Optimization for Human-Robot Collaboration</div>
+<div class="meta-line">Authors: Hao Zhang, Yaru Niu, Yikai Wang, Ding Zhao, H. Eric Tseng</div>
+<div class="meta-line">First: 2026-03-04T05:26:13+00:00 · Latest: 2026-03-04T05:26:13+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.03741v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.03741v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">To improve generalization and resilience in human-robot collaboration (HRC), robots must handle the combinatorial diversity of human behaviors and contexts, motivating multi-agent reinforcement learning (MARL). However, inherent heterogeneity between robots and humans creates a rationality gap (RG) in the learning process-a variational mismatch between decentralized best-response dynamics and centralized cooperative ascent. The resulting learning problem is a general-sum differentiable game, so independent policy-gradient updates can oscillate or diverge without added structure. We propose heterogeneous-agent Lyapunov policy optimization (HALyPO), which establishes formal stability directly in the policy-parameter space by enforcing a per-step Lyapunov decrease condition on a parameter-space disagreement metric. Unlike Lyapunov-based safe RL, which targets state/trajectory constraints in constrained Markov decision processes, HALyPO uses Lyapunov certification to stabilize decentralized policy learning. HALyPO rectifies decentralized gradients via optimal quadratic projections, ensuring monotonic contraction of RG and enabling effective exploration of open-ended interaction spaces. Extensive simulations and real-world humanoid-robot experiments show that this certified stability improves generalization and robustness in collaborative corner cases.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">To improve generalization and resilience in human-robot collaboration (HRC), robots must handle the combinatorial diversity of human behaviors and contexts, motivating multi-agent reinforcement learning (MARL).</div>
+</details>
+</div>
+<div class="card">
+<div class="title">VideoChat-M1: Collaborative Policy Planning for Video Understanding via Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Boyu Chen, Zikang Wang, Zhengrong Yue, Kainan Yan, Chenyun Yu, Yi Huang, Zijun Liu, Yafei Wen, Xiaoxin Chen, Yang Liu, Peng Li, Yali Wang</div>
+<div class="meta-line">Venue: CVPR 2026</div>
+<div class="meta-line">First: 2025-11-24T07:04:51+00:00 · Latest: 2026-03-04T03:07:07+00:00</div>
+<div class="meta-line">Comments: Accepted by CVPR 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2511.19524v2">Abs</a> · <a href="https://arxiv.org/pdf/2511.19524v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">By leveraging tool-augmented Multimodal Large Language Models (MLLMs), multi-agent frameworks are driving progress in video understanding. However, most of them adopt static and non-learnable tool invocation mechanisms, which limit the discovery of diverse clues essential for robust perception and reasoning regarding temporally or spatially complex videos. To address this challenge, we propose a novel Multi-agent system for video understanding, namely VideoChat-M1. Instead of using a single or fixed policy, VideoChat-M1 adopts a distinct Collaborative Policy Planning (CPP) paradigm with multiple policy agents, which comprises three key processes. (1) Policy Generation: Each agent generates its unique tool invocation policy tailored to the user&#x27;s query; (2) Policy Execution: Each agent sequentially invokes relevant tools to execute its policy and explore the video content; (3) Policy Communication: During the intermediate stages of policy execution, agents interact with one another to update their respective policies. Through this collaborative framework, all agents work in tandem, dynamically refining their preferred policies based on contextual insights from peers to effectively respond to the user&#x27;s query. Moreover, we equip our CPP paradigm with a concise Multi-Agent Reinforcement Learning (MARL) method. Consequently, the team of policy agents can be jointly optimized to enhance VideoChat-M1&#x27;s performance, guided by both the final answer reward and intermediate collaborative process feedback. Extensive experiments demonstrate that VideoChat-M1 achieves SOTA performance across eight benchmarks spanning four tasks. Notably, on LongVideoBench, our method outperforms the SOTA model Gemini 2.5 pro by 3.6% and GPT-4o by 15.6%.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">By leveraging tool-augmented Multimodal Large Language Models (MLLMs), multi-agent frameworks are driving progress in video understanding.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Principled Learning-to-Communicate with Quasi-Classical Information Structures</div>
+<div class="meta-line">Authors: Xiangyu Liu, Haoyi You, Kaiqing Zhang</div>
+<div class="meta-line">First: 2026-03-04T02:36:18+00:00 · Latest: 2026-03-04T02:36:18+00:00</div>
+<div class="meta-line">Comments: Preliminary version appeared at IEEE CDC 2025</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.03664v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.03664v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Learning-to-communicate (LTC) in partially observable environments has received increasing attention in deep multi-agent reinforcement learning, where the control and communication strategies are jointly learned. Meanwhile, the impact of communication on decision-making has been extensively studied in control theory. In this paper, we seek to formalize and better understand LTC by bridging these two lines of work, through the lens of information structures (ISs). To this end, we formalize LTC in decentralized partially observable Markov decision processes (Dec-POMDPs) under the common-information-based framework from decentralized stochastic control, and classify LTC problems based on the ISs before (additional) information sharing. We first show that non-classical LTCs are computationally intractable in general, and thus focus on quasi-classical (QC) LTCs. We then propose a series of conditions for QC LTCs, under which LTCs preserve the QC IS after information sharing, whereas violating which can cause computational hardness in general. Further, we develop provable planning and learning algorithms for QC LTCs, and establish quasi-polynomial time and sample complexities for several QC LTC examples that satisfy the above conditions. Along the way, we also establish results on the relationship between (strictly) QC IS and the condition of having strategy-independent common-information-based beliefs (SI-CIBs), as well as on solving Dec-POMDPs without computationally intractable oracles but beyond those with SI-CIBs, which may be of independent interest.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Learning-to-communicate (LTC) in partially observable environments has received increasing attention in deep multi-agent reinforcement learning, where the control and communication strategies are jointly learned.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Heterogeneous Agent Collaborative Reinforcement Learning</div>
+<div class="meta-line">Authors: Zhixia Zhang, Zixuan Huang, Xin Xia, Deqing Wang, Fuzhen Zhuang, Shuai Ma, Ning Ding, Yaodong Yang, Jianxin Li, Yikun Ban</div>
+<div class="meta-line">First: 2026-03-03T05:09:49+00:00 · Latest: 2026-03-03T05:09:49+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.02604v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.02604v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">We introduce Heterogeneous Agent Collaborative Reinforcement Learning (HACRL), a new learning paradigm that addresses the inefficiencies of isolated on-policy optimization. HACRL enables collaborative optimization with independent execution: heterogeneous agents share verified rollouts during training to mutually improve, while operating independently at inference time. Unlike LLM-based multi-agent reinforcement learning (MARL), HACRL does not require coordinated deployment, and unlike on-/off-policy distillation, it enables bidirectional mutual learning among heterogeneous agents rather than one-directional teacher-to-student transfer. Building on this paradigm, we propose HACPO, a collaborative RL algorithm that enables principled rollout sharing to maximize sample utilization and cross-agent knowledge transfer. To mitigate capability discrepancies and policy distribution shifts, HACPO introduces four tailored mechanisms with theoretical guarantees on unbiased advantage estimation and optimization correctness. Extensive experiments across diverse heterogeneous model combinations and reasoning benchmarks show that HACPO consistently improves all participating agents, outperforming GSPO by an average of 3.3\% while using only half the rollout cost.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">We introduce Heterogeneous Agent Collaborative Reinforcement Learning (HACRL), a new learning paradigm that addresses the inefficiencies of isolated on-policy optimization.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SPIRAL: Self-Play on Zero-Sum Games Incentivizes Reasoning via Multi-Agent Multi-Turn Reinforcement Learning</div>
+<div class="meta-line">Authors: Bo Liu, Leon Guertler, Simon Yu, Zichen Liu, Penghui Qi, Daniel Balcells, Mickel Liu, Cheston Tan, Weiyan Shi, Min Lin, Wee Sun Lee, Natasha Jaques</div>
+<div class="meta-line">Venue: ICLR 2026</div>
+<div class="meta-line">First: 2025-06-30T17:58:13+00:00 · Latest: 2026-03-02T14:09:28+00:00</div>
+<div class="meta-line">Comments: Accepted at ICLR 2026. Code: https://github.com/spiral-rl/spiral</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2506.24119v3">Abs</a> · <a href="https://arxiv.org/pdf/2506.24119v3">PDF</a> · <a href="https://github.com/spiral-rl/spiral">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Recent advances in reinforcement learning have shown that language models can develop sophisticated reasoning through training on tasks with verifiable rewards, but these approaches depend on human-curated problem-answer pairs and domain-specific reward engineering. We introduce SPIRAL, a self-play framework where models learn by playing multi-turn, zero-sum games against continuously improving versions of themselves, generating an automatic curriculum of stronger opponents, and eliminating the need for human supervision. To enable this self-play training at scale, we implement a fully online, multi-turn, multi-agent reinforcement learning system for LLMs and propose role-conditioned advantage estimation (RAE) to stabilize multi-agent training. SPIRAL produces reasoning capabilities that transfer broadly, improving performance by up to 10% across a suite of 8 reasoning benchmarks on 4 different models spanning Qwen and Llama model families, outperforming supervised fine-tuning on 25,000 expert game trajectories. Multi-game training (TicTacToe, Kuhn Poker, Simple Negotiation) yields the strongest results, with improvements observed across both base and instruction-tuned models. Analysis of chain-of-thought traces reveals that games develop distinct cognitive patterns that transfer to improve reasoning performance, with different games developing complementary strengths. Even models which have already been trained on reasoning tasks using RLVR, like DeepSeek-R1-Distill-Qwen-7B, still benefit from our approach. These results demonstrate that zero-sum games naturally develop transferable reasoning capabilities across diverse model architectures and training stages, highlighting a promising direction for autonomous reasoning development. Our code can be found in https://github.com/spiral-rl/spiral.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Recent advances in reinforcement learning have shown that language models can develop sophisticated reasoning through training on tasks with verifiable rewards, but these approaches depend on human-curated problem-answer pairs and domain-specific reward engineering.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Structured Diversity Control: A Dual-Level Framework for Group-Aware Multi-Agent Coordination</div>
+<div class="meta-line">Authors: Shuocun Yang, Huawen Hu, Xuan Liu, Yincheng Yao, Enze Shi, Shu Zhang</div>
+<div class="meta-line">First: 2025-06-23T13:54:34+00:00 · Latest: 2026-03-02T12:00:09+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2506.18651v2">Abs</a> · <a href="https://arxiv.org/pdf/2506.18651v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Controlling the behavioral diversity is a pivotal challenge in multi-agent reinforcement learning (MARL), particularly in complex collaborative scenarios. While existing methods attempt to regulate behavioral diversity by directly differentiating across all agents, they lack deep characterization and learning of multi-agent composition structures. This limitation leads to suboptimal performance or coordination failures when facing more complex or challenging tasks. To bridge this gap, we introduce Structured Diversity Control (SDC), a framework that redefines the system-wide diversity metric as a weighted combination of intra-group diversity, which is minimized for cohesion and inter-group diversity, which is maximized for specialization. The trade-off is governed by a pre-set Diversity Structure Factor (DSF), allowing for fine-grained, group-aware control over the collective strategy. Our method directly constrains the policy architecture without altering reward functions. This structural definition of diversity enables SDC to deliver substantial performance gains across various experiments, including increasing average rewards by up to 47.1\% in multi-target pursuit and reducing episode lengths by 12.82\% in complex neutralization scenarios. The proposed method offers a novel analytical perspective on the problem of cooperation in group-aware multi-agent systems.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Controlling the behavioral diversity is a pivotal challenge in multi-agent reinforcement learning (MARL), particularly in complex collaborative scenarios.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Optimization of Edge Directions and Weights for Mixed Guidance Graphs in Lifelong Multi-Agent Path Finding</div>
+<div class="meta-line">Authors: Yulun Zhang, Varun Bhatt, Matthew C. Fontaine, Stefanos Nikolaidis, Jiaoyang Li</div>
+<div class="meta-line">First: 2026-02-26T19:54:00+00:00 · Latest: 2026-03-02T05:47:08+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.23468v2">Abs</a> · <a href="https://arxiv.org/pdf/2602.23468v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multi-Agent Path Finding (MAPF) aims to move agents from their start to goal vertices on a graph. Lifelong MAPF (LMAPF) continuously assigns new goals to agents as they complete current ones. To guide agents&#x27; movement in LMAPF, prior works have proposed Guidance Graph Optimization (GGO) methods to optimize a guidance graph, which is a bidirected weighted graph whose directed edges represent moving and waiting actions with edge weights being action costs. Higher edge weights represent higher action costs. However, edge weights only provide soft guidance. An edge with a high weight only discourages agents from using it, instead of prohibiting agents from traversing it. In this paper, we explore the need to incorporate edge directions optimization into GGO, providing strict guidance. We generalize GGO to Mixed Guidance Graph Optimization (MGGO), presenting two MGGO methods capable of optimizing both edge weights and directions. The first optimizes edge directions and edge weights in two phases separately. The second applies Quality Diversity algorithms to optimize a neural network capable of generating edge directions and weights. We also incorporate traffic patterns relevant to edge directions into a GGO method, making it capable of generating edge-direction-aware guidance graphs.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multi-Agent Path Finding (MAPF) aims to move agents from their start to goal vertices on a graph.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Sample-Efficient Distributionally Robust Multi-Agent Reinforcement Learning via Online Interaction</div>
+<div class="meta-line">Authors: Zain Ulabedeen Farhat, Debamita Ghosh, George K. Atia, Yue Wang</div>
+<div class="meta-line">Venue: ICLR 2026</div>
+<div class="meta-line">First: 2025-08-04T23:14:32+00:00 · Latest: 2026-03-01T17:42:58+00:00</div>
+<div class="meta-line">Comments: Accepted by ICLR 2026.The first two authors contributed equally</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2508.02948v2">Abs</a> · <a href="https://arxiv.org/pdf/2508.02948v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Well-trained multi-agent systems can fail when deployed in real-world environments due to model mismatches between the training and deployment environments, caused by environment uncertainties including noise or adversarial attacks. Distributionally Robust Markov Games (DRMGs) enhance system resilience by optimizing for worst-case performance over a defined set of environmental uncertainties. However, current methods are limited by their dependence on simulators or large offline datasets, which are often unavailable. This paper pioneers the study of online learning in DRMGs, where agents learn directly from environmental interactions without prior data. We introduce the Multiplayer Optimistic Robust Nash Value Iteration (MORNAVI) algorithm and provide the first provable guarantees for this setting. Our theoretical analysis demonstrates that the algorithm achieves low regret and efficiently finds the optimal robust policy for uncertainty sets measured by Total Variation divergence and Kullback-Leibler divergence. These results establish a new, practical path toward developing truly robust multi-agent systems.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Well-trained multi-agent systems can fail when deployed in real-world environments due to model mismatches between the training and deployment environments, caused by environment uncertainties including noise or adversarial attacks.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Multi-Agent Reinforcement Learning with Communication-Constrained Priors</div>
+<div class="meta-line">Authors: Guang Yang, Tianpei Yang, Jingwen Qiao, Yanqing Wu, Jing Huo, Xingguo Chen, Yang Gao</div>
+<div class="meta-line">First: 2025-12-03T07:35:07+00:00 · Latest: 2026-03-01T15:56:05+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2512.03528v2">Abs</a> · <a href="https://arxiv.org/pdf/2512.03528v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Communication is one of the effective means to improve the learning of cooperative policy in multi-agent systems. However, in most real-world scenarios, lossy communication is a prevalent issue. Existing multi-agent reinforcement learning with communication, due to their limited scalability and robustness, struggles to apply to complex and dynamic real-world environments. To address these challenges, we propose a generalized communication-constrained model to uniformly characterize communication conditions across different scenarios. Based on this, we utilize it as a learning prior to distinguish between lossy and lossless messages for specific scenarios. Additionally, we decouple the impact of lossy and lossless messages on distributed decision-making, drawing on a dual mutual information estimatior, and introduce a communication-constrained multi-agent reinforcement learning framework, quantifying the impact of communication messages into the global reward. Finally, we validate the effectiveness of our approach across several communication-constrained benchmarks.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Communication is one of the effective means to improve the learning of cooperative policy in multi-agent systems.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">When Is Diversity Rewarded in Cooperative Multi-Agent Learning?</div>
+<div class="meta-line">Authors: Michael Amir, Matteo Bettini, Amanda Prorok</div>
+<div class="meta-line">First: 2025-06-11T06:33:55+00:00 · Latest: 2026-03-01T14:41:29+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2506.09434v4">Abs</a> · <a href="https://arxiv.org/pdf/2506.09434v4">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">The success of teams in robotics, nature, and society often depends on the division of labor among diverse specialists; however, a principled explanation for when such diversity surpasses a homogeneous team is still missing. Focusing on multi-agent task allocation problems, we study this question from the perspective of reward design: what kinds of objectives are best suited for heterogeneous teams? We first consider an instantaneous, non-spatial setting where the global reward is built by two generalized aggregation operators: an inner operator that maps the N agents&#x27; effort allocations on individual tasks to a task score, and an outer operator that merges the M task scores into the global team reward. We prove that the curvature of these operators determines whether heterogeneity can increase reward, and that for broad reward families this collapses to a simple convexity test. Next, we ask what incentivizes heterogeneity to emerge when embodied, time-extended agents must learn an effort allocation policy. To study heterogeneity in such settings, we use multi-agent reinforcement learning (MARL) as our computational paradigm, and introduce Heterogeneity Gain Parameter Search (HetGPS), a gradient-based algorithm that optimizes the parameter space of underspecified MARL environments to find scenarios where heterogeneity is advantageous. Across different environments, we show that HetGPS rediscovers the reward regimes predicted by our theory to maximize the advantage of heterogeneity, both validating HetGPS and connecting our theoretical insights to reward design in MARL. Together, these results help us understand when behavioral diversity delivers a measurable benefit.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The success of teams in robotics, nature, and society often depends on the division of labor among diverse specialists; however, a principled explanation for when such diversity surpasses a homogeneous team is still missing.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Feasible Pairings for Decentralized Integral Controllability of Non-Square Systems</div>
+<div class="meta-line">Authors: Yuhao Tong, Steven W. Su</div>
+<div class="meta-line">First: 2026-03-01T12:42:26+00:00 · Latest: 2026-03-01T12:42:26+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.01076v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.01076v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">This paper investigates the determination of feasible input-output pairings for the decentralized integral controllability of non-square systems. The relevance of this problem extends beyond traditional industrial processes into modern AI research, particularly Multi-Agent Reinforcement Learning (MARL), where environments frequently act as strongly non-square mappings that evaluate high-dimensional joint action spaces via comparatively low-dimensional global rewards. To address the stability of these complex distributed architectures, we extend the concept of D-stability to non-square matrices, providing a crucial mathematical foundation. We formally define D-stability for non-square matrices as a direct generalization of the square case. By introducing the concept of ``Squared Matrices&#x27;&#x27;, which are derived from specific column selections of the non-square formulation and directly correspond to candidate control pairings, we establish a fundamental link between the stability of these square sub-components and the original non-square system. Ultimately, we propose sufficient conditions under which the individual Volterra-Lyapunov stability of these squared components guarantees the extended D-stability of the non-square matrix, thereby providing a rigorous method to identify feasible pairings that ensure robust decentralized control across both classical and data-driven applications.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper investigates the determination of feasible input-output pairings for the decentralized integral controllability of non-square systems.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Adaptive Context Length Optimization with Low-Frequency Truncation for Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Wenchang Duan, Yaoliang Yu, Jiwan He, Yi Shi</div>
+<div class="meta-line">First: 2025-10-30T11:32:45+00:00 · Latest: 2026-03-01T11:04:04+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2510.26389v2">Abs</a> · <a href="https://arxiv.org/pdf/2510.26389v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Recently, deep multi-agent reinforcement learning (MARL) has demonstrated promising performance for solving challenging tasks, such as long-term dependencies and non-Markovian environments. Its success is partly attributed to conditioning policies on large fixed context length. However, such large fixed context lengths may lead to limited exploration efficiency and redundant information. In this paper, we propose a novel MARL framework to obtain adaptive and effective contextual information. Specifically, we design a central agent that dynamically optimizes context length via temporal gradient analysis, enhancing exploration to facilitate convergence to global optima in MARL. Furthermore, to enhance the adaptive optimization capability of the context length, we present an efficient input representation for the central agent, which effectively filters redundant information. By leveraging a Fourier-based low-frequency truncation method, we extract global temporal trends across decentralized agents, providing an effective and efficient representation of the MARL environment. Extensive experiments demonstrate that the proposed method achieves state-of-the-art (SOTA) performance on long-term dependency tasks, including PettingZoo, MiniGrid, Google Research Football (GRF), and StarCraft Multi-Agent Challenge v2 (SMACv2).</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Recently, deep multi-agent reinforcement learning (MARL) has demonstrated promising performance for solving challenging tasks, such as long-term dependencies and non-Markovian environments.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MO-MIX: Multi-Objective Multi-Agent Cooperative Decision-Making With Deep Reinforcement Learning</div>
+<div class="meta-line">Authors: Tianmeng Hu, Biao Luo, Chunhua Yang, Tingwen Huang</div>
+<div class="meta-line">Venue: IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 45, no. 10, pp. 12098-12112, Oct. 2023</div>
+<div class="meta-line">First: 2026-02-28T16:25:22+00:00 · Latest: 2026-02-28T16:25:22+00:00</div>
+<div class="meta-line">Comments: 15 pages, 10 figures, published in IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.00730v1">Abs</a> · <a href="https://arxiv.org/pdf/2603.00730v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Deep reinforcement learning (RL) has been applied extensively to solve complex decision-making problems. In many real-world scenarios, tasks often have several conflicting objectives and may require multiple agents to cooperate, which are the multi-objective multi-agent decision-making problems. However, only few works have been conducted on this intersection. Existing approaches are limited to separate fields and can only handle multi-agent decision-making with a single objective, or multi-objective decision-making with a single agent. In this paper, we propose MO-MIX to solve the multi-objective multi-agent reinforcement learning (MOMARL) problem. Our approach is based on the centralized training with decentralized execution (CTDE) framework. A weight vector representing preference over the objectives is fed into the decentralized agent network as a condition for local action-value function estimation, while a mixing network with parallel architecture is used to estimate the joint action-value function. In addition, an exploration guide approach is applied to improve the uniformity of the final non-dominated solutions. Experiments demonstrate that the proposed method can effectively solve the multi-objective multi-agent cooperative decision-making problem and generate an approximation of the Pareto set. Our approach not only significantly outperforms the baseline method in all four kinds of evaluation metrics, but also requires less computational cost.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Deep reinforcement learning (RL) has been applied extensively to solve complex decision-making problems.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">OM2P: Offline Multi-Agent Mean-Flow Policy</div>
+<div class="meta-line">Authors: Zhuoran Li, Xun Wang, Hai Zhong, Qingxin Xia, Lihua Zhang, Longbo Huang</div>
+<div class="meta-line">First: 2025-08-08T12:38:56+00:00 · Latest: 2026-02-27T07:59:18+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2508.06269v2">Abs</a> · <a href="https://arxiv.org/pdf/2508.06269v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Generative models, especially diffusion and flow-based models, have been promising in offline multi-agent reinforcement learning. However, integrating powerful generative models into this framework poses unique challenges. In particular, diffusion and flow-based policies suffer from low sampling efficiency due to their iterative generation processes, making them impractical in time-sensitive or resource-constrained settings. To tackle these difficulties, we propose OM2P (Offline Multi-Agent Mean-Flow Policy), a novel offline MARL algorithm to achieve efficient one-step action sampling. To address the misalignment between generative objectives and reward maximization, we introduce a reward-aware optimization scheme that integrates a carefully-designed mean-flow matching loss with Q-function supervision. Additionally, we design a generalized timestep distribution and a derivative-free estimation strategy to reduce memory overhead and improve training stability. Empirical evaluations on Multi-Agent Particle and MuJoCo benchmarks demonstrate that OM2P achieves superior performance, with up to a 3.8x reduction in GPU memory usage and up to a 10.8x speed-up in training time. Our approach represents the first to successfully integrate mean-flow model into offline MARL, paving the way for practical and scalable generative policies in cooperative multi-agent settings.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Generative models, especially diffusion and flow-based models, have been promising in offline multi-agent reinforcement learning.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Heterogeneous Multi-Agent Reinforcement Learning with Attention for Cooperative and Scalable Feature Transformation</div>
+<div class="meta-line">Authors: Tao Zhe, Huazhen Fang, Kunpeng Liu, Qian Lou, Tamzidul Hoque, Dongjie Wang</div>
+<div class="meta-line">Venue: KDD 2026</div>
+<div class="meta-line">First: 2025-11-26T21:45:38+00:00 · Latest: 2026-02-27T05:39:51+00:00</div>
+<div class="meta-line">Comments: Accepted at KDD 2026 Research Track</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2511.21934v2">Abs</a> · <a href="https://arxiv.org/pdf/2511.21934v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Feature transformation enhances downstream task performance by generating informative features through mathematical feature crossing. Despite the advancements in deep learning, feature transformation remains essential for structured data, where deep models often struggle to capture complex feature interactions. Prior literature on automated feature transformation has achieved success but often relies on heuristics or exhaustive searches, leading to inefficient and time-consuming processes. Recent works employ reinforcement learning (RL) to enhance traditional approaches through a more effective trial-and-error way. However, two limitations remain: 1) Dynamic feature expansion during the transformation process, which causes instability and increases the learning complexity for RL agents; 2) Insufficient cooperation and communication between agents, which results in suboptimal feature crossing operations and degraded model performance. To address them, we propose a novel heterogeneous multi-agent RL framework to enable cooperative and scalable feature transformation. The framework comprises three heterogeneous agents, grouped into two types, each designed to select essential features and operations for feature crossing. To enhance communication among these agents, we implement a shared critic mechanism that facilitates information exchange during feature transformation. To handle the dynamically expanding feature space, we tailor multi-head attention-based feature agents to select suitable features for feature crossing. Additionally, we introduce a state encoding technique during the optimization process to stabilize and enhance the learning dynamics of the RL agents, resulting in more robust and reliable transformation policies. Finally, we conduct extensive experiments to validate the effectiveness, efficiency, robustness, and interpretability of our model.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Feature transformation enhances downstream task performance by generating informative features through mathematical feature crossing.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Training Generalizable Collaborative Agents via Strategic Risk Aversion</div>
+<div class="meta-line">Authors: Chengrui Qu, Yizhou Zhang, Nicolas Lanzetti, Eric Mazumdar</div>
+<div class="meta-line">First: 2026-02-25T03:06:59+00:00 · Latest: 2026-02-27T04:56:38+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.21515v2">Abs</a> · <a href="https://arxiv.org/pdf/2602.21515v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Many emerging agentic paradigms require agents to collaborate with one another (or people) to achieve shared goals. Unfortunately, existing approaches to learning policies for such collaborative problems produce brittle solutions that fail when paired with new partners. We attribute these failures to a combination of free-riding during training and a lack of strategic robustness. To address these problems, we study the concept of strategic risk aversion and interpret it as a principled inductive bias for generalizable cooperation with unseen partners. While strategically risk-averse players are robust to deviations in their partner&#x27;s behavior by design, we show that, in collaborative games, they also (1) can have better equilibrium outcomes than those at classical game-theoretic concepts like Nash, and (2) exhibit less or no free-riding. Inspired by these insights, we develop a multi-agent reinforcement learning (MARL) algorithm that integrates strategic risk aversion into standard policy optimization methods. Our empirical results across collaborative benchmarks (including an LLM collaboration task) validate our theory and demonstrate that our approach consistently achieves reliable collaboration with heterogeneous and previously unseen partners across collaborative tasks.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Many emerging agentic paradigms require agents to collaborate with one another (or people) to achieve shared goals.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">VolleyBots: A Testbed for Multi-Drone Volleyball Game Combining Motion Control and Strategic Play</div>
+<div class="meta-line">Authors: Zelai Xu, Ruize Zhang, Chao Yu, Huining Yuan, Xiangmin Yi, Shilong Ji, Chuqi Wang, Wenhao Tang, Feng Gao, Wenbo Ding, Xinlei Chen, Yu Wang</div>
+<div class="meta-line">Venue: NeurIPS 2025</div>
+<div class="meta-line">First: 2025-02-04T02:07:23+00:00 · Latest: 2026-02-26T09:51:13+00:00</div>
+<div class="meta-line">Comments: Accepted by NeurIPS 2025</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2502.01932v6">Abs</a> · <a href="https://arxiv.org/pdf/2502.01932v6">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Robot sports, characterized by well-defined objectives, explicit rules, and dynamic interactions, present ideal scenarios for demonstrating embodied intelligence. In this paper, we present VolleyBots, a novel robot sports testbed where multiple drones cooperate and compete in the sport of volleyball under physical dynamics. VolleyBots integrates three features within a unified platform: competitive and cooperative gameplay, turn-based interaction structure, and agile 3D maneuvering. These intertwined features yield a complex problem combining motion control and strategic play, with no available expert demonstrations. We provide a comprehensive suite of tasks ranging from single-drone drills to multi-drone cooperative and competitive tasks, accompanied by baseline evaluations of representative reinforcement learning (RL), multi-agent reinforcement learning (MARL) and game-theoretic algorithms. Simulation results show that on-policy RL methods outperform off-policy methods in single-agent tasks, but both approaches struggle in complex tasks that combine motion control and strategic play. We additionally design a hierarchical policy which achieves 69.5% win rate against the strongest baseline in the 3 vs 3 task, demonstrating its potential for tackling the complex interplay between low-level control and high-level strategy. To highlight VolleyBots&#x27; sim-to-real potential, we further demonstrate the zero-shot deployment of a policy trained entirely in simulation on real-world drones.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Robot sports, characterized by well-defined objectives, explicit rules, and dynamic interactions, present ideal scenarios for demonstrating embodied intelligence.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">QSIM: Mitigating Overestimation in Multi-Agent Reinforcement Learning via Action Similarity Weighted Q-Learning</div>
+<div class="meta-line">Authors: Yuanjun Li, Bin Zhang, Hao Chen, Zhouyang Jiang, Dapeng Li, Zhiwei Xu</div>
+<div class="meta-line">First: 2026-02-26T09:20:46+00:00 · Latest: 2026-02-26T09:20:46+00:00</div>
+<div class="meta-line">Comments: 19 pages, 15 figures, 7tables. Accepted to the 36th International Conference on Automated Planning and Scheduling (ICAPS 2026)</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.22786v1">Abs</a> · <a href="https://arxiv.org/pdf/2602.22786v1">PDF</a> · <a href="https://github.com/MaoMaoLYJ/pymarl-qsim">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Value decomposition (VD) methods have achieved remarkable success in cooperative multi-agent reinforcement learning (MARL). However, their reliance on the max operator for temporal-difference (TD) target calculation leads to systematic Q-value overestimation. This issue is particularly severe in MARL due to the combinatorial explosion of the joint action space, which often results in unstable learning and suboptimal policies. To address this problem, we propose QSIM, a similarity weighted Q-learning framework that reconstructs the TD target using action similarity. Instead of using the greedy joint action directly, QSIM forms a similarity weighted expectation over a structured near-greedy joint action space. This formulation allows the target to integrate Q-values from diverse yet behaviorally related actions while assigning greater influence to those that are more similar to the greedy choice. By smoothing the target with structurally relevant alternatives, QSIM effectively mitigates overestimation and improves learning stability. Extensive experiments demonstrate that QSIM can be seamlessly integrated with various VD methods, consistently yielding superior performance and stability compared to the original algorithms. Furthermore, empirical analysis confirms that QSIM significantly mitigates the systematic value overestimation in MARL. Code is available at https://github.com/MaoMaoLYJ/pymarl-qsim.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Value decomposition (VD) methods have achieved remarkable success in cooperative multi-agent reinforcement learning (MARL).</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Hierarchical Lead Critic based Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: David Eckel, Henri Meeß</div>
+<div class="meta-line">First: 2026-02-25T08:33:39+00:00 · Latest: 2026-02-25T08:33:39+00:00</div>
+<div class="meta-line">Comments: 16 pages, 10 Figures, Preprint</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.21680v1">Abs</a> · <a href="https://arxiv.org/pdf/2602.21680v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Cooperative Multi-Agent Reinforcement Learning (MARL) solves complex tasks that require coordination from multiple agents, but is often limited to either local (independent learning) or global (centralized learning) perspectives. In this paper, we introduce a novel sequential training scheme and MARL architecture, which learns from multiple perspectives on different hierarchy levels. We propose the Hierarchical Lead Critic (HLC) - inspired by natural emerging distributions in team structures, where following high-level objectives combines with low-level execution. HLC demonstrates that introducing multiple hierarchies, leveraging local and global perspectives, can lead to improved performance with high sample efficiency and robust policies. Experimental results conducted on cooperative, non-communicative, and partially observable MARL benchmarks demonstrate that HLC outperforms single hierarchy baselines and scales robustly with increasing amounts of agents and difficulty.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Cooperative Multi-Agent Reinforcement Learning (MARL) solves complex tasks that require coordination from multiple agents, but is often limited to either local (independent learning) or global (centralized learning) perspectives.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Probing Dec-POMDP Reasoning in Cooperative MARL</div>
+<div class="meta-line">Authors: Kale-ab Tessera, Leonard Hinckeldey, Riccardo Zamboni, David Abel, Amos Storkey</div>
+<div class="meta-line">Venue: AAMAS 2026</div>
+<div class="meta-line">First: 2026-02-24T11:44:46+00:00 · Latest: 2026-02-24T11:44:46+00:00</div>
+<div class="meta-line">Comments: To appear at the 25th International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS 2026)</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.20804v1">Abs</a> · <a href="https://arxiv.org/pdf/2602.20804v1">PDF</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Cooperative multi-agent reinforcement learning (MARL) is typically framed as a decentralised partially observable Markov decision process (Dec-POMDP), a setting whose hardness stems from two key challenges: partial observability and decentralised coordination. Genuinely solving such tasks requires Dec-POMDP reasoning, where agents use history to infer hidden states and coordinate based on local information. Yet it remains unclear whether popular benchmarks actually demand this reasoning or permit success via simpler strategies. We introduce a diagnostic suite combining statistically grounded performance comparisons and information-theoretic probes to audit the behavioural complexity of baseline policies (IPPO and MAPPO) across 37 scenarios spanning MPE, SMAX, Overcooked, Hanabi, and MaBrax. Our diagnostics reveal that success on these benchmarks rarely requires genuine Dec-POMDP reasoning. Reactive policies match the performance of memory-based agents in over half the scenarios, and emergent coordination frequently relies on brittle, synchronous action coupling rather than robust temporal influence. These findings suggest that some widely used benchmarks may not adequately test core Dec-POMDP assumptions under current training paradigms, potentially leading to over-optimistic assessments of progress. We release our diagnostic tooling to support more rigorous environment design and evaluation in cooperative MARL.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Cooperative multi-agent reinforcement learning (MARL) is typically framed as a decentralised partially observable Markov decision process (Dec-POMDP), a setting whose hardness stems from two key challenges: partial observability and decentralised coordination.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Descent-Guided Policy Gradient for Scalable Cooperative Multi-Agent Learning</div>
+<div class="meta-line">Authors: Shan Yang, Yang Liu</div>
+<div class="meta-line">First: 2026-02-23T17:45:08+00:00 · Latest: 2026-02-23T17:45:08+00:00</div>
+<div class="meta-line">Comments: 10 pages, 5 figures, 5 tables; plus 16 pages of appendices</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.20078v1">Abs</a> · <a href="https://arxiv.org/pdf/2602.20078v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Scaling cooperative multi-agent reinforcement learning (MARL) is fundamentally limited by cross-agent noise: when agents share a common reward, the actions of all N agents jointly determine each agent&#x27;s learning signal, so cross-agent noise grows with N. In the policy gradient setting, per-agent gradient estimate variance scales as Θ(N), yielding sample complexity \mathcal{O}(N/ε). We observe that many domains -- cloud computing, transportation, power systems -- have differentiable analytical models that prescribe efficient system states. In this work, we propose Descent-Guided Policy Gradient (DG-PG), a framework that constructs noise-free per-agent guidance gradients from these analytical models, decoupling each agent&#x27;s gradient from the actions of all others. We prove that DG-PG reduces gradient variance from Θ(N) to \mathcal{O}(1), preserves the equilibria of the cooperative game, and achieves agent-independent sample complexity \mathcal{O}(1/ε). On a heterogeneous cloud scheduling task with up to 200 agents, DG-PG converges within 10 episodes at every tested scale -- from N=5 to N=200 -- directly confirming the predicted scale-invariant complexity, while MAPPO and IPPO fail to converge under identical architectures.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Scaling cooperative multi-agent reinforcement learning (MARL) is fundamentally limited by cross-agent noise: when agents share a common reward, the actions of all N agents jointly determine each agent&#x27;s learning signal, so cross-agent noise grows with N.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Budget Allocation Policies for Real-Time Multi-Agent Path Finding</div>
+<div class="meta-line">Authors: Raz Beck, Roni Stern</div>
+<div class="meta-line">First: 2025-07-22T08:32:55+00:00 · Latest: 2026-02-23T13:53:21+00:00</div>
+<div class="meta-line">Comments: 11 pages, 4 figures, 4 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2507.16874v2">Abs</a> · <a href="https://arxiv.org/pdf/2507.16874v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multi-Agent Path finding (MAPF) is the problem of finding paths for a set of agents such that each agent reaches its desired destination while avoiding collisions with the other agents. This problem arises in many robotics applications, such as automated warehouses and swarms of drones. Many MAPF solvers are designed to run offline, that is, first generate paths for all agents and then execute them. In real-world scenarios, waiting for a complete solution before allowing any robot to move is often impractical. Real-time MAPF (RT-MAPF) captures this setting by assuming that agents must begin execution after a fixed planning period, referred to as the planning budget, and execute a fixed number of actions, referred to as the execution window. This results in an iterative process in which a short plan is executed, while the next execution window is planned concurrently. Existing solutions to RT-MAPF iteratively call windowed versions of MAPF algorithms in every planning period, without explicitly considering the size of the planning budget. We address this gap and explore different policies for allocating the planning budget in windowed versions of MAPF-LNS2, a state-of-the-art MAPF algorithm. Our exploration shows that the baseline approach in which all agents draw from a shared planning budget pool is ineffective in challenging scenarios. Instead, policies that intelligently distribute the planning budget among agents are able to solve more problem instances in less time.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multi-Agent Path finding (MAPF) is the problem of finding paths for a set of agents such that each agent reaches its desired destination while avoiding collisions with the other agents.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Mixed-Reality Digital Twins: Leveraging the Physical and Virtual Worlds for Hybrid Sim2Real Transition of Multi-Agent Reinforcement Learning Policies</div>
+<div class="meta-line">Authors: Chinmay Vilas Samak, Tanmay Vilas Samak, Venkat Narayan Krovi</div>
+<div class="meta-line">Venue: ICRA</div>
+<div class="meta-line">First: 2024-03-16T18:47:04+00:00 · Latest: 2026-02-23T06:49:35+00:00</div>
+<div class="meta-line">Comments: Accepted in IEEE Robotics and Automation Letters (RA-L) and additionally accepted to be presented at IEEE International Conference on Robotics and Automation (ICRA) 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2403.10996v8">Abs</a> · <a href="https://arxiv.org/pdf/2403.10996v8">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multi-agent reinforcement learning (MARL) for cyber-physical vehicle systems usually requires a significantly long training time due to their inherent complexity. Furthermore, deploying the trained policies in the real world demands a feature-rich environment along with multiple physical embodied agents, which may not be feasible due to monetary, physical, energy, or safety constraints. This work seeks to address these pain points by presenting a mixed-reality (MR) digital twin (DT) framework capable of: (i) boosting training speeds by selectively scaling parallelized simulation workloads on-demand, and (ii) immersing the MARL policies across hybrid simulation-to-reality (sim2real) experiments. The viability and performance of the proposed framework are highlighted through two representative use cases, which cover cooperative as well as competitive classes of MARL problems. We study the effect of: (i) agent and environment parallelization on training time, and (ii) systematic domain randomization on zero-shot sim2real transfer, across both case studies. Results indicate up to 76.3% reduction in training time with the proposed parallelization scheme and sim2real gap as low as 2.9% using the proposed deployment method.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multi-agent reinforcement learning (MARL) for cyber-physical vehicle systems usually requires a significantly long training time due to their inherent complexity.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</div>
+<div class="meta-line">Authors: Bharath Muppasani, Ritirupa Dey, Biplav Srivastava, Vignesh Narayanan</div>
+<div class="meta-line">First: 2025-10-10T15:25:40+00:00 · Latest: 2026-02-22T23:52:42+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2510.09469v2">Abs</a> · <a href="https://arxiv.org/pdf/2510.09469v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multi-agent pathfinding (MAPF) remains a critical problem in robotics and autonomous systems, where agents must navigate shared spaces efficiently while avoiding conflicts. Traditional centralized algorithms with global information provide high-quality solutions but scale poorly in large-scale scenarios due to the combinatorial explosion of conflicts. Conversely, distributed approaches that have local information, particularly learning-based methods, offer better scalability by operating with relaxed information availability, yet often at the cost of solution quality. In realistic deployments, information is a constrained resource: broadcasting full agent states and goals can raise privacy concerns, strain limited bandwidth, and require extra sensing and communication hardware, increasing cost and energy use. We focus on the core question of how MAPF can be solved with minimal inter-agent information sharing while preserving solution feasibility. To this end, we present an information-centric formulation of the MAPF problem and introduce a hybrid framework, IO-MAPF, that integrates decentralized path planning with a lightweight centralized coordinator. In this framework, agents use reinforcement learning (RL) to plan independently, while the central coordinator provides minimal, targeted signals, such as static conflict-cell indicators or short conflict trajectories, that are dynamically shared to support efficient conflict resolution. We introduce an Information Units (IU) metric to quantify information use and show that our alert-driven design achieves 2x to 23x reduction in information sharing, compared to the state-of-the-art algorithms, while maintaining high success rates, demonstrating that reliable MAPF is achievable under strongly information-restricted, privacy-preserving conditions. We demonstrate the effectiveness of our algorithm using simulation and hardware experiments.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multi-agent pathfinding (MAPF) remains a critical problem in robotics and autonomous systems, where agents must navigate shared spaces efficiently while avoiding conflicts.</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20260309_1658.html">20260309_1658</a>
+<a href="archive/20260309_1651.html">20260309_1651</a>
+<a href="archive/20260309_1638.html">20260309_1638</a>
+<a href="archive/20260309_1537.html">20260309_1537</a>
+<a href="archive/20260309_1519.html">20260309_1519</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>

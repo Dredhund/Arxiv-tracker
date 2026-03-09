@@ -189,19 +189,16 @@ def _card(it: Dict[str, Any],
     links = _join_links(it)
     if links: parts.append(f'<div class="links" style="margin-top:8px">{links}</div>')
 
-    # 摘要（英文原文，可折叠）- LaTeX 转 HTML
+    # 摘要（双语：英文原文 + 中文翻译）- LaTeX 转 HTML
     if absu:
         absu_html = _latex_to_html(absu)
-        parts.append('<details class="detail"><summary>Abstract</summary>')
-        parts.append(f'<div class="mono">{absu_html}</div></details>')
-
-    # 中文标题/摘要（可选）- LaTeX 转 HTML
-    if zh_abs or zh_title:
-        parts.append('<details class="detail"><summary>中文标题/摘要</summary>')
-        if zh_title:
-            parts.append(f'<div class="mono"><b>标题：</b>{_latex_to_html(zh_title)}</div>')
-        if zh_abs:
-            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(zh_abs)}</div>')
+        parts.append('<details class="detail"><summary>Abstract / 摘要</summary>')
+        parts.append(f'<div class="mono">{absu_html}</div>')
+        if zh_title or zh_abs:
+            if zh_title:
+                parts.append(f'<div class="mono" style="margin-top:8px"><b>标题：</b>{_latex_to_html(zh_title)}</div>')
+            if zh_abs:
+                parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(zh_abs)}</div>')
         parts.append('</details>')
 
     # ✅ 只渲染双语总结（英文→中文）- LaTeX 转 HTML
@@ -215,16 +212,15 @@ def _card(it: Dict[str, Any],
             parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(display_zh)}</div>')
         parts.append('</details>')
 
-    # 关键技术与创新点：优先中文，无则英文兜底
+    # 关键技术与创新点：双语展示（英文 + 中文）
     innovations_zh = (sum_zh or sum_en or {}).get("innovations_zh") or ""
     innovations_en = (sum_zh or sum_en or {}).get("innovations_en") or ""
-    innovations = innovations_zh or innovations_en
-    if innovations:
-        parts.append('<details class="detail" open><summary>关键技术与创新点</summary>')
-        if innovations_zh:
-            parts.append(f'<div class="mono">{_latex_to_html(innovations_zh)}</div>')
-        elif innovations_en:
+    if innovations_en or innovations_zh:
+        parts.append('<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>')
+        if innovations_en:
             parts.append(f'<div class="mono">{_latex_to_html(innovations_en)}</div>')
+        if innovations_zh:
+            parts.append(f'<div class="mono" style="margin-top:8px">{_latex_to_html(innovations_zh)}</div>')
         parts.append('</details>')
 
     parts.append('</div>')
