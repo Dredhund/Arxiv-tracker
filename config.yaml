@@ -1,12 +1,30 @@
 categories: ["cs.CV", "cs.LG", "cs.AI"]
 keywords:
-  - "open vocabulary"
-  - "open-vocabulary"
-  - "open vocabulary segmentation"
-  - "open-vocabulary segmentation"
-  - "vision language model"
-  - "training-free"
-  - "training free"
+  # MAPF
+  - "multi-agent path finding"
+  - "multi-agent pathfinding"
+  - "MAPF"
+  - "conflict-based search"
+  - "CBS"
+  - "multi-robot path planning"
+  - "coordinated motion planning"
+  # Lifelong MAPF
+  - "lifelong MAPF"
+  - "lifelong multi-agent path finding"
+  - "lifelong multi-agent pathfinding"
+  - "online MAPF"
+  - "continuous MAPF"
+  - "streaming MAPF"
+  # MARL
+  - "multi-agent reinforcement learning"
+  - "MARL"
+  - "cooperative multi-agent"
+  - "CTDE"
+  - "centralized training decentralized execution"
+  # 学习式 MAPF（若也关注）
+  - "learning-based path finding"
+  - "learning MAPF"
+  - "neural path planning"
 
 # exclude_keywords: # 选择排除的关键词
 #   - "Large Language Model"
