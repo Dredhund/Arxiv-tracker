@@ -74,234 +74,295 @@ summary{cursor:pointer;color:var(--acc)}
   <button class="btn" onclick="__expandAll(false)">Collapse All</button>
 </div>
 
-        <span class="badge">2026-09-21 23:06</span>
+        <span class="badge">2026-09-29 00:46</span>
       </div>
     </div>
     <div class="hr"></div>
     <div>Latest digest</div>
     <div class="row"><div class="card">
-<div class="title">Scalable Policy Optimization for Networked Multi-Agent Reinforcement Learning with Continuous State-Action Spaces</div>
-<div class="meta-line">Authors: Dongming Wang, Pengcheng Dai, Wenwu Yu, Wei Ren</div>
-<div class="meta-line">First: 2026-07-20T22:41:43+00:00 · Latest: 2026-09-17T13:12:58+00:00</div>
-<div class="meta-line">Comments: v2</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.18554v2">Abs</a> · <a href="https://arxiv.org/pdf/2607.18554v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">HySTAR: Anchored Hypergraphs for Stable Credit Assignment in Cooperative Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Xinglong Luo, Yuding Zhang, Yuheng Kuang, Shuxuan Yuan, Zhenni Zeng, Weiqiang Zhu, Zhenhai Ji, Zhengning Wang</div>
+<div class="meta-line">First: 2026-09-25T17:06:54+00:00 · Latest: 2026-09-25T17:06:54+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31531v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31531v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Learning local policies for continuous networked systems requires accounting for the effects of decisions beyond each agent&#x27;s observation neighborhood. Spatial decay limits these effects, but a finite critic must also control representation and estimation errors throughout policy optimization. We analyze the Continuous Distributed Coupled Policy Gradient (CDCPG) algorithm using local random Fourier features and least-squares temporal-difference critics. For features that retain the boundary inputs required by the local dynamics, we derive an action-value representation with separate spatial and finite-feature residuals. A global integrated transition-approximation bound and a projected Bellman argument control population prediction error without an inverse-conditioning multiplier. We then quantify the dependence of critic estimation on feature excitation and dimension, and construct simultaneous lower confidence bounds for temporal-difference conditioning along the executed iterates. Combining critic error with localized reward aggregation bounds the expected squared projected-gradient mapping by an optimization term and an explicit residual separating spatial approximation, finite features, and omitted distant rewards. For fixed neighborhoods and feature dimension, the shared-oracle sample count is inverse-squared in the excess squared-stationarity accuracy, up to logarithmic factors. The guarantee assumes known local dynamics and rewards, independent discounted-occupancy samples, and stated excitation, decay, and smoothness conditions, and is conditional on favorable feature draws. Numerical studies illustrate related implementations on a linear-coupled-quadratic benchmark.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>网络化多智能体连续状态动作空间强化学习的可扩展策略优化</div>
-<div class="mono" style="margin-top:8px">学习连续网络系统的局部策略需要考虑每个智能体观察邻域之外的决策影响。空间衰减限制了这些影响，但有限的评论者还必须在整个策略优化过程中控制表示和估计误差。我们使用局部随机傅里叶特征和最小二乘时差评论者分析了连续分布式耦合策略梯度(CDCPG)算法。对于保留局部动力学所需边界输入的特征，我们推导出一个带有单独空间和有限特征残差的动作值表示。全局集成转换近似误差界和投影贝尔曼论证控制了人群预测误差，无需逆条件乘数。然后我们量化评论者估计对特征激发和维度的依赖性，并构造了沿执行迭代的时间差条件的同时下限置信界。结合评论者误差与局部化奖励聚合误差界，通过优化项和明确分离空间近似、有限特征和省略的远距离奖励的残差来限制期望的平方投影梯度映射。对于固定邻域和特征维度，共享先验样本计数与超额平方稳定准确性的平方成反比，直到对数因子。该保证假设已知局部动力学和奖励，独立折扣占用样本，并且有明确的激发、衰减和光滑性条件，且基于有利的特征抽样。数值研究在线性耦合二次基准上说明了相关实现。</div>
+<div class="mono">Cooperative multi-agent reinforcement learning under partial observability and shared rewards requires assigning team outcomes to individual agents and high-order coalitions. A MAPPO-style critic compresses joint behavior into one global value, while critics that dynamically reconstruct the grouping topology change the mapping from agents and coalitions to value components as interactions or active agents evolve. We refer to this inconsistency as structural target drift. We introduce HySTAR, a MAPPO-based framework that separates adaptive representation learning from a temporally consistent high-order value-decomposition basis. HySTAR anchors an overlapping sparse hypergraph as a uniformly covered decomposition scaffold, uses a spatiotemporal encoder to represent physical and task-dependent interactions, and combines temporal and structural relevance to construct agent-specific advantages. Experiments on SMAC, GRF, Traffic Junction, and MPE demonstrate consistent improvements over MAPPO-style, value-factorization, and dynamic-grouping baselines. On the hardest SMAC settings, HySTAR achieves relative gains of 16.7\% over MAPPO and 15.6\% over HYGMA, ranks first on all six GRF scenarios, reduces Traffic Junction convergence epochs by up to 40.2\% relative to MAGIC, and obtains the highest MPE episode rewards. Controlled topology, agent-death, neighborhood, and parameter analyses support the benefit of anchoring the decomposition scaffold while adapting the propagated representations.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>HySTAR：锚定超图在合作多智能体强化学习中的稳定信用分配</div>
+<div class="mono" style="margin-top:8px">在部分可观测性和共享奖励条件下，合作多智能体强化学习需要将团队结果分配给个体智能体和高阶联盟。一种MAPPO风格的评论者将联合行为压缩为一个全局值，而能够动态重构分组拓扑结构的评论者会随着交互或活跃智能体的变化改变从智能体和联盟到价值组件的映射。我们将这种不一致性称为结构目标漂移。我们引入了HySTAR，这是一种基于MAPPO的框架，将自适应表示学习与时间上一致的高阶价值分解基础分离。HySTAR使用重叠稀疏超图作为均匀覆盖的分解支架，使用时空编码器表示物理和任务相关的交互，并结合时间和结构相关性构建智能体特定的优势。在SMAC、GRF、交通交叉口和MPE上的实验表明，HySTAR在MAPPO风格、价值因子分解和动态分组基线之上表现出一致的改进。在SMAC最难的设置中，HySTAR相对于MAPPO的相对收益为16.7%，相对于HYGMA的相对收益为15.6%，在所有六个GRF场景中排名第一，将Traffic Junction的收敛周期减少了最多40.2%相对于MAGIC，并获得最高的MPE集锦奖励。控制拓扑、智能体死亡、邻域和参数分析支持锚定分解支架并适应传播表示的好处。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper addresses the challenge of learning local policies in continuous networked multi-agent systems by analyzing the Continuous Distributed Coupled Policy Gradient (CDCPG) algorithm. It uses local random Fourier features and least-squares temporal-difference critics to manage representation and estimation errors. The study derives an action-value representation with separate spatial and finite-feature residuals, and constructs lower confidence bounds for critic estimation. The results show that the shared-oracle sample count is inversely proportional to the excess squared-stationarity accuracy, up to logarithmic factors, under certain conditions.</div>
-<div class="mono" style="margin-top:8px">该研究分析了网络化多智能体连续状态动作空间强化学习中的连续分布式耦合策略梯度（CDCPG）算法。引入了使用局部随机傅里叶特征和最小二乘时差批评来控制表示和估计误差的方法。研究推导了动作值表示，并构建了批评估计的边界，最终得到共享或acles样本计数与额外平方稳态精度成反比平方的关系。数值实验在线性耦合二次基准上验证了该方法。</div>
+<div class="mono">HySTAR is a MAPPO-based framework designed to address the issue of structural target drift in cooperative multi-agent reinforcement learning. It uses an anchored overlapping sparse hypergraph to maintain a temporally consistent value decomposition basis, combined with a spatiotemporal encoder to represent interactions. Experiments show that HySTAR outperforms existing methods on various benchmarks, achieving significant improvements in settings with high complexity.</div>
+<div class="mono" style="margin-top:8px">HySTAR 是一个基于 MAPPO 的框架，旨在解决合作多智能体强化学习中的结构目标漂移问题。它通过锚定一个重叠的稀疏超图来一致地分解高阶值，并结合时间相关性和结构相关性来增强智能体特定的优势。实验表明，HySTAR 在各种任务中表现优于现有方法，特别是在具有挑战性的场景中取得了显著的改进。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduced a method using local random Fourier features and least-squares temporal-difference critics to control representation and estimation errors.
-2. Derived an action-value representation and constructed bounds for critic estimation.
-3. Obtained a shared-oracle sample count inversely squared in excess squared-stationarity accuracy.</div>
-<div class="mono" style="margin-top:8px">1. 引入了使用局部随机傅里叶特征和最小二乘时差批评的方法来控制表示和估计误差。
-2. 推导了动作值表示，并构建了批评估计的边界。
-3. 得到了共享或acles样本计数与额外平方稳态精度成反比平方的关系。</div>
+<div class="mono">1. Introduced an anchored overlapping sparse hypergraph as a stable basis for high-order value decomposition.
+2. Combined temporal and structural relevance to construct agent-specific advantages.</div>
+<div class="mono" style="margin-top:8px">1. 引入了锚定的重叠稀疏超图作为高阶值分解的稳定基础。
+2. 结合了时间相关性和结构相关性来构建智能体特定的优势。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">UniExo: Unified Multi-Skill Policies for Musculoskeletal Locomotion and Co-Adaptive Exoskeleton Control</div>
-<div class="meta-line">Authors: Yifei Yuan, Jakob Wolf, Ghaith Androwis, Xianlian Zhou</div>
-<div class="meta-line">First: 2026-09-17T04:38:34+00:00 · Latest: 2026-09-17T04:38:34+00:00</div>
-<div class="meta-line">Comments: 9 pages, 8 figures</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.19690v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.19690v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Topology-Driven Anti-Entanglement Control for Soft Robots</div>
+<div class="meta-line">Authors: Haoyang Le, Shengxuan Wang, Mohan Chen, Shuo Feng</div>
+<div class="meta-line">First: 2026-05-01T06:08:44+00:00 · Latest: 2026-09-25T15:33:05+00:00</div>
+<div class="meta-line">Comments: This submission is withdrawn by the authors for substantial revisions</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2605.05236v2">Abs</a> · <a href="https://arxiv.org/pdf/2605.05236v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Daily locomotion encompasses diverse activities and frequent transitions between them, yet most exoskeleton controllers are designed for a single activity or a narrow set of related movements. Changes in activity therefore typically require explicit mode switching and separately tuned or retrained controllers. Simulation-based learning reduces the need for hardware-based tuning but generally retains this limitation. Here we present UniExo, a framework that first constructs a multi-skill musculoskeletal human policy and then jointly trains an exoskeleton control policy with it. Four single-skill imitation experts for walking, turning, running and backward walking are distilled into a single network structured by a skill latent and subsequently fine-tuned through reinforcement learning on transition sequences. The resultant unified human policy achieves a mean tracking success rate of 94.7% on unseen clips of the four skills and exhibits greater robustness to perturbations than its constituent experts. A single hip exoskeleton controller (UniExo) is initialized from hip moment prediction of the human policy and co-adapted with it through multi-agent reinforcement learning across the four skills. This co-adaptation shifts the timing of the assistance torque and raises the fraction of positive work delivered to the hip. When deployed on a custom hip exoskeleton, the controller generalizes across four treadmill speeds in six participants and assists one participant through a continuous route of all four skills and their transitions, without skill labels or explicit mode switching. UniExo thus provides a step towards replacing activity-specific controllers with unified, user-specific controllers that support diverse locomotor activities and the transitions between them.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>UniExo：统一多技能政策用于肌肉骨骼运动和共适应外骨骼控制</div>
-<div class="mono" style="margin-top:8px">日常运动包括多种活动和频繁的活动转换，但大多数外骨骼控制器仅针对单一活动或一组相关运动进行设计。因此，活动变化通常需要显式模式切换和单独调优或重新训练控制器。基于仿真的学习减少了硬件调优的需要，但通常仍保留这一限制。在这里，我们提出了UniExo框架，首先构建一个多技能肌肉骨骼人类策略，然后与之联合训练一个外骨骼控制策略。四个单一技能模仿专家（行走、转身、跑步和倒退行走）被提炼成一个由技能潜在变量结构化的网络，并通过强化学习在转换序列上进行微调。由此产生的统一人类策略在四个技能的未见过的片段上实现了94.7%的平均跟踪成功率，并且比其组成部分专家具有更大的抗干扰性。一个髋关节外骨骼控制器（UniExo）从人类策略的髋关节力矩预测中初始化，并通过四技能的多智能体强化学习与之共适应。这种共适应改变了辅助扭矩的时机，并增加了传递给髋关节的积极工作比例。当部署在定制的髋关节外骨骼上时，该控制器在六名参与者中跨四个跑步机速度进行了泛化，并帮助一名参与者通过所有四个技能及其转换的连续路线，而无需技能标签或显式模式切换。UniExo因此朝着用统一的、用户特定的控制器替代活动特定控制器的方向迈进，该控制器支持多种运动和它们之间的转换。</div>
+<div class="mono">In the field of precision manufacturing in complex constrained environments, the role of soft robots is increasingly prominent, and the realization of anti-winding control based on multi-intelligent body reinforcement learning has become a research hotspot. One of the core problems at present is to coordinate multiple robots to complete the unwinding operation in a highly constrained environment. The existing distributed training framework faces some observability challenges in high-density barrier and unstable environments, resulting in poor learning results. This paper proposes a topology-driven Multi-Agent Reinforcement Learning (TD-MARL) framework to coordinate multi-robot systems to avoid entanglement. Specifically, the critical network adopts centralized learning, so that each intelligent body can perceive the strategies of other intelligent bodies by sharing the topological state, thus alleviating the training instability caused by complex interactions; eliminating the demand for communication resources between robots through distributed execution, Upgrade system reliability; the integrated topological security layer uses topological invariants to accurately assess and mitigate the risk of entanglement to avoid the strategy from falling into local difficulties. Finally, the full simulation experiments carried out in the real simulation environment show that the method is better than the current advanced deep reinforcement learning (DRL) method in terms of convergence and anti-winding effect.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>拓扑驱动的反缠结控制软机器人</div>
+<div class="mono" style="margin-top:8px">在复杂受限环境中的精密制造领域，软机器人的作用日益突出，基于多智能体增强学习的反缠结控制实现已成为研究热点。目前的核心问题是协调多个机器人在高度受限环境中完成解缠操作。现有的分布式训练框架在高密度障碍和不稳定环境中面临一些可观测性挑战，导致学习效果不佳。本文提出了一种拓扑驱动的多智能体增强学习(TD-MARL)框架，以协调多机器人系统避免缠结。具体来说，关键网络采用集中学习，使得每个智能体可以通过共享拓扑状态感知其他智能体的策略，从而缓解复杂交互引起的训练不稳定性；通过分布式执行消除机器人之间的通信资源需求，提升系统可靠性；集成的拓扑安全层使用拓扑不变量准确评估和缓解缠结风险，避免策略陷入局部困境。最后，在实际仿真环境中进行的全仿真实验表明，该方法在收敛性和反缠结效果方面优于当前先进的深度增强学习(DRL)方法。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">UniExo is a framework that integrates multiple skills into a unified musculoskeletal human policy and co-adapts an exoskeleton control policy with it. The framework demonstrates a mean tracking success rate of 94.7% on unseen clips and shows greater robustness to perturbations. The single hip exoskeleton controller generalizes across different treadmill speeds and assists participants through transitions between locomotor activities without explicit mode switching.</div>
-<div class="mono" style="margin-top:8px">UniExo 是一个框架，将多种运动技能统一成一个政策用于外骨骼控制。它构建了一个多技能的肌肉骨骼人类策略，并与外骨骼控制策略联合训练。统一的人类策略在未见过的四种技能片段上实现了94.7%的跟踪成功率，并且表现出比其组成部分专家更好的鲁棒性。通过多智能体强化学习，单髋外骨骼控制器与人类策略共同适应，改善了助力时机和工作传递。该控制器在不同跑步机速度和运动技能下实现了泛化，无需明确的模式切换。</div>
+<div class="mono">This paper introduces a topology-driven Multi-Agent Reinforcement Learning (TD-MARL) framework to address the challenge of coordinating multiple soft robots for anti-winding operations in complex environments. The framework uses centralized learning and topological state sharing to improve stability and reliability, and integrates a topological security layer to assess and mitigate entanglement risks. Simulation experiments demonstrate superior performance in convergence and anti-winding effects compared to existing deep reinforcement learning methods.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种拓扑驱动的多智能体强化学习（TD-MARL）框架，用于协调多个软机器人在高度受限环境中进行反缠绕操作。该框架利用集中式学习和拓扑状态共享来增强可观测性和稳定性，同时拓扑安全层确保准确的风险评估和缓解，以避免策略陷入局部困境。全仿真实验表明，该方法在收敛性和反缠绕效果方面优于现有的深度强化学习方法。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposed a framework to unify multiple locomotion skills into a single policy.
-2. Co-adapted a single hip exoskeleton controller with a human policy through multi-agent reinforcement learning.
-3. Achieved generalization across different treadmill speeds and locomotion skills without explicit mode switching.</div>
-<div class="mono" style="margin-top:8px">1. 提出了将多种运动技能统一成一个策略的框架。
-2. 通过多智能体强化学习实现外骨骼控制器与人类策略的共同适应。
-3. 实现了在不同跑步机速度和运动技能下无需模式切换的泛化。</div>
+<div class="mono">1. Utilizes centralized learning and topological state sharing to enhance observability and stability
+2. Employs a topological security layer for accurate risk assessment and mitigation
+3. Achieves efficient anti-winding operations in highly constrained environments</div>
+<div class="mono" style="margin-top:8px">1. 利用集中式学习和拓扑状态共享提升多智能体系统的可观测性和稳定性
+2. 通过拓扑安全层准确评估和缓解缠绕风险
+3. 实现了在高度受限环境中的高效反缠绕操作</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Agentic AI Networking for Heterogeneous Unmanned Aerial Systems in Low-Altitude Wireless Networks</div>
-<div class="meta-line">Authors: Nguyen Duc Minh Quang, Chang Liu, Shuangyang Li, Derrick Wing Kwan Ng</div>
-<div class="meta-line">First: 2026-09-17T01:04:27+00:00 · Latest: 2026-09-17T01:04:27+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.19538v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.19538v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">G2MAF: Test-Time Gradient Guidance for Multi-Agent Flow Policies</div>
+<div class="meta-line">Authors: Guowei Zou, Haitao Wang, Guoxin Wang, Zhiquan Chen, Beiwen Zhang, Guojie Wang, Hejun Wu</div>
+<div class="meta-line">First: 2026-09-25T13:57:02+00:00 · Latest: 2026-09-25T13:57:02+00:00</div>
+<div class="meta-line">Comments: 24 pages, including appendices. Project page: https://g2maf.github.io/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31286v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31286v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://g2maf.github.io/">Project1</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Low-altitude wireless networks (LAWNs) are emerging as a key infrastructure for heterogeneous unmanned aerial systems that support concurrent services within a shared three-dimensional airspace. Their coexistence creates strong coupling among mobility, connectivity, and shared network resources, while heterogeneous services impose distinct and time-varying requirements. These interactions naturally form a dynamic non-cooperative game in which both operating conditions and coordination objectives evolve over time. Conventional optimization and learning-based controllers typically rely on predefined objectives, limiting their ability to adapt autonomously to changing service requirements and resource priorities. To address this challenge, we propose a hierarchical hybrid large language model (LLM)- multi-agent reinforcement learning (MARL) architecture organized as a dual-loop structure. Specifically, an outer adaptation loop employs LLM-assisted game orchestration to interpret service requirements and operator intent, and reconfigure objectives and resource priorities, while an inner loop executes decentralized, parameter-conditioned MARL policies under the configured game. A logistics-monitoring case study illustrates how the proposed framework facilitates coordinated coexistence among heterogeneous services, adapting to evolving operating conditions without retraining the underlying MARL policies. Finally, we discuss key challenges and research directions toward scalable, trustworthy, and adaptive agentic LAWNs.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>异构无人机系统在低空无线网络中的代理型AI网络</div>
-<div class="mono" style="margin-top:8px">低空无线网络（LAWNs）正逐渐成为支持共享三维空域内并发服务的关键基础设施。它们的共存导致了移动性、连通性和共享网络资源之间的强耦合，而异构服务则施加了不同的、随时间变化的要求。这些交互自然形成了一个动态的非合作博弈，在其中，运行条件和协调目标会随时间演变。传统的优化和基于学习的控制器通常依赖于预定义的目标，限制了它们自主适应变化的服务需求和资源优先级的能力。为了解决这一挑战，我们提出了一种分层的混合大型语言模型（LLM）- 多智能体强化学习（MARL）架构，组织为双环结构。具体而言，外环使用LLM辅助的游戏编排来解释服务需求和操作员意图，并重新配置目标和资源优先级，而内环则在配置的游戏下执行去中心化的、参数条件化的MARL策略。一个物流监控案例研究展示了所提出框架如何促进异构服务的协调共存，无需重新训练底层的MARL策略即可适应不断变化的运行条件。最后，我们讨论了实现可扩展、可信和适应性强的代理型LAWNs的关键挑战和研究方向。</div>
+<div class="mono">Offline multi-agent reinforcement learning (MARL) learns cooperative policies from fixed datasets without further environment interaction and a learned policy is frozen at deployment. Such a frozen policy typically proposes a single joint action and executes it directly at deployment time. However, this one-shot deployment often commits to a suboptimal proposal, even when better nearby alternatives remain consistent with the behavior data. To address this issue, we propose Gradient Guided Multi Agent Flow (G2MAF), a refinement framework for optimizing joint policies at test-time. G2MAF applies one globally normalized, projected critic gradient to guide and coordinate all agents&#x27; corrections while keeping the action both feasible and close to the frozen policy proposal. Across 24 MPE and SMAC settings, its canonical variant improves 20 frozen settings, with mean relative gains of 9.2% on MPE and 8.9% on SMAC, with model inference latency increased by about 6% only.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>G2MAF：测试时梯度指导的多智能体流策略</div>
+<div class="mono" style="margin-top:8px">离线多智能体强化学习（MARL）从固定数据集中学习合作策略，无需进一步环境交互，且在部署时冻结了学习到的策略。这种冻结的策略通常提出一个联合动作并直接在部署时执行。然而，这种一次性部署往往会导致次优提案，即使存在更好的附近替代方案且与行为数据一致。为解决这一问题，我们提出了梯度引导多智能体流（G2MAF），这是一种在测试时优化联合策略的改进框架。G2MAF 使用一个全局归一化、投影的评论梯度来引导和协调所有智能体的修正，同时保持动作的可行性和接近冻结策略的提案。在24个MPE和SMAC设置中，其标准变体改进了20个冻结设置，MPE的平均相对增益为9.2%，SMAC为8.9%，模型推理延迟仅增加了约6%。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">The paper introduces a hierarchical hybrid LLM-MARL architecture for LAWNs, addressing the dynamic interactions among mobility, connectivity, and shared resources. By employing an outer loop for LLM-assisted game orchestration and an inner loop for MARL-based policy execution, the system adapts to changing service requirements and resource priorities. A logistics-monitoring case study demonstrates the framework&#x27;s effectiveness in facilitating coordinated coexistence among heterogeneous services.</div>
-<div class="mono" style="margin-top:8px">本文针对低空无线网络（LAWNs）中支持异构无人机系统时的共存挑战，提出了一种结合大型语言模型（LLMs）和多智能体强化学习（MARL）的分层混合架构。该框架通过外环进行游戏编排和内环执行分散策略执行，以动态适应不断变化的服务需求和资源优先级，实现无需重新训练即可自主协调服务。</div>
+<div class="mono">G2MAF is a refinement framework for offline multi-agent reinforcement learning (MARL) that optimizes joint policies at test-time by applying a globally normalized, projected critic gradient. This method improves upon frozen policies, enhancing performance on MPE and SMAC tasks by 9.2% and 8.9% respectively, with only a 6% increase in model inference latency.</div>
+<div class="mono" style="margin-top:8px">G2MAF 是一种针对离线多智能体强化学习（MARL）的优化框架，在测试时通过应用全局归一化和投影的批评梯度来优化联合策略。该方法指导和协调所有智能体的修正，确保动作保持可行且接近冻结策略的提议。G2MAF 在 24 个 MPE 和 SMAC 设置中改进了 20 个冻结设置，分别在 MPE 和 SMAC 上实现了平均相对增益 9.2% 和 8.9%，同时仅增加了约 6% 的模型推理延迟。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. A hierarchical hybrid architecture combining large language models and multi-agent reinforcement learning
-2. An outer loop for dynamically reconfiguring service requirements and resource priorities
-3. An inner loop for decentralized policy execution to achieve autonomous coordination</div>
-<div class="mono" style="margin-top:8px">1. 结合大型语言模型和多智能体强化学习的分层混合架构
-2. 外环通过游戏编排动态调整服务需求和资源优先级
-3. 内环执行分散策略执行，实现自主协调服务</div>
+<div class="mono">1. Proposes a globally normalized and projected critic gradient method to refine multi-agent policies.
+2. Ensures actions remain both feasible and close to the frozen policy proposal.
+3. Significantly improves policy performance across multiple MPE and SMAC settings.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种全局归一化和投影的批评梯度方法来优化多智能体策略。
+2. 确保动作既可行又接近冻结策略的提议。
+3. 在多个 MPE 和 SMAC 设置中显著提高了策略性能。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Reinforcing the World&#x27;s Edge: A Continual Learning Problem in the Multi-Agent-World Boundary</div>
-<div class="meta-line">Authors: Dane Malenfant</div>
-<div class="meta-line">First: 2026-03-06T19:18:54+00:00 · Latest: 2026-09-16T21:39:22+00:00</div>
-<div class="meta-line">Comments: added cited on bound result</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.06813v3">Abs</a> · <a href="https://arxiv.org/pdf/2603.06813v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">MA-WAM: Multi-Agent World-Action Model for Test-Time Planning</div>
+<div class="meta-line">Authors: Guowei Zou, Haitao Wang, Guoxin Wang, Beiwen Zhang, Zhiquan Chen, Guojie Wang, Hejun Wu</div>
+<div class="meta-line">First: 2026-09-25T13:52:39+00:00 · Latest: 2026-09-25T13:52:39+00:00</div>
+<div class="meta-line">Comments: 40 pages, including appendices. Project page: https://ma-wam.github.io/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31281v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31281v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://ma-wam.github.io/">Project1</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Ordinary decentralized multi-agent reinforcement learning presents each focal agent with a continual learning problem: peer updates change its induced rewards and dynamics even when the joint Markov game is stationary. We connect the lifetime of success-conditioned reusable structure to peer learning and policy reuse. An invariant core represents maximal abstract patterns shared by a high fraction of successful trajectories; survival refers to a fixed pattern&#x27;s coverage, not an unchanged maximal frontier. An established sharp conditioning bound limits coverage loss to \frac{\varepsilon}{p_0}, where \varepsilon is trajectory-law drift, p_0 is reference success mass, and drift is smaller than the initial compatible-success mass. Combining this bound with peer-policy movement certifies Ω(\frac{1}η) survival under bounded peer updates of size η and positive coverage margin. An effective-conflict condition yields a matching Θ(\frac{1}η) first-exit law and holds in an analytic exact-policy-gradient class. With success-mass and performance calibration, structural survival also yields policy-value and finite-library transfer guarantees. An exactly solvable corridor tests the structural predictions. Two registered 64-stream studies in continual control and cue-MNIST show that coverage erosion predicts impending failure and enables near-oracle intervention. An exploratory reanalysis of eight learned-partner Level-Based Foraging pairings suggests the same erosion--failure link under peer learning.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>强化世界边缘：多智能体世界边界中的持续学习问题</div>
-<div class="mono" style="margin-top:8px">普通的去中心化多智能体强化学习为每个焦点智能体提出了一个持续学习问题：同伴更新会改变其诱导的奖励和动力学，即使联合马尔可夫游戏是稳定的。我们将成功条件下的可重用结构的生命周期与同伴学习和策略重用联系起来。不变的核心代表了大量成功轨迹共享的最大抽象模式；生存指的是固定模式的覆盖范围，而不是不变的最大前沿。一个已建立的尖锐条件限制了覆盖损失到\frac{\varepsilon}{p_0}，其中\varepsilon是轨迹法则漂移，p_0是参考成功质量，且漂移小于初始兼容成功质量。结合这个界限与同伴策略移动，证明了在同伴更新有界且覆盖有正边距的情况下，生存量为Ω(\frac{1}η)。有效的冲突条件给出了匹配的Θ(\frac{1}η)首次退出定律，并在精确策略梯度类中成立。通过成功质量与性能校准，结构生存也提供了策略值和有限库转移保证。一个可精确求解的走廊测试了结构预测。两个注册的64流持续控制和cue-MNIST研究显示，覆盖侵蚀预测即将失败，并使干预接近于最优。对八个学习伙伴层级基于觅食配对的探索性重新分析表明，在同伴学习下存在相同的侵蚀-失败联系。</div>
+<div class="mono">Multi-agent cooperative tasks require different agents to execute a joint action simultaneously, and each agent&#x27;s action affects both the observations and responses of the other agents. Hence, a world model is needed to predict the team return resulting from the joint actions of all agents. A naive extension directly applies a single-agent world model to each agent&#x27;s action when predicting the team return step by step. However, such an extension fails to capture the dependencies among the simultaneous actions of multiple agents. We propose Multi-Agent World-Action Model (MA-WAM), a test-time planning framework that enables a frozen multi-agent flow policy to evaluate futures of candidate joint actions. To our knowledge, MA-WAM is the first test-time world-model planner for multi-agent flow policies. MA-WAM predicts the consequences of each joint action according to cross-agent dependencies and enables efficient candidate scoring. Across 30 offline multi-agent reinforcement learning (MARL) settings on MAMuJoCo, SMAC, and MPE, MA-WAM achieves mean relative gains of 22.0% over direct execution and 25.6% over uniform action selection. Under the standard evaluation protocol on an A100 GPU, MA-WAM adds 12.1 ms, accounting for 2.5% of the measured generation-and-scoring time.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>MA-WAM：多智能体世界-行动模型在测试时规划</div>
+<div class="mono" style="margin-top:8px">多智能体协同任务需要不同的智能体同时执行联合行动，每个智能体的动作都会影响其他智能体的观察和响应。因此，需要一个世界模型来预测所有智能体联合动作的结果。一种简单的扩展是直接将单智能体世界模型应用于每个智能体的动作，逐步预测团队回报。然而，这种扩展无法捕捉多个智能体同时动作之间的依赖关系。我们提出了多智能体世界-行动模型（MA-WAM），这是一种测试时规划框架，使冻结的多智能体流策略能够评估候选联合动作的未来。据我们所知，MA-WAM是第一个用于多智能体流策略的测试时世界模型规划器。MA-WAM根据跨智能体依赖关系预测每个联合动作的后果，并实现高效的候选评分。在MAMuJoCo、SMAC和MPE的30个离线多智能体强化学习（MARL）设置中，MA-WAM相对于直接执行的平均相对增益为22.0%，相对于均匀动作选择的平均相对增益为25.6%。在A100 GPU的标准评估协议下，MA-WAM增加了12.1毫秒，占测量生成和评分时间的2.5%。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">The paper addresses the continual learning problem in decentralized multi-agent reinforcement learning, where peer updates alter an agent&#x27;s rewards and dynamics. It introduces an invariant core representing shared patterns across successful trajectories and a sharp conditioning bound to limit coverage loss. The study demonstrates structural survival under bounded peer updates and shows that coverage erosion predicts impending failure, enabling near-optimal interventions. Experiments on continual control and cue-MNIST validate these findings.</div>
-<div class="mono" style="margin-top:8px">论文研究了去中心化多智能体强化学习中的持续学习问题，其中同伴更新会改变智能体的奖励和动态。研究引入了不变核心的概念，代表成功轨迹中共享的模式，并将其与这些模式在同伴学习下的生存联系起来。研究提供了精确的条件约束，限制了覆盖损失，并展示了结构生存如何提供策略价值和知识库转移保证。走廊实验和控制任务以及cue-MNIST实验表明，覆盖侵蚀可以预测失败并实现有效的干预。</div>
+<div class="mono">MA-WAM proposes a novel test-time planning framework for multi-agent cooperative tasks, addressing the limitations of naive single-agent world models. By predicting the consequences of joint actions based on cross-agent dependencies, MA-WAM enables efficient candidate scoring. Across various multi-agent reinforcement learning settings, MA-WAM significantly outperforms direct execution and uniform action selection, demonstrating its effectiveness in enhancing multi-agent coordination.</div>
+<div class="mono" style="margin-top:8px">MA-WAM 提出了一个多智能体测试时规划框架，解决了单智能体世界模型的局限性。该框架考虑了跨智能体的依赖关系，预测联合动作的后果，从而实现高效的候选评分。MA-WAM 在多个多智能体强化学习设置中表现出色，显著优于直接执行和均匀动作选择。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduced the concept of an invariant core representing shared patterns across successful trajectories.
-2. Provided a sharp conditioning bound that limits coverage loss.
-3. Demonstrated that structural survival yields policy-value and finite-library transfer guarantees.</div>
-<div class="mono" style="margin-top:8px">1. 引入了不变核心的概念，代表成功轨迹中共享的模式。
-2. 提供了精确的条件约束，限制了覆盖损失。
-3. 展示了结构生存如何提供策略价值和知识库转移保证。</div>
+<div class="mono">1. Proposes a method for predicting the consequences of joint actions considering cross-agent dependencies
+2. The first test-time world-model planner for multi-agent flow policies
+3. Enables efficient candidate action scoring</div>
+<div class="mono" style="margin-top:8px">1. 提出了考虑跨智能体依赖关系的联合动作后果预测方法
+2. 首次实现了多智能体流策略的测试时世界模型规划
+3. 实现了高效的候选动作评分机制</div>
 </details>
 </div>
 <div class="card">
-<div class="title">CoRe-MARL: Cooperative Redistribution Under Unknown Dynamics Using Recurrent Multi-Agent Reinforcement Learning</div>
-<div class="meta-line">Authors: Naimur Rahman Chowdhury, Shatabdi Sen Prapti, Md. Salehin Seyam, Limon Bin Hossain</div>
-<div class="meta-line">First: 2026-09-16T13:25:05+00:00 · Latest: 2026-09-16T13:25:05+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.18639v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.18639v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Graph-Based Inference and Topology-Aware Multi-Agent Reinforcement Learning for Large-Scale Railway Network Management</div>
+<div class="meta-line">Authors: Giacomo Arcieri, Gregory Duthé, Christophe Muller, Konstantinos G. Papakonstantinou, Daniel Straub, Eleni Chatzi</div>
+<div class="meta-line">First: 2026-09-24T17:12:39+00:00 · Latest: 2026-09-24T17:12:39+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.30150v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.30150v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Emergency management assistance programs, such as relief distribution, are essential for delivering necessary supplies to affected communities. However, these programs operate in a decentralized network of local centers that face uncertain local demand and supply dynamics, resulting in inconsistent avail- ability of local services. Redistribution of supplies among these local centers reduces these imbalances, but the centers often make decisions independently, with limited information and disrupted transportation. This study develops CoRe-MARL, a cooperative multi-agent reinforcement learning (MARL) framework, by formulating a decentralized partially observable Markov decision process (Dec-POMDP). We treat each center as an agent that learns a redistribution policy to improve the service in the worst-case region and reduce the service gap across regions while protecting network-wide service. We incorporate a recurrent network that captures evolving supply and demand dynamics without direct observation, while multi-agent proximal policy optimization (MAPPO) enables centralized training and decentralized execution (CTDE). We evaluate the framework in a simulated environment with diverse trajectories, where exact dynamics are not observed by actors and the MAPPO critic. We compare the recurrent MAPPO with the recurrent independent PPO (IPPO) and a local only heuristic, and find that MAPPO reduces the service gap across local centers and enhances service for the worst-served center while maintaining competitive network-wide service. The recurrent MAPPO also shows consistent performance across diverse trajectory patterns, demonstrating its ability to adapt to evolving dynamics. The findings demonstrate the capability of cooperative learning for decentralized redistribution and improving equitable service under uncertain and evolving dynamics.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>CoRe-MARL：在未知动力学条件下使用递归多智能体强化学习的合作重分配</div>
-<div class="mono" style="margin-top:8px">紧急管理援助计划，如救济物资分配，对于向受影响社区提供必要物资至关重要。然而，这些计划在面对不确定的当地需求和供应动力学的分散式本地中心网络中运行，导致当地服务的不一致性。通过在这些本地中心之间重新分配物资来减少这些不平衡，但中心通常在有限信息和中断运输的情况下独立做出决策。本研究通过构建一个分散式部分可观测马尔可夫决策过程（Dec-POMDP）来开发CoRe-MARL，这是一种合作多智能体强化学习（MARL）框架。我们将每个中心视为一个代理，学习改进最坏情况区域服务并减少区域间服务差距，同时保护网络范围内的服务。我们引入了一个递归网络来捕捉不断变化的供应和需求动力学，而无需直接观察，同时多智能体近端策略优化（MAPPO）使集中训练和分散执行（CTDE）成为可能。我们在一个具有多样化轨迹的模拟环境中评估了该框架，其中确切的动力学未被参与者和MAPPO批评者观察到。我们将递归MAPPO与递归独立PPO（IPPO）和仅本地启发式方法进行了比较，发现MAPPO减少了本地中心间的服务差距，提高了最差服务中心的服务水平，同时保持了网络范围内的竞争力。递归MAPPO在多样化轨迹模式下也表现出一致的性能，证明了其适应不断变化的动力学的能力。研究结果表明，合作学习在不确定和不断变化的动力学条件下对分散式重新分配和提高公平服务的潜力。</div>
+<div class="mono">Modern infrastructure asset management constitutes a complex sequential decision-making problem, characterized by long planning horizons and system-level interactions, such as spatial deterioration correlations and economies of scale. While deep reinforcement learning has shown promise in optimizing maintenance policies, scaling to real-world networks remains challenging. Centralized approaches become computationally intractable in large-scale systems, whereas decentralized approaches often fail to capture essential coordination mechanisms. To address these challenges, we propose a graph-based framework that integrates accurate environment modeling with scalable decision support. First, we employ a hierarchical Bayesian model leveraging a Gaussian Process on Graph kernel to infer a realistic, spatially correlated networked environment of railway maintenance planning from real-world data provided by the Swiss Federal Railways. Second, we introduce a topology-aware Multi-Agent Reinforcement Learning (MARL) framework by integrating graph neural networks and graph Transformers to optimize network-level policies. A central contribution of this work is the demonstration of scalability through zero-shot transfer learning: graph-based agents, trained only on small network portions, are successfully deployed in a zero-shot manner on large-scale unseen networks without any retraining. Numerical results indicate that the proposed method significantly outperforms optimized heuristics and standard MARL baselines, reducing computational training time while maintaining superior performance on large-scale networks.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于图的推理与拓扑感知多智能体强化学习在大规模铁路网络管理中的应用</div>
+<div class="mono" style="margin-top:8px">现代基础设施资产管理构成了一个复杂的序列决策问题，特征为长期规划视野和系统级交互，如空间退化相关性和规模经济。虽然深度强化学习在优化维护策略方面显示出潜力，但将其扩展到实际网络仍然具有挑战性。集中式方法在大规模系统中变得计算上不可行，而分散式方法往往无法捕捉到关键的协调机制。为了解决这些挑战，我们提出了一种基于图的框架，该框架结合了精确的环境建模和可扩展的决策支持。首先，我们利用图核上的高斯过程和分层贝叶斯模型从瑞士联邦铁路提供的实际数据中推断出铁路维护规划的真实、空间相关网络环境。其次，我们通过结合图神经网络和图Transformer引入了一种拓扑感知的多智能体强化学习（MARL）框架，以优化网络级策略。本文的一个重要贡献是通过零样本迁移学习展示了可扩展性：仅在小网络部分训练的基于图的智能体，能够在未见过的大规模网络中零样本部署，无需重新训练。数值结果表明，所提出的方法在计算训练时间上显著优于优化启发式方法和标准的MARL基线，同时在大规模网络上保持了优越的性能。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This study introduces CoRe-MARL, a cooperative multi-agent reinforcement learning framework to address the decentralized redistribution of supplies in emergency management. By formulating a Dec-POMDP, each local center is treated as an agent learning a redistribution policy. The framework uses a recurrent network to capture evolving dynamics and MAPPO for centralized training and decentralized execution. Evaluations in a simulated environment show that CoRe-MARL reduces the service gap and enhances service for the worst-served center while maintaining network-wide service quality.</div>
-<div class="mono" style="margin-top:8px">本研究提出了一种名为CoRe-MARL的协同多智能体强化学习框架，用于分散的救援物资分配。通过构建Dec-POMDP，每个地方中心学习改进最差服务情况和减少区域间差距的分配策略。该框架利用递归网络捕捉动态变化，并使用MAPPO进行集中训练和分散执行。实验结果显示，CoRe-MARL能够减少地方中心之间的服务差距，提升最差服务中心的服务水平，同时保持整体服务的质量，展示了其在动态变化中的适应能力。</div>
+<div class="mono">The paper proposes a graph-based framework for managing large-scale railway networks using reinforcement learning. It employs a hierarchical Bayesian model to infer a realistic network environment and uses graph neural networks and Transformers for topology-aware multi-agent reinforcement learning. The framework demonstrates scalability through zero-shot transfer learning, achieving better performance than heuristics and standard MARL methods on large-scale networks.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种基于图的推理和拓扑感知多智能体强化学习（MARL）框架，用于管理大规模铁路网络。该方法利用层次贝叶斯模型和图神经网络来建模环境并优化维护策略。所提出的方法通过零样本迁移学习展示了可扩展性，其在大规模网络上的性能优于启发式方法和标准的MARL基线。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposes CoRe-MARL framework for decentralized relief distribution.
-2. Utilizes a recurrent network to capture dynamic changes.
-3. Employs MAPPO for centralized training and decentralized execution.</div>
-<div class="mono" style="margin-top:8px">1. 提出了CoRe-MARL框架，用于分散的救援物资分配。
-2. 使用递归网络捕捉动态变化。
-3. 采用MAPPO进行集中训练和分散执行。</div>
-</details>
-</div>
-<div class="card">
-<div class="title">DualSQL: Text-to-SQL with Multi-Agent Reinforcement Learning</div>
-<div class="meta-line">Authors: Shijie Chen, Yu Gan, Yeounoh Chung, Jiani Zhang, Quannan Li, Sravan Babu Bodapati, Cody J. Greer, Yu Su, Fatma Ozcan</div>
-<div class="meta-line">First: 2026-09-16T05:16:37+00:00 · Latest: 2026-09-16T05:16:37+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.18135v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.18135v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
-<details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">State-of-the-art Text-to-SQL systems are typically multi-agent pipelines centered around two fundamental tasks: schema linking and SQL generation. However, existing work trains separate models for each task, failing to leverage the synergy between these interrelated tasks. In this work, we propose DualSQL, a new Text-to-SQL system consisting of two agents powered by a single model backbone. The agents share the same model weights and agentic scaffold, enabling joint optimization through a robust multi-agent reinforcement learning (RL) framework. We design three database access tools to facilitate effective multi-step reasoning grounded to interactions with the databases. To improve training and avoid model collapse, we introduce a set of rollout guardrail mechanisms that stabilizes multi-agent RL training, supporting DualSQL to keep improving during training. We also introduce a new SQL correctness metric, robust execution match (REX), to more accurately judge SQL correctness and assign reward signals. Being trained on only 3755 examples, DualSQL-4B achieves an impressive 68.0% execution accuracy on the BIRD development set, matching previous 7B models. DualSQL-8B further improves to 71.1%, outperforming previous state-of-the-art single-model solutions with 32B parameters. These results demonstrate the strength of joint multi-agent reinforcement learning for building high performance Text-to-SQL pipelines.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>DualSQL：基于多智能体强化学习的文本到SQL</div>
-<div class="mono" style="margin-top:8px">当前最先进的文本到SQL系统通常是围绕两个基本任务构建的多智能体流水线：模式链接和SQL生成。然而，现有工作为每个任务分别训练模型，未能利用这些相关任务之间的协同作用。在本工作中，我们提出了DualSQL，这是一种新的文本到SQL系统，由两个智能体组成，基于单一模型骨干。智能体共享相同的模型权重和智能体框架，通过稳健的多智能体强化学习（RL）框架实现联合优化。我们设计了三种数据库访问工具，以促进基于与数据库交互的有效多步推理。为了提高训练并避免模型崩溃，我们引入了一组滚道护栏机制，稳定多智能体RL训练，使DualSQL在训练过程中不断改进。我们还引入了一种新的SQL正确性度量标准，鲁棒执行匹配（REX），以更准确地判断SQL的正确性并分配奖励信号。仅在3755个示例上进行训练，DualSQL-4B在BIRD开发集上的执行准确率达到68.0%，与之前的7B模型相当。DualSQL-8B进一步提高到71.1%，超越了具有32B参数的先前最先进的单模型解决方案。这些结果表明，联合多智能体强化学习对于构建高性能的文本到SQL流水线具有强大的能力。</div>
-</details>
-<details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">DualSQL is a Text-to-SQL system that uses multi-agent reinforcement learning to jointly optimize schema linking and SQL generation. It introduces a robust multi-agent RL framework and new tools for multi-step reasoning, as well as a novel REX metric for evaluating SQL correctness. DualSQL-4B achieves 68.0% execution accuracy, surpassing previous 7B models, and DualSQL-8B further improves to 71.1%, outperforming 32B parameter models.</div>
-<div class="mono" style="margin-top:8px">DualSQL 是一种利用多智能体强化学习同时优化模式链接和 SQL 生成的文本到 SQL 系统。它引入了稳健的多智能体 RL 框架和新的数据库访问工具，以及回滚护栏机制以稳定训练。DualSQL-4B 在 BIRD 开发集上的执行准确率达到 68.0%，超越了之前的模型，而 DualSQL-8B 进一步提升至 71.1%。这项工作突显了联合多智能体强化学习在文本到 SQL 系统中的有效性。</div>
-</details>
-<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduces a multi-agent RL framework
-2. Designs new database access tools
-3. Proposes rollout guardrail mechanisms
-4. Introduces a new SQL correctness metric, REX</div>
-<div class="mono" style="margin-top:8px">1. 引入多智能体 RL 框架
-2. 设计新的数据库访问工具
-3. 提出回滚护栏机制
-4. 引入新的 SQL 正确性评估指标 REX</div>
+<div class="mono">1. Proposed a graph-based environment modeling method using hierarchical Bayesian models and graph kernels.
+2. Introduced a topology-aware multi-agent reinforcement learning framework integrating graph neural networks and graph Transformers.
+3. Achieved successful deployment on large-scale unseen networks through zero-shot transfer learning.</div>
+<div class="mono" style="margin-top:8px">1. 提出了基于图的环境建模方法，利用层次贝叶斯模型和图核函数。
+2. 引入了拓扑感知的多智能体强化学习框架，结合图神经网络和图Transformer。
+3. 通过零样本迁移学习实现了在大规模未见网络上的成功部署。</div>
 </details>
 </div>
 <div class="card">
 <div class="title">An Initial Introduction to Cooperative Multi-Agent Reinforcement Learning</div>
 <div class="meta-line">Authors: Christopher Amato</div>
-<div class="meta-line">First: 2024-05-10T00:50:08+00:00 · Latest: 2026-09-15T15:46:07+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2405.06161v6">Abs</a> · <a href="https://arxiv.org/pdf/2405.06161v6">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="meta-line">First: 2024-05-10T00:50:08+00:00 · Latest: 2026-09-24T01:24:24+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2405.06161v7">Abs</a> · <a href="https://arxiv.org/pdf/2405.06161v7">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
 <div class="mono">Multi-agent reinforcement learning (MARL) has exploded in popularity in recent years. While numerous approaches have been developed, they can be broadly categorized into three main types: centralized training and execution (CTE), centralized training for decentralized execution (CTDE), and decentralized training and execution (DTE). CTE methods assume centralization during training and execution (e.g., with fast, free, and perfect communication) and have the most information during execution. CTDE methods are the most common, as they leverage centralized information during training while enabling decentralized execution -- using only information available to that agent during execution. Decentralized training and execution methods make the fewest assumptions and are often simple to implement.
   This text is an introduction to cooperative MARL -- MARL in which all agents share a single, joint reward. It is meant to explain the setting, basic concepts, and common methods for the CTE, CTDE, and DTE settings. It does not cover all work in cooperative MARL as the area is quite extensive. I have included work that I believe is important for understanding the main concepts in the area and apologize to those that I have omitted. Topics include simple applications of single-agent methods to CTE as well as some more scalable methods that exploit the multi-agent structure, independent Q-learning and policy gradient methods and their extensions, as well as value function factorization methods including the well-known VDN, QMIX, and QPLEX approaches, and centralized critic methods including MADDPG, COMA, and MAPPO. I also discuss common misconceptions, the relationship between different approaches, and some open questions.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>合作多智能体强化学习的初步介绍</div>
-<div class="mono" style="margin-top:8px">多智能体强化学习（MARL）近年来 popularity 大增。虽然已经开发出许多方法，但可以大致分为三种类型：集中训练和执行（CTE）、集中训练用于分散执行（CTDE）和分散训练和执行（DTE）。CTE 方法假设在训练和执行过程中都有集中化（例如，快速、免费和完美通信），执行时信息量最多。CTDE 方法最常见，因为它们在训练中利用集中信息，同时允许分散执行——仅使用执行时该智能体可用的信息。分散训练和执行方法假设最少，通常易于实现。
-本文是对合作 MARL 的介绍——所有智能体共享单一联合奖励的 MARL。它旨在解释环境、基本概念和 CTE、CTDE 和 DTE 设置下的常见方法。它并未涵盖合作 MARL 的所有工作，因为该领域非常广泛。我包括我认为理解该领域主要概念重要的工作，并向被遗漏的人表示歉意。主题包括将单智能体方法应用于 CTE 的简单应用以及一些更可扩展的方法，利用多智能体结构的独立 Q 学习和策略梯度方法及其扩展，以及价值函数分解方法，包括广为人知的 VDN、QMIX 和 QPLEX 方法，以及集中评论方法，包括 MADDPG、COMA 和 MAPPO。我还讨论了一些常见误解、不同方法之间的关系以及一些开放问题。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper introduces cooperative multi-agent reinforcement learning (MARL), focusing on three main types: centralized training and execution (CTE), centralized training for decentralized execution (CTDE), and decentralized training and execution (DTE). It covers common methods for each type, including single-agent method adaptations, Q-learning and policy gradient methods, value function factorization techniques like VDN and QMIX, and centralized critic methods such as MADDPG. The paper aims to clarify misconceptions and explore the relationships between different approaches in cooperative MARL.</div>
-<div class="mono" style="margin-top:8px">本文介绍了合作多智能体强化学习（MARL），重点讨论了所有智能体共享单一联合奖励的方法。文章将方法分为集中式训练和执行（CTE）、集中式训练用于分散执行（CTDE）和分散式训练和执行（DTE）三类。文章解释了每种方法的设置、基本概念和常用方法，涵盖了单智能体方法的适应、可扩展的多智能体方法以及价值函数分解技术，如VDN、QMIX和QPLEX。文章还讨论了该领域的常见误解和开放问题。</div>
+<div class="mono">This paper introduces cooperative multi-agent reinforcement learning (MARL), focusing on methods where all agents share a single joint reward. It categorizes MARL approaches into centralized training and execution (CTE), centralized training for decentralized execution (CTDE), and decentralized training and execution (DTE). The paper explains the settings, basic concepts, and common methods for each category, highlighting the trade-offs and assumptions of these approaches. Key methods discussed include Q-learning, policy gradients, value function factorization, and centralized critic methods. The paper also addresses common misconceptions and open questions in the field.</div>
+<div class="mono" style="margin-top:8px">本文介绍了合作多智能体强化学习（MARL），重点在于所有智能体共享单一联合奖励的方法。文章将MARL方法分为集中训练和执行（CTE）、集中训练分散执行（CTDE）和分散训练和执行（DTE）三类，并解释了每类的基本概念和常用方法，涵盖了单智能体方法的适应、可扩展的多智能体方法，以及价值函数分解技术如VDN、QMIX、QPLEX，还有集中评论方法如MADDPG、COMA和MAPPO。文章还讨论了常见的误解、不同方法之间的关系以及一些开放问题。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduces three main training and execution modes for MARL.
-2. Explains the basic concepts and common methods for CTE, CTDE, and DTE.
-3. Discusses the application of single-agent methods in CTE.</div>
-<div class="mono" style="margin-top:8px">1. 介绍了MARL的三种主要训练和执行模式。
-2. 深入解释了CTE、CTDE和DTE方法的基本概念和常用方法。
-3. 讨论了单智能体方法在CTE中的应用。</div>
+<div class="mono">1. Provides a detailed introduction to three main MARL training and execution paradigms.
+2. Elaborates on specific methods for centralized training and execution, centralized training for decentralized execution, and decentralized training and execution.
+3. Summarizes various value function factorization techniques and their applications.</div>
+<div class="mono" style="margin-top:8px">1. 详细介绍了MARL的三种主要训练和执行方法。
+2. 深入探讨了集中训练和执行、集中训练分散执行和分散训练执行的具体方法。
+3. 概述了多种价值函数分解技术及其应用。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Shielded Analysis: Certification and Characterization of Defensibility in Systems under Adversarial Interaction</div>
-<div class="meta-line">Authors: Achraf Hsain, Sultan Almuhammadi</div>
-<div class="meta-line">First: 2026-06-11T17:35:40+00:00 · Latest: 2026-09-15T12:08:35+00:00</div>
-<div class="meta-line">Comments: 36 pages, 8 figures, 7 tables. Code: https://github.com/AchrafHsain7/Bastion Shielded analysis; system defensibility; safety games; shield synthesis; adversarial multi-agent reinforcement learning; network security</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2606.13621v2">Abs</a> · <a href="https://arxiv.org/pdf/2606.13621v2">PDF</a> · <a href="https://github.com/AchrafHsain7/Bastion">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<div class="title">Optimization without Future Compromises? Decentralized Coordination via Collective and Reinforcement Learning</div>
+<div class="meta-line">Authors: Chuhao Qin, Evangelos Pournaras</div>
+<div class="meta-line">First: 2025-09-22T17:58:45+00:00 · Latest: 2026-09-23T14:40:04+00:00</div>
+<div class="meta-line">Comments: This work has been submitted to the IEEE for possible publication</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2509.18088v2">Abs</a> · <a href="https://arxiv.org/pdf/2509.18088v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Formal safety analysis determines whether a system admits a safe defense; adaptive evaluation characterizes the operating quality sustained under adversarial interaction. Both answers matter because systems with the same safety verdict can impose very different operational burdens.
-  We introduce shielded analysis, a design-time framework that derives these answers from one encoded system while keeping the safety requirement and admissible threat model independently variable. It returns a defensibility certificate and a four-axis defensibility fingerprint spanning structural margin, shield latitude, and adaptive operating quality. Each axis is informative in its own right; their relationships show whether formal and operational assessments agree, diverge, or respond differently to system changes.
-  We instantiate the framework for network defense on a reference segment and four controlled perturbations spanning topology, safety requirements, and adversary capabilities. Every configuration is certified defensible, yet two topology variants with nearly identical structural profiles sustain mean clean-host fractions of 22.7% and 80.7% under adaptive pressure.
-  Shielded analysis turns a safety-game solution into a comparative instrument: it determines whether a defense exists, characterizes what that defense requires, and identifies which system changes strengthen it.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>屏蔽分析：系统在对抗交互下认证与表征防御性</div>
-<div class="mono" style="margin-top:8px">形式安全分析确定系统是否能容纳安全防御；自适应评估表征在对抗交互下维持的操作质量。两者都很重要，因为具有相同安全判定的系统可能会带来截然不同的操作负担。
-我们引入了屏蔽分析，这是一种设计时框架，可以从一个编码系统中推导出这些答案，同时使安全要求和可接受的威胁模型独立可变。它返回一个防御性证书和一个四轴防御性指纹，涵盖结构余量、屏蔽范围和自适应操作质量。每个轴都有其自身的信息性；它们之间的关系显示了形式和操作评估是否一致、分歧或对系统变化作出不同响应。
-我们为网络防御在参考段和四个控制扰动（涵盖拓扑、安全要求和对手能力）上实例化了该框架。每个配置都得到了防御性认证，但两个拓扑变体在结构特征几乎相同的情况下，在自适应压力下保持了22.7%和80.7%的平均干净主机比例。
-屏蔽分析将安全博弈解决方案转化为比较工具：它确定防御是否存在，表征该防御所需的内容，并识别哪些系统变化可以加强它。</div>
+<div class="mono">Efficient resource allocation in multi-agent systems requires autonomous agents to coordinate their decisions while balancing system-wide objectives with individual costs. This becomes increasingly challenging over long time horizons, where decisions that improve the current allocation may compromise future resource allocation, while decentralized agents have limited observations of the overall system. Multi-agent reinforcement learning (MARL) can learn such long-term dependencies via local observations, but directly applying it to large-scale coordination leads to rapidly growing decision spaces and inefficient training. To this end, we propose Hierarchical Reinforcement and Collective Learning (HRCL), a hierarchical framework that uses MARL to guide, rather than replace, decentralized multi-agent coordination. At the high level, MARL learns strategies that restrict the alternatives considered during coordination and guide agents in balancing system-wide and individual objectives. At the low level, agents perform efficient decentralized coordination under this strategic guidance. This separation reduces the learning space and allows short-term coordination trade-offs to be evaluated according to their long-term effects. Experiments on a synthetic benchmark show that HRCL converges substantially faster than standalone MARL and reduces system-wide and individual costs by 35.53% and 27.05%, respectively. Evaluations on energy self-management and drone swarm sensing further show improved resource allocation, power-peak regulation, and sensing efficiency. These results show that learning strategic guidance for an existing coordination process can retain scalable decentralized coordination without letting short-term decisions compromise future resource allocation.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>无需未来妥协的优化？通过集体和强化学习实现去中心化协调</div>
+<div class="mono" style="margin-top:8px">多智能体系统中的资源高效分配需要自主智能体在平衡系统目标与个体成本的同时协调其决策。这在长时间范围内变得越来越具有挑战性，因为当前的资源分配决策可能会牺牲未来的资源分配，而去中心化的智能体对整体系统的观察有限。多智能体强化学习（MARL）可以通过局部观察学习这些长期依赖关系，但直接将其应用于大规模协调会导致决策空间迅速增长和训练效率低下。为此，我们提出了一种分层强化学习和集体学习（HRCL）框架，该框架使用MARL来引导而非取代去中心化的多智能体协调。在高层次上，MARL学习策略，限制协调过程中考虑的替代方案，并引导智能体平衡系统目标和个体目标。在低层次上，智能体在战略指导下进行高效的去中心化协调。这种分离减少了学习空间，并允许根据其长期影响评估短期协调权衡。在合成基准上的实验表明，HRCL比独立的MARL收敛速度快得多，分别减少了35.53%和27.05%的系统和个体成本。在能源自我管理和无人机集群传感评估中进一步表明，资源分配、功率峰值调节和传感效率得到了改善。这些结果表明，为现有的协调过程学习战略指导可以在不牺牲未来资源分配的情况下保持可扩展的去中心化协调。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">Shielded analysis is a framework that evaluates a system&#x27;s defensibility by deriving safety certificates and defensibility fingerprints under adversarial interaction. It allows for independent variation of safety requirements and threat models, providing insights into structural margins, shield latitude, and adaptive operating quality. The framework was applied to network defense scenarios, demonstrating that configurations with similar structural profiles can exhibit vastly different operational outcomes under adaptive pressure.</div>
-<div class="mono" style="margin-top:8px">Shielded分析是一种框架，通过推导安全证书和防御指纹来评估系统在对抗交互下的防御能力。该框架允许独立地调整安全要求和威胁模型，提供结构余量、防护范围和适应性运行质量方面的见解。该框架应用于网络防御场景，展示了具有相似结构配置的配置在适应性压力下可以表现出截然不同的运行效果。</div>
+<div class="mono">The paper proposes Hierarchical Reinforcement and Collective Learning (HRCL) to address the challenge of efficient resource allocation in multi-agent systems over long time horizons. HRCL uses multi-agent reinforcement learning (MARL) to guide decentralized coordination, reducing the decision space and allowing short-term trade-offs to be evaluated based on long-term effects. Experiments show that HRCL converges faster and reduces system-wide and individual costs by 35.53% and 27.05%, respectively, compared to standalone MARL. The approach also improves resource allocation, power-peak regulation, and sensing efficiency in energy self-management and drone swarm sensing tasks.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种层次强化学习和集体学习（HRCL）方法，以解决多智能体系统中长期资源分配的挑战。HRCL 使用 MARL 引导分散协调，减少决策空间，并允许根据长期效果评估短期权衡。实验表明，HRCL 的收敛速度更快，成本降低幅度更大。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduces a framework with independently variable safety requirements and threat models to evaluate system defensibility under adversarial interaction.
-2. Provides a four-axis defensibility fingerprint including structural margin, shield latitude, and adaptive operating quality, offering new perspectives for system analysis.
-3. Demonstrates different operational outcomes under adaptive pressure for configurations with similar structural profiles in network defense scenarios.</div>
-<div class="mono" style="margin-top:8px">1. 提出了独立可变的安全要求和威胁模型的框架，以评估系统在对抗交互下的防御能力。
-2. 提供了结构余量、防护范围和适应性运行质量四个维度的防御指纹，为系统分析提供了新的视角。
-3. 通过网络防御场景的应用，展示了不同配置在适应性压力下的不同运行效果。</div>
+<div class="mono">1. Proposes a hierarchical framework that uses MARL to guide rather than replace decentralized multi-agent coordination.
+2. Separates the learning space to allow short-term coordination trade-offs to be evaluated based on their long-term effects.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种层次化的框架，将 MARL 用于指导而非替代分散的多智能体协调。
+2. 通过分离层次结构，减少了学习空间，使得短期协调权衡能够基于长期效果进行评估。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Assembling the CREW: A Collaborative Multi-agent Reinforcement Learning Framework for Automated Related Work Generation</div>
-<div class="meta-line">Authors: Hai-Dang Dang, Bao-Yen Pham, Bao Nguyen, Tran Thi Huong, Huynh Thi Thanh Binh</div>
-<div class="meta-line">First: 2026-09-14T15:20:29+00:00 · Latest: 2026-09-14T15:20:29+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.15721v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.15721v1">PDF</a> · <a href="https://github.com/YenPBao/CREW-Collaborative-MARL.git">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<div class="title">Finite-Sample Probabilistic Safety Certification for AI-Based Grid-Edge Coordination</div>
+<div class="meta-line">Authors: Yihong Zhou, Hanbin Yang, Thomas Morstyn</div>
+<div class="meta-line">First: 2026-09-23T14:24:46+00:00 · Latest: 2026-09-23T14:24:46+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.28182v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.28182v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Automatic Related Work Generation (RWG) significantly reduces the human time and effort required to author the Related Work Section (RWS) of a research paper. However, prior methods leveraging multi-agent Large Language Models (LLMs) typically rely on a predefined workflow, where each agent is responsible for a specific step in the entire process. This rigid, static inter-agent coordination limits the adaptive collaboration required to synthesize complex scientific literature. To address this limitation, we propose CREW (Collaborative Reinforcement Learning for Related Work Generation), a novel framework where LLM agents bypass heuristic pipelines to dynamically coordinate by autonomously selecting actions, such as Retrieve, Disseminate, Compose, and Critique, driven by a policy optimized via Independent Proximal Policy Optimization (IPPO). Extensive experiments on a standard RWG benchmark demonstrate that our approach yields substantial quality improvements over strong existing baselines, while significantly reducing token costs. Code is available at https://github.com/YenPBao/CREW-Collaborative-MARL.git</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>组装CREW：一种用于自动相关工作生成的协作多智能体强化学习框架</div>
-<div class="mono" style="margin-top:8px">自动相关工作生成（RWG）显著减少了撰写研究论文相关工作部分（RWS）所需的人力时间和精力。然而，先前利用多智能体大型语言模型的方法通常依赖于预定义的工作流程，每个智能体负责整个过程中的特定步骤。这种僵硬的、静态的智能体间协调限制了合成复杂科学文献所需的适应性协作。为了解决这一局限性，我们提出了CREW（相关工作生成的协作强化学习），这是一种新颖的框架，其中智能体绕过启发式管道，通过自主选择检索、传播、撰写和批判等动作动态协调，这些动作由通过独立近端策略优化（IPPO）优化的策略驱动。在标准RWG基准上的广泛实验表明，我们的方法在质量上显著优于现有的强大基线，同时大幅降低了令牌成本。代码可在https://github.com/YenPBao/CREW-Collaborative-MARL.git获取</div>
+<div class="mono">Coordinating large population of flexible grid-edge devices can alleviate the need for time-consuming and capital-intensive network upgrades, and AI-based control methods such as multi-agent reinforcement learning or imitation learning are promising in their real-time decision scalability. However, system operators still need an independent and rigorous way to decide whether a given AI system is safe enough for deployment. This paper develops a finite-sample probabilistic safety certification framework for black-box AI decision models in closed-loop grid operation. The central idea is to reduce the complete input--AI--grid evaluator workflow to a binary unsafe outcome under an operator-defined safety specification, and then use exact binomial inference to certify the corresponding unsafe operation probability. Given a set of held-out calibration scenarios, the framework returns the tightest one-sided upper certificate and an accept/reject deployment criterion that controls the probability of false safety certification. Because the certification is for the calibration distribution that may deviate from the future operation, we further combine the nominal certificate with physically interpretable sample-space adversarial attacks, a concept widely used in AI to investigate the fragility of AI models. Case studies on grid-edge flexibility coordination with 1{,}000-agent AI models (independent parameters) verify the finite-sample safety guarantee and the value of integrating adversarial attacks into a rolling-window training-certification-deployment flow.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于AI的电网边缘协调的有限样本概率安全性认证</div>
+<div class="mono" style="margin-top:8px">协调大量灵活的电网边缘设备可以减轻对耗时且资本密集型网络升级的需求，基于AI的控制方法，如多智能体强化学习或模仿学习，在实时决策扩展性方面具有潜力。然而，系统运营商仍需要一种独立且严谨的方式来决定给定的AI系统是否足够安全以部署。本文开发了一种针对闭环电网操作中黑盒AI决策模型的有限样本概率安全性认证框架。核心思想是将完整的输入—AI—电网评估工作流简化为操作员定义的安全规范下的二元不安全结果，然后使用精确的二项式推断来认证相应的不安全操作概率。给定一组保留的校准场景，该框架返回最紧的一侧上界证书和一个接受/拒绝部署标准，该标准控制误报安全认证的概率。由于认证针对的是可能与未来操作不同的校准分布，我们进一步结合了名义证书与物理可解释的样本空间对抗攻击，这是在AI中广泛用于研究AI模型脆弱性的概念。针对具有1000个智能体（独立参数）的电网边缘灵活性协调案例研究验证了有限样本的安全保证以及将对抗攻击整合到滚动窗口训练—认证—部署流程中的价值。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">The paper introduces CREW, a novel framework for automatic related work generation using collaborative multi-agent reinforcement learning. Unlike previous methods that rely on predefined workflows, CREW enables agents to dynamically coordinate by selecting actions such as retrieval, dissemination, composition, and critique. Experiments show that CREW outperforms existing baselines in terms of quality while reducing token costs.</div>
-<div class="mono" style="margin-top:8px">该研究提出了CREW框架，利用协作多智能体强化学习自动生成相关工作。不同于以往依赖预定义工作流的方法，CREW允许智能体动态协调，通过选择检索、传播、组合和批判等动作。该方法使用独立近端策略优化（IPPO）来优化智能体策略。实验表明，CREW在质量和降低令牌成本方面优于现有方法。</div>
+<div class="mono">This paper presents a finite-sample probabilistic safety certification framework for AI-based grid-edge coordination. It converts the complete workflow into a binary unsafe outcome under a safety specification and uses exact binomial inference to certify the unsafe operation probability. The framework provides a tight upper certificate and an accept/reject criterion, and integrates physically interpretable sample-space adversarial attacks to enhance safety certification. Case studies with 1,000-agent AI models validate the framework’s effectiveness.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种针对基于AI的电网边缘协调的有限样本概率安全性认证框架。该框架将复杂的工作流程简化为二元的不安全结果，并通过精确二项式推断来认证不安全操作的概率。该框架提供了最紧的一侧上界证书和接受/拒绝标准，确保AI模型在部署过程中的安全性。案例研究验证了该框架在保证有限样本安全性以及将对抗攻击整合到训练-认证-部署流程中的价值。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Innovatively uses dynamic coordination instead of predefined workflows.
-2. Employs Independent Proximal Policy Optimization (IPPO) to optimize agent policies.
-3. Implements multiple multi-agent collaboration actions such as Retrieve, Disseminate, Compose, and Critique.</div>
-<div class="mono" style="margin-top:8px">1. 创新性地使用动态协调机制替代预定义工作流。
-2. 采用独立近端策略优化（IPPO）优化智能体策略。
-3. 实现了检索、传播、组合和批判等多智能体协作动作。</div>
+<div class="mono">1. Proposes a framework that simplifies the complex workflow into a binary unsafe outcome.
+2. Utilizes exact binomial inference to certify the unsafe operation probability.
+3. Provides the tightest one-sided upper certificate and an accept/reject criterion.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种将复杂工作流程简化为二元不安全结果的框架。
+2. 使用精确二项式推断来认证不安全操作的概率。
+3. 提供了最紧的一侧上界证书和接受/拒绝标准。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Evolutionary Stability Does Not Guarantee Learning Accessibility: A Multi-Agent Reinforcement Learning Perspective on Cooperation Emergence</div>
+<div class="meta-line">Authors: Yijie Wang</div>
+<div class="meta-line">First: 2026-09-23T10:35:50+00:00 · Latest: 2026-09-23T10:35:50+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.27664v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.27664v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Cooperation emergence is a central problem in multi-agent systems because decentralized agents must coordinate while adapting to the changing behavior of others. Evolutionary game theory identifies strategically stable outcomes, but stability under a population adjustment dynamic need not imply that finite-sample learning agents can reach the same outcome through local reward feedback.
+  We study this distinction in a transparent three-agent governance-motivated game involving a government, a platform firm, and users. We derive replicator dynamics for the fixed stage-game incentives, evaluate the cooperative evolutionary basin on a symmetric initial-condition grid, and compare it with learning-basin estimates for three decentralized value-based learners. The learning analysis uses independent Q-learning with \varepsilon-greedy action selection, scaled Boltzmann exploration, and SA--EA BQL under the same payoff environment and outcome criterion.
+  The evolutionary basin has volume V_E=1.00 on the sampled grid. The empirical learning basin is 0.88 for \varepsilon-IQL and 0.00 for both scaled Boltzmann and SA--EA BQL. Diagnostic traces show that broader action diversity and nonzero value separation can coexist with failure to sustain the cooperative joint action in this fixed configuration.
+  These results indicate that evolutionary stability and learning accessibility are distinct properties of a coupled game--learning system. The shared-bike setting is a motivating application; the broader contribution is a framework for comparing population-level stability with the finite-sample accessibility of cooperation under specified multi-agent learning dynamics.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>进化稳定性并不保证学习可达性：基于多智能体强化学习的合作涌现视角</div>
+<div class="mono" style="margin-top:8px">合作涌现是多智能体系统中的一个核心问题，因为分散的智能体必须在适应他人的行为变化的同时进行协调。进化博弈理论识别出战略稳定的结局，但这种稳定性在种群调整动态下并不意味着有限样本学习智能体可以通过局部奖励反馈达到相同的结局。
+我们从一个透明的三智能体治理动机博弈入手，涉及政府、平台企业和用户。我们推导出固定阶段博弈激励的复制子动力学，评估对称初始条件网格上的合作进化盆地，并将其与三种分散的价值基础学习者的学习盆地估计值进行比较。学习分析使用独立的\varepsilon-贪婪动作选择、缩放的玻尔兹曼探索以及SA--EA BQL，在相同的收益环境和结局标准下进行。
+进化盆地在采样网格上的体积V_E=1.00。经验学习盆地对于\varepsilon-IQL为0.88，对于缩放的玻尔兹曼和SA--EA BQL均为0.00。诊断轨迹显示，在这种固定配置下，更广泛的行动多样性和非零价值分离可以共存，但无法维持合作联合行动。
+这些结果表明，进化稳定性和学习可达性是耦合博弈-学习系统中的不同属性。共享自行车场景是一个激励应用；更广泛的贡献是一个框架，用于比较种群水平的稳定性与在指定的多智能体学习动态下合作的有限样本可达性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This study explores the distinction between evolutionary stability and learning accessibility in multi-agent systems through a governance-motivated game involving a government, a platform firm, and users. By comparing replicator dynamics with learning basins for different Q-learning methods, the research reveals that while evolutionary stability is achieved, learning accessibility is not guaranteed, highlighting the need for a framework to compare these properties.</div>
+<div class="mono" style="margin-top:8px">研究通过一个涉及政府、平台企业和用户的游戏，探讨了多智能体系统中进化稳定性和学习可达性之间的区别。使用复制子动力学和具有不同探索策略的Q学习来评估合作进化盆地和学习盆地。结果表明，进化稳定性并不保证学习可达性，强调了在耦合博弈学习系统中比较这些属性的框架的重要性。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. A framework for comparing population-level stability with the finite-sample accessibility of cooperation under specified multi-agent learning dynamics is proposed.
+2. Replicator dynamics and Q-learning with different exploration strategies are used to evaluate cooperative evolutionary basins and learning basins.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一个框架来比较群体层面的稳定性与特定多智能体学习动态下的合作学习可达性。
+2. 使用复制子动力学和不同探索策略的Q学习评估合作进化盆地和学习盆地。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">RideSkill: A Hierarchical Algorithm for Generalized Ride Sharing with LLM-Driven Automatic Evolution</div>
+<div class="meta-line">Authors: Zijian Zhao, Sen Li, Xialiang Tong, Mingxuan Yuan</div>
+<div class="meta-line">First: 2026-09-02T07:57:03+00:00 · Latest: 2026-09-23T05:42:50+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.02250v2">Abs</a> · <a href="https://arxiv.org/pdf/2609.02250v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Ride-sharing, which allows multiple passengers with different origin-destination (OD) pairs to share a single vehicle, is a challenging operational problem, as it requires orders with different OD pairs to be efficiently bundled and assigned to vehicles under uncertain and varying scenarios. Although multi-agent reinforcement learning (MARL) solutions have achieved promising performance, they suffer from limited generalization (adapting to different environmental scenarios), low transferability (adapting to different platform objectives), and training difficulties in large-scale systems, such as the curse of dimensionality. Recently, motivated by the scaling of large language models (LLMs), several works have incorporated LLMs into ride-hailing systems, either by employing LLMs directly as decision-making agents or using them for automatic algorithm design. However, none of these approaches support vehicle sharing, which complicates the problem by expanding both the state and action spaces exponentially. Moreover, most of them require frequent LLM calls at inference time, making them infeasible for real-time deployment. To address these issues, we propose RideSkill, a hierarchical method for ride-sharing that leverages LLM-assisted automatic algorithmic design. RideSkill consists of a combiner that assigns appropriate skills to each vehicle from a learned skill repository, enabling adaptive dispatch under varying scenarios and objectives, and a repositioner that sequentially relocates idle vehicles to emerging regions, avoiding conflicts among vehicles. Crucially, the skill repository, combiner, and repositioner are all trained by an LLM-based automatic evolutionary method, eliminating the need for LLM calls during deployment and thus ensuring high real-time performance.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>RideSkill：一种基于LLM驱动自动进化的通用拼车层次算法</div>
+<div class="mono" style="margin-top:8px">拼车是一种允许多名乘客共享一辆车的服务，但由于不同乘客的起终点对（OD对）需要在不确定和变化的场景下高效地组合和分配给车辆，因此是一个具有挑战性的运营问题。尽管多智能体强化学习（MARL）解决方案取得了令人鼓舞的性能，但它们在适应不同环境场景、适应不同平台目标以及在大规模系统中的训练难度（如维数灾难）方面存在局限性。最近，受大型语言模型（LLMs）扩展的启发，一些研究将LLMs集成到拼车系统中，要么直接使用LLMs作为决策代理，要么使用它们进行自动算法设计。然而，这些方法都不支持车辆共享，这使得问题复杂化，因为这会将状态空间和动作空间指数级地扩展。此外，大多数方法在推理时需要频繁调用LLMs，使其不适合实时部署。为了解决这些问题，我们提出了一种基于LLM辅助自动算法设计的拼车层次方法RideSkill。RideSkill包括一个分配器，它从学习到的技能库中为每辆车分配合适的技能，以适应不同场景和目标下的动态调度，以及一个重新定位器，它按顺序将空闲车辆重新定位到新兴区域，避免车辆之间的冲突。关键的是，技能库、分配器和重新定位器都是通过基于LLM的自动进化方法训练的，部署时无需调用LLMs，从而确保了高实时性能。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">RideSkill is a hierarchical algorithm for generalized ride-sharing that uses large language models (LLMs) for automatic algorithmic design. It addresses the challenges of multi-agent reinforcement learning by leveraging a learned skill repository and a repositioner to adaptively dispatch and relocate vehicles. The key advantage is that it eliminates the need for frequent LLM calls during deployment, ensuring high real-time performance.</div>
+<div class="mono" style="margin-top:8px">RideSkill 是一种分层算法，旨在解决通用拼车问题，通过大型语言模型（LLM）进行自动算法设计。该算法利用 LLM 辅助技能库、分配器和重新定位器，分配技能给车辆，并按需重新定位空闲车辆以优化调度。这种方法显著提高了适应性和实时性能，克服了传统多智能体强化学习方法在大规模系统中的局限。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Utilizing LLM-assisted skill repository for automatic algorithm design
+2. Combiner assigning skills to vehicles adaptively under varying scenarios and objectives
+3. Repositioner sequentially relocating idle vehicles to emerging regions</div>
+<div class="mono" style="margin-top:8px">1. 利用 LLM 辅助技能库进行自动算法设计
+2. 分配器根据场景和目标自适应地分配技能给车辆
+3. 重新定位器按需重新定位空闲车辆以优化调度</div>
+</details>
+</div>
+<div class="card">
+<div class="title">FairTest: Search-Based Fairness Testing for Multi-Agent Reinforcement Learning Systems</div>
+<div class="meta-line">Authors: Xiaotong Wang, Xuan Xie</div>
+<div class="meta-line">First: 2026-09-23T03:41:57+00:00 · Latest: 2026-09-23T03:41:57+00:00</div>
+<div class="meta-line">Comments: 28 pages, 7 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.27309v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.27309v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent Reinforcement Learning (MARL) trains a team of agents that share one environment and learn their policies together. Training maximizes the team return, and a high return does not imply that the rewards are shared fairly among the agents in every episode. Testing is an established way to discover the failures of deep reinforcement learning, yet few methods address the fairness of MARL. In this work, we propose FairTest, a search-based testing approach that seeks the unfair executions of a MARL policy. The design combines search guidance with test prioritization. The guidance scores each candidate with three fitness functions. One measures the fairness of the runs already performed, another predicts the fairness from abstract states and fairness features, and the third reads the decision uncertainty from the policy. Crossover and mutation derive further candidates from the observed executions. The prioritization ranks the candidates by the predicted fairness and the decision uncertainty, so that the runs reach the candidates where failures are expected. FairTest is evaluated on three environments and two MARL algorithms, and four baselines are given the same budget. It detects the most fairness failures compared to three baselines with statistical significance and large effect sizes. The failure count exceeds that of the strongest baseline by 221% on average and coverage improves by an average of 23%.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>FairTest：基于搜索的多智能体强化学习系统的公平性测试方法</div>
+<div class="mono" style="margin-top:8px">多智能体强化学习（MARL）训练一个共享一个环境的智能体团队，并且这些智能体共同学习其策略。训练最大化团队回报，但高回报并不意味着每个回合中智能体之间的奖励分配是公平的。测试是发现深度强化学习失败的一种已建立的方法，然而很少有方法关注MARL的公平性。在本工作中，我们提出了FairTest，一种基于搜索的测试方法，旨在寻找MARL策略中的不公平执行。设计结合了搜索指导与测试优先级。指导使用三个适应度函数对每个候选执行进行评分。一个衡量已执行运行的公平性，另一个从抽象状态和公平性特征预测公平性，第三个从策略中读取决策不确定性。交叉和变异从观察到的执行中衍生出进一步的候选执行。优先级根据预测的公平性和决策不确定性对候选执行进行排序，以便运行达到预期失败的候选执行。FairTest在三个环境中和两种MARL算法上进行了评估，并且给定相同预算的四个基线。与三个基线相比，FairTest在统计学上显著地检测到更多的公平性失败，并且效应量较大。平均而言，失败计数比最强的基线高出221%，覆盖率提高了平均23%。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">FairTest is a search-based testing approach for identifying fairness issues in Multi-Agent Reinforcement Learning (MARL) systems. It uses three fitness functions to guide the search and prioritize candidates based on predicted fairness and decision uncertainty. FairTest outperforms four baselines in detecting fairness failures across three environments and two MARL algorithms, with a 221% higher failure count and 23% better coverage on average.</div>
+<div class="mono" style="margin-top:8px">FairTest 是一种基于搜索的测试方法，用于识别多智能体强化学习（MARL）系统中的不公平行为。该方法通过三个适应度函数引导搜索，并根据预测的公平性和决策不确定性来优先选择候选方案。FairTest 在检测公平性失败方面优于四个基线，平均失败次数高出 221%，覆盖率提高 23%。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Combines three fitness functions to guide the search.
+2. Prioritizes candidates based on predicted fairness and decision uncertainty.
+3. Evaluates multiple MARL algorithms across various environments.</div>
+<div class="mono" style="margin-top:8px">1. 结合了三种适应度函数来指导搜索。
+2. 通过预测公平性和决策不确定性来优先选择候选方案。
+3. 在多个环境中对多种MARL算法进行了评估。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Fully Byzantine-Resilient Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Haejoon Lee, Dimitra Panagou</div>
+<div class="meta-line">First: 2026-09-22T05:09:10+00:00 · Latest: 2026-09-22T05:09:10+00:00</div>
+<div class="meta-line">Comments: 12 pages, 3 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.25701v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.25701v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">We study distributed Byzantine-resilient actor-critic multi-agent reinforcement learning (AC-MARL), where agents collectively learn policies through local interactions. Existing methods guarantee convergence of the agents&#x27; parameters only to a neighborhood of the attack-free limit points, resulting in degraded performance. We propose Fully Resilient AC-MARL (FRAC-MARL), a decentralized method in which each agent leverages redundancy in two-hop messages to identify reliable messages. Under linear parameterizations of the value and team-reward functions and Byzantine edge attacks, where adversarial behavior is confined to the communication layer, we prove that agents&#x27; parameters converge almost surely to the same limit points as in the attack-free case over time-varying communication graphs. We introduce a novel topological condition for the convergence of our method, present a systematic method to construct such networks, and prove that this condition can be verified in polynomial time. Finally, we demonstrate our method on cooperative multi-robot formation control tasks.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>完全拜占庭容错多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">我们研究了分布式拜占庭容错演员-评论家多智能体强化学习（AC-MARL），其中智能体通过局部交互共同学习策略。现有方法仅保证智能体参数收敛到攻击未发生情况下的邻域，导致性能下降。我们提出了完全容错AC-MARL（FRAC-MARL），这是一种去中心化的方法，其中每个智能体利用两跳消息中的冗余性来识别可靠的消息。在价值和团队奖励函数的线性参数化以及拜占庭边攻击下，其中敌对行为仅限于通信层，我们证明了在时变通信图上，智能体的参数几乎必然收敛到与攻击未发生情况相同的极限点。我们引入了一种新的拓扑条件来保证我们方法的收敛性，提出了一种系统的方法来构建此类网络，并证明了该条件可以在多项式时间内验证。最后，我们在协同多机器人编队控制任务中演示了我们的方法。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper investigates Byzantine-resilient actor-critic multi-agent reinforcement learning (AC-MARL) where agents learn policies through local interactions. Existing methods only ensure convergence to a neighborhood of the attack-free limit points, leading to suboptimal performance. The authors propose FRAC-MARL, a decentralized method that uses redundancy in two-hop messages to identify reliable communications. They prove that under certain conditions, agents&#x27; parameters converge to the same limit points as in the attack-free scenario. The paper also introduces a novel topological condition for convergence and demonstrates the method in cooperative multi-robot formation control tasks.</div>
+<div class="mono" style="margin-top:8px">该研究探讨了通过局部交互学习策略的分布式 Byzantine 抗毁 actor-critic 多智能体强化学习（AC-MARL）。提出了一种名为 FRAC-MARL 的去中心化方法，利用两跳消息中的冗余性来识别可靠的通信。该方法确保在有 Byzantine 边缘攻击的情况下，智能体的参数几乎肯定收敛到与无攻击情况相同的极限点。此外，该研究还引入了一个新的拓扑条件以确保收敛，并在协同多机器人编队控制任务中进行了演示。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduced a decentralized method leveraging redundancy in two-hop messages
+2. Proposed a novel topological condition for convergence
+3. Ensured parameter convergence under Byzantine edge attacks</div>
+<div class="mono" style="margin-top:8px">1. 引入了利用两跳消息冗余性的去中心化方法
+2. 提出了一个确保收敛的新拓扑条件
+3. 在有 Byzantine 边缘攻击的情况下保证了参数的收敛性</div>
 </details>
 </div></div>
     <details style="margin-top:16px" class="detail"><summary>History</summary>
-      <div class="history-list"><a href="archive/20260907_2218.html">20260907_2218</a>
+      <div class="history-list"><a href="archive/20260921_2306.html">20260921_2306</a>
+<a href="archive/20260907_2218.html">20260907_2218</a>
 <a href="archive/20260824_1700.html">20260824_1700</a>
 <a href="archive/20260817_1701.html">20260817_1701</a>
 <a href="archive/20260810_1754.html">20260810_1754</a>

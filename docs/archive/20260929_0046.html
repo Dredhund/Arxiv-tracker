@@ -1,0 +1,642 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-09-29 00:46</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20260929_0046</div>
+    <div class="row"><div class="card">
+<div class="title">HySTAR: Anchored Hypergraphs for Stable Credit Assignment in Cooperative Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Xinglong Luo, Yuding Zhang, Yuheng Kuang, Shuxuan Yuan, Zhenni Zeng, Weiqiang Zhu, Zhenhai Ji, Zhengning Wang</div>
+<div class="meta-line">First: 2026-09-25T17:06:54+00:00 · Latest: 2026-09-25T17:06:54+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31531v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31531v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Cooperative multi-agent reinforcement learning under partial observability and shared rewards requires assigning team outcomes to individual agents and high-order coalitions. A MAPPO-style critic compresses joint behavior into one global value, while critics that dynamically reconstruct the grouping topology change the mapping from agents and coalitions to value components as interactions or active agents evolve. We refer to this inconsistency as structural target drift. We introduce HySTAR, a MAPPO-based framework that separates adaptive representation learning from a temporally consistent high-order value-decomposition basis. HySTAR anchors an overlapping sparse hypergraph as a uniformly covered decomposition scaffold, uses a spatiotemporal encoder to represent physical and task-dependent interactions, and combines temporal and structural relevance to construct agent-specific advantages. Experiments on SMAC, GRF, Traffic Junction, and MPE demonstrate consistent improvements over MAPPO-style, value-factorization, and dynamic-grouping baselines. On the hardest SMAC settings, HySTAR achieves relative gains of 16.7\% over MAPPO and 15.6\% over HYGMA, ranks first on all six GRF scenarios, reduces Traffic Junction convergence epochs by up to 40.2\% relative to MAGIC, and obtains the highest MPE episode rewards. Controlled topology, agent-death, neighborhood, and parameter analyses support the benefit of anchoring the decomposition scaffold while adapting the propagated representations.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>HySTAR：锚定超图在合作多智能体强化学习中的稳定信用分配</div>
+<div class="mono" style="margin-top:8px">在部分可观测性和共享奖励条件下，合作多智能体强化学习需要将团队结果分配给个体智能体和高阶联盟。一种MAPPO风格的评论者将联合行为压缩为一个全局值，而能够动态重构分组拓扑结构的评论者会随着交互或活跃智能体的变化改变从智能体和联盟到价值组件的映射。我们将这种不一致性称为结构目标漂移。我们引入了HySTAR，这是一种基于MAPPO的框架，将自适应表示学习与时间上一致的高阶价值分解基础分离。HySTAR使用重叠稀疏超图作为均匀覆盖的分解支架，使用时空编码器表示物理和任务相关的交互，并结合时间和结构相关性构建智能体特定的优势。在SMAC、GRF、交通交叉口和MPE上的实验表明，HySTAR在MAPPO风格、价值因子分解和动态分组基线之上表现出一致的改进。在SMAC最难的设置中，HySTAR相对于MAPPO的相对收益为16.7%，相对于HYGMA的相对收益为15.6%，在所有六个GRF场景中排名第一，将Traffic Junction的收敛周期减少了最多40.2%相对于MAGIC，并获得最高的MPE集锦奖励。控制拓扑、智能体死亡、邻域和参数分析支持锚定分解支架并适应传播表示的好处。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">HySTAR is a MAPPO-based framework designed to address the issue of structural target drift in cooperative multi-agent reinforcement learning. It uses an anchored overlapping sparse hypergraph to maintain a temporally consistent value decomposition basis, combined with a spatiotemporal encoder to represent interactions. Experiments show that HySTAR outperforms existing methods on various benchmarks, achieving significant improvements in settings with high complexity.</div>
+<div class="mono" style="margin-top:8px">HySTAR 是一个基于 MAPPO 的框架，旨在解决合作多智能体强化学习中的结构目标漂移问题。它通过锚定一个重叠的稀疏超图来一致地分解高阶值，并结合时间相关性和结构相关性来增强智能体特定的优势。实验表明，HySTAR 在各种任务中表现优于现有方法，特别是在具有挑战性的场景中取得了显著的改进。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduced an anchored overlapping sparse hypergraph as a stable basis for high-order value decomposition.
+2. Combined temporal and structural relevance to construct agent-specific advantages.</div>
+<div class="mono" style="margin-top:8px">1. 引入了锚定的重叠稀疏超图作为高阶值分解的稳定基础。
+2. 结合了时间相关性和结构相关性来构建智能体特定的优势。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Topology-Driven Anti-Entanglement Control for Soft Robots</div>
+<div class="meta-line">Authors: Haoyang Le, Shengxuan Wang, Mohan Chen, Shuo Feng</div>
+<div class="meta-line">First: 2026-05-01T06:08:44+00:00 · Latest: 2026-09-25T15:33:05+00:00</div>
+<div class="meta-line">Comments: This submission is withdrawn by the authors for substantial revisions</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2605.05236v2">Abs</a> · <a href="https://arxiv.org/pdf/2605.05236v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">In the field of precision manufacturing in complex constrained environments, the role of soft robots is increasingly prominent, and the realization of anti-winding control based on multi-intelligent body reinforcement learning has become a research hotspot. One of the core problems at present is to coordinate multiple robots to complete the unwinding operation in a highly constrained environment. The existing distributed training framework faces some observability challenges in high-density barrier and unstable environments, resulting in poor learning results. This paper proposes a topology-driven Multi-Agent Reinforcement Learning (TD-MARL) framework to coordinate multi-robot systems to avoid entanglement. Specifically, the critical network adopts centralized learning, so that each intelligent body can perceive the strategies of other intelligent bodies by sharing the topological state, thus alleviating the training instability caused by complex interactions; eliminating the demand for communication resources between robots through distributed execution, Upgrade system reliability; the integrated topological security layer uses topological invariants to accurately assess and mitigate the risk of entanglement to avoid the strategy from falling into local difficulties. Finally, the full simulation experiments carried out in the real simulation environment show that the method is better than the current advanced deep reinforcement learning (DRL) method in terms of convergence and anti-winding effect.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>拓扑驱动的反缠结控制软机器人</div>
+<div class="mono" style="margin-top:8px">在复杂受限环境中的精密制造领域，软机器人的作用日益突出，基于多智能体增强学习的反缠结控制实现已成为研究热点。目前的核心问题是协调多个机器人在高度受限环境中完成解缠操作。现有的分布式训练框架在高密度障碍和不稳定环境中面临一些可观测性挑战，导致学习效果不佳。本文提出了一种拓扑驱动的多智能体增强学习(TD-MARL)框架，以协调多机器人系统避免缠结。具体来说，关键网络采用集中学习，使得每个智能体可以通过共享拓扑状态感知其他智能体的策略，从而缓解复杂交互引起的训练不稳定性；通过分布式执行消除机器人之间的通信资源需求，提升系统可靠性；集成的拓扑安全层使用拓扑不变量准确评估和缓解缠结风险，避免策略陷入局部困境。最后，在实际仿真环境中进行的全仿真实验表明，该方法在收敛性和反缠结效果方面优于当前先进的深度增强学习(DRL)方法。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper introduces a topology-driven Multi-Agent Reinforcement Learning (TD-MARL) framework to address the challenge of coordinating multiple soft robots for anti-winding operations in complex environments. The framework uses centralized learning and topological state sharing to improve stability and reliability, and integrates a topological security layer to assess and mitigate entanglement risks. Simulation experiments demonstrate superior performance in convergence and anti-winding effects compared to existing deep reinforcement learning methods.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种拓扑驱动的多智能体强化学习（TD-MARL）框架，用于协调多个软机器人在高度受限环境中进行反缠绕操作。该框架利用集中式学习和拓扑状态共享来增强可观测性和稳定性，同时拓扑安全层确保准确的风险评估和缓解，以避免策略陷入局部困境。全仿真实验表明，该方法在收敛性和反缠绕效果方面优于现有的深度强化学习方法。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Utilizes centralized learning and topological state sharing to enhance observability and stability
+2. Employs a topological security layer for accurate risk assessment and mitigation
+3. Achieves efficient anti-winding operations in highly constrained environments</div>
+<div class="mono" style="margin-top:8px">1. 利用集中式学习和拓扑状态共享提升多智能体系统的可观测性和稳定性
+2. 通过拓扑安全层准确评估和缓解缠绕风险
+3. 实现了在高度受限环境中的高效反缠绕操作</div>
+</details>
+</div>
+<div class="card">
+<div class="title">G2MAF: Test-Time Gradient Guidance for Multi-Agent Flow Policies</div>
+<div class="meta-line">Authors: Guowei Zou, Haitao Wang, Guoxin Wang, Zhiquan Chen, Beiwen Zhang, Guojie Wang, Hejun Wu</div>
+<div class="meta-line">First: 2026-09-25T13:57:02+00:00 · Latest: 2026-09-25T13:57:02+00:00</div>
+<div class="meta-line">Comments: 24 pages, including appendices. Project page: https://g2maf.github.io/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31286v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31286v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://g2maf.github.io/">Project1</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Offline multi-agent reinforcement learning (MARL) learns cooperative policies from fixed datasets without further environment interaction and a learned policy is frozen at deployment. Such a frozen policy typically proposes a single joint action and executes it directly at deployment time. However, this one-shot deployment often commits to a suboptimal proposal, even when better nearby alternatives remain consistent with the behavior data. To address this issue, we propose Gradient Guided Multi Agent Flow (G2MAF), a refinement framework for optimizing joint policies at test-time. G2MAF applies one globally normalized, projected critic gradient to guide and coordinate all agents&#x27; corrections while keeping the action both feasible and close to the frozen policy proposal. Across 24 MPE and SMAC settings, its canonical variant improves 20 frozen settings, with mean relative gains of 9.2% on MPE and 8.9% on SMAC, with model inference latency increased by about 6% only.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>G2MAF：测试时梯度指导的多智能体流策略</div>
+<div class="mono" style="margin-top:8px">离线多智能体强化学习（MARL）从固定数据集中学习合作策略，无需进一步环境交互，且在部署时冻结了学习到的策略。这种冻结的策略通常提出一个联合动作并直接在部署时执行。然而，这种一次性部署往往会导致次优提案，即使存在更好的附近替代方案且与行为数据一致。为解决这一问题，我们提出了梯度引导多智能体流（G2MAF），这是一种在测试时优化联合策略的改进框架。G2MAF 使用一个全局归一化、投影的评论梯度来引导和协调所有智能体的修正，同时保持动作的可行性和接近冻结策略的提案。在24个MPE和SMAC设置中，其标准变体改进了20个冻结设置，MPE的平均相对增益为9.2%，SMAC为8.9%，模型推理延迟仅增加了约6%。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">G2MAF is a refinement framework for offline multi-agent reinforcement learning (MARL) that optimizes joint policies at test-time by applying a globally normalized, projected critic gradient. This method improves upon frozen policies, enhancing performance on MPE and SMAC tasks by 9.2% and 8.9% respectively, with only a 6% increase in model inference latency.</div>
+<div class="mono" style="margin-top:8px">G2MAF 是一种针对离线多智能体强化学习（MARL）的优化框架，在测试时通过应用全局归一化和投影的批评梯度来优化联合策略。该方法指导和协调所有智能体的修正，确保动作保持可行且接近冻结策略的提议。G2MAF 在 24 个 MPE 和 SMAC 设置中改进了 20 个冻结设置，分别在 MPE 和 SMAC 上实现了平均相对增益 9.2% 和 8.9%，同时仅增加了约 6% 的模型推理延迟。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a globally normalized and projected critic gradient method to refine multi-agent policies.
+2. Ensures actions remain both feasible and close to the frozen policy proposal.
+3. Significantly improves policy performance across multiple MPE and SMAC settings.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种全局归一化和投影的批评梯度方法来优化多智能体策略。
+2. 确保动作既可行又接近冻结策略的提议。
+3. 在多个 MPE 和 SMAC 设置中显著提高了策略性能。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MA-WAM: Multi-Agent World-Action Model for Test-Time Planning</div>
+<div class="meta-line">Authors: Guowei Zou, Haitao Wang, Guoxin Wang, Beiwen Zhang, Zhiquan Chen, Guojie Wang, Hejun Wu</div>
+<div class="meta-line">First: 2026-09-25T13:52:39+00:00 · Latest: 2026-09-25T13:52:39+00:00</div>
+<div class="meta-line">Comments: 40 pages, including appendices. Project page: https://ma-wam.github.io/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.31281v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.31281v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://ma-wam.github.io/">Project1</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent cooperative tasks require different agents to execute a joint action simultaneously, and each agent&#x27;s action affects both the observations and responses of the other agents. Hence, a world model is needed to predict the team return resulting from the joint actions of all agents. A naive extension directly applies a single-agent world model to each agent&#x27;s action when predicting the team return step by step. However, such an extension fails to capture the dependencies among the simultaneous actions of multiple agents. We propose Multi-Agent World-Action Model (MA-WAM), a test-time planning framework that enables a frozen multi-agent flow policy to evaluate futures of candidate joint actions. To our knowledge, MA-WAM is the first test-time world-model planner for multi-agent flow policies. MA-WAM predicts the consequences of each joint action according to cross-agent dependencies and enables efficient candidate scoring. Across 30 offline multi-agent reinforcement learning (MARL) settings on MAMuJoCo, SMAC, and MPE, MA-WAM achieves mean relative gains of 22.0% over direct execution and 25.6% over uniform action selection. Under the standard evaluation protocol on an A100 GPU, MA-WAM adds 12.1 ms, accounting for 2.5% of the measured generation-and-scoring time.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>MA-WAM：多智能体世界-行动模型在测试时规划</div>
+<div class="mono" style="margin-top:8px">多智能体协同任务需要不同的智能体同时执行联合行动，每个智能体的动作都会影响其他智能体的观察和响应。因此，需要一个世界模型来预测所有智能体联合动作的结果。一种简单的扩展是直接将单智能体世界模型应用于每个智能体的动作，逐步预测团队回报。然而，这种扩展无法捕捉多个智能体同时动作之间的依赖关系。我们提出了多智能体世界-行动模型（MA-WAM），这是一种测试时规划框架，使冻结的多智能体流策略能够评估候选联合动作的未来。据我们所知，MA-WAM是第一个用于多智能体流策略的测试时世界模型规划器。MA-WAM根据跨智能体依赖关系预测每个联合动作的后果，并实现高效的候选评分。在MAMuJoCo、SMAC和MPE的30个离线多智能体强化学习（MARL）设置中，MA-WAM相对于直接执行的平均相对增益为22.0%，相对于均匀动作选择的平均相对增益为25.6%。在A100 GPU的标准评估协议下，MA-WAM增加了12.1毫秒，占测量生成和评分时间的2.5%。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">MA-WAM proposes a novel test-time planning framework for multi-agent cooperative tasks, addressing the limitations of naive single-agent world models. By predicting the consequences of joint actions based on cross-agent dependencies, MA-WAM enables efficient candidate scoring. Across various multi-agent reinforcement learning settings, MA-WAM significantly outperforms direct execution and uniform action selection, demonstrating its effectiveness in enhancing multi-agent coordination.</div>
+<div class="mono" style="margin-top:8px">MA-WAM 提出了一个多智能体测试时规划框架，解决了单智能体世界模型的局限性。该框架考虑了跨智能体的依赖关系，预测联合动作的后果，从而实现高效的候选评分。MA-WAM 在多个多智能体强化学习设置中表现出色，显著优于直接执行和均匀动作选择。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a method for predicting the consequences of joint actions considering cross-agent dependencies
+2. The first test-time world-model planner for multi-agent flow policies
+3. Enables efficient candidate action scoring</div>
+<div class="mono" style="margin-top:8px">1. 提出了考虑跨智能体依赖关系的联合动作后果预测方法
+2. 首次实现了多智能体流策略的测试时世界模型规划
+3. 实现了高效的候选动作评分机制</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Graph-Based Inference and Topology-Aware Multi-Agent Reinforcement Learning for Large-Scale Railway Network Management</div>
+<div class="meta-line">Authors: Giacomo Arcieri, Gregory Duthé, Christophe Muller, Konstantinos G. Papakonstantinou, Daniel Straub, Eleni Chatzi</div>
+<div class="meta-line">First: 2026-09-24T17:12:39+00:00 · Latest: 2026-09-24T17:12:39+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.30150v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.30150v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Modern infrastructure asset management constitutes a complex sequential decision-making problem, characterized by long planning horizons and system-level interactions, such as spatial deterioration correlations and economies of scale. While deep reinforcement learning has shown promise in optimizing maintenance policies, scaling to real-world networks remains challenging. Centralized approaches become computationally intractable in large-scale systems, whereas decentralized approaches often fail to capture essential coordination mechanisms. To address these challenges, we propose a graph-based framework that integrates accurate environment modeling with scalable decision support. First, we employ a hierarchical Bayesian model leveraging a Gaussian Process on Graph kernel to infer a realistic, spatially correlated networked environment of railway maintenance planning from real-world data provided by the Swiss Federal Railways. Second, we introduce a topology-aware Multi-Agent Reinforcement Learning (MARL) framework by integrating graph neural networks and graph Transformers to optimize network-level policies. A central contribution of this work is the demonstration of scalability through zero-shot transfer learning: graph-based agents, trained only on small network portions, are successfully deployed in a zero-shot manner on large-scale unseen networks without any retraining. Numerical results indicate that the proposed method significantly outperforms optimized heuristics and standard MARL baselines, reducing computational training time while maintaining superior performance on large-scale networks.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于图的推理与拓扑感知多智能体强化学习在大规模铁路网络管理中的应用</div>
+<div class="mono" style="margin-top:8px">现代基础设施资产管理构成了一个复杂的序列决策问题，特征为长期规划视野和系统级交互，如空间退化相关性和规模经济。虽然深度强化学习在优化维护策略方面显示出潜力，但将其扩展到实际网络仍然具有挑战性。集中式方法在大规模系统中变得计算上不可行，而分散式方法往往无法捕捉到关键的协调机制。为了解决这些挑战，我们提出了一种基于图的框架，该框架结合了精确的环境建模和可扩展的决策支持。首先，我们利用图核上的高斯过程和分层贝叶斯模型从瑞士联邦铁路提供的实际数据中推断出铁路维护规划的真实、空间相关网络环境。其次，我们通过结合图神经网络和图Transformer引入了一种拓扑感知的多智能体强化学习（MARL）框架，以优化网络级策略。本文的一个重要贡献是通过零样本迁移学习展示了可扩展性：仅在小网络部分训练的基于图的智能体，能够在未见过的大规模网络中零样本部署，无需重新训练。数值结果表明，所提出的方法在计算训练时间上显著优于优化启发式方法和标准的MARL基线，同时在大规模网络上保持了优越的性能。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper proposes a graph-based framework for managing large-scale railway networks using reinforcement learning. It employs a hierarchical Bayesian model to infer a realistic network environment and uses graph neural networks and Transformers for topology-aware multi-agent reinforcement learning. The framework demonstrates scalability through zero-shot transfer learning, achieving better performance than heuristics and standard MARL methods on large-scale networks.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种基于图的推理和拓扑感知多智能体强化学习（MARL）框架，用于管理大规模铁路网络。该方法利用层次贝叶斯模型和图神经网络来建模环境并优化维护策略。所提出的方法通过零样本迁移学习展示了可扩展性，其在大规模网络上的性能优于启发式方法和标准的MARL基线。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed a graph-based environment modeling method using hierarchical Bayesian models and graph kernels.
+2. Introduced a topology-aware multi-agent reinforcement learning framework integrating graph neural networks and graph Transformers.
+3. Achieved successful deployment on large-scale unseen networks through zero-shot transfer learning.</div>
+<div class="mono" style="margin-top:8px">1. 提出了基于图的环境建模方法，利用层次贝叶斯模型和图核函数。
+2. 引入了拓扑感知的多智能体强化学习框架，结合图神经网络和图Transformer。
+3. 通过零样本迁移学习实现了在大规模未见网络上的成功部署。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">An Initial Introduction to Cooperative Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Christopher Amato</div>
+<div class="meta-line">First: 2024-05-10T00:50:08+00:00 · Latest: 2026-09-24T01:24:24+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2405.06161v7">Abs</a> · <a href="https://arxiv.org/pdf/2405.06161v7">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent reinforcement learning (MARL) has exploded in popularity in recent years. While numerous approaches have been developed, they can be broadly categorized into three main types: centralized training and execution (CTE), centralized training for decentralized execution (CTDE), and decentralized training and execution (DTE). CTE methods assume centralization during training and execution (e.g., with fast, free, and perfect communication) and have the most information during execution. CTDE methods are the most common, as they leverage centralized information during training while enabling decentralized execution -- using only information available to that agent during execution. Decentralized training and execution methods make the fewest assumptions and are often simple to implement.
+  This text is an introduction to cooperative MARL -- MARL in which all agents share a single, joint reward. It is meant to explain the setting, basic concepts, and common methods for the CTE, CTDE, and DTE settings. It does not cover all work in cooperative MARL as the area is quite extensive. I have included work that I believe is important for understanding the main concepts in the area and apologize to those that I have omitted. Topics include simple applications of single-agent methods to CTE as well as some more scalable methods that exploit the multi-agent structure, independent Q-learning and policy gradient methods and their extensions, as well as value function factorization methods including the well-known VDN, QMIX, and QPLEX approaches, and centralized critic methods including MADDPG, COMA, and MAPPO. I also discuss common misconceptions, the relationship between different approaches, and some open questions.</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper introduces cooperative multi-agent reinforcement learning (MARL), focusing on methods where all agents share a single joint reward. It categorizes MARL approaches into centralized training and execution (CTE), centralized training for decentralized execution (CTDE), and decentralized training and execution (DTE). The paper explains the settings, basic concepts, and common methods for each category, highlighting the trade-offs and assumptions of these approaches. Key methods discussed include Q-learning, policy gradients, value function factorization, and centralized critic methods. The paper also addresses common misconceptions and open questions in the field.</div>
+<div class="mono" style="margin-top:8px">本文介绍了合作多智能体强化学习（MARL），重点在于所有智能体共享单一联合奖励的方法。文章将MARL方法分为集中训练和执行（CTE）、集中训练分散执行（CTDE）和分散训练和执行（DTE）三类，并解释了每类的基本概念和常用方法，涵盖了单智能体方法的适应、可扩展的多智能体方法，以及价值函数分解技术如VDN、QMIX、QPLEX，还有集中评论方法如MADDPG、COMA和MAPPO。文章还讨论了常见的误解、不同方法之间的关系以及一些开放问题。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Provides a detailed introduction to three main MARL training and execution paradigms.
+2. Elaborates on specific methods for centralized training and execution, centralized training for decentralized execution, and decentralized training and execution.
+3. Summarizes various value function factorization techniques and their applications.</div>
+<div class="mono" style="margin-top:8px">1. 详细介绍了MARL的三种主要训练和执行方法。
+2. 深入探讨了集中训练和执行、集中训练分散执行和分散训练执行的具体方法。
+3. 概述了多种价值函数分解技术及其应用。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Optimization without Future Compromises? Decentralized Coordination via Collective and Reinforcement Learning</div>
+<div class="meta-line">Authors: Chuhao Qin, Evangelos Pournaras</div>
+<div class="meta-line">First: 2025-09-22T17:58:45+00:00 · Latest: 2026-09-23T14:40:04+00:00</div>
+<div class="meta-line">Comments: This work has been submitted to the IEEE for possible publication</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2509.18088v2">Abs</a> · <a href="https://arxiv.org/pdf/2509.18088v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Efficient resource allocation in multi-agent systems requires autonomous agents to coordinate their decisions while balancing system-wide objectives with individual costs. This becomes increasingly challenging over long time horizons, where decisions that improve the current allocation may compromise future resource allocation, while decentralized agents have limited observations of the overall system. Multi-agent reinforcement learning (MARL) can learn such long-term dependencies via local observations, but directly applying it to large-scale coordination leads to rapidly growing decision spaces and inefficient training. To this end, we propose Hierarchical Reinforcement and Collective Learning (HRCL), a hierarchical framework that uses MARL to guide, rather than replace, decentralized multi-agent coordination. At the high level, MARL learns strategies that restrict the alternatives considered during coordination and guide agents in balancing system-wide and individual objectives. At the low level, agents perform efficient decentralized coordination under this strategic guidance. This separation reduces the learning space and allows short-term coordination trade-offs to be evaluated according to their long-term effects. Experiments on a synthetic benchmark show that HRCL converges substantially faster than standalone MARL and reduces system-wide and individual costs by 35.53% and 27.05%, respectively. Evaluations on energy self-management and drone swarm sensing further show improved resource allocation, power-peak regulation, and sensing efficiency. These results show that learning strategic guidance for an existing coordination process can retain scalable decentralized coordination without letting short-term decisions compromise future resource allocation.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>无需未来妥协的优化？通过集体和强化学习实现去中心化协调</div>
+<div class="mono" style="margin-top:8px">多智能体系统中的资源高效分配需要自主智能体在平衡系统目标与个体成本的同时协调其决策。这在长时间范围内变得越来越具有挑战性，因为当前的资源分配决策可能会牺牲未来的资源分配，而去中心化的智能体对整体系统的观察有限。多智能体强化学习（MARL）可以通过局部观察学习这些长期依赖关系，但直接将其应用于大规模协调会导致决策空间迅速增长和训练效率低下。为此，我们提出了一种分层强化学习和集体学习（HRCL）框架，该框架使用MARL来引导而非取代去中心化的多智能体协调。在高层次上，MARL学习策略，限制协调过程中考虑的替代方案，并引导智能体平衡系统目标和个体目标。在低层次上，智能体在战略指导下进行高效的去中心化协调。这种分离减少了学习空间，并允许根据其长期影响评估短期协调权衡。在合成基准上的实验表明，HRCL比独立的MARL收敛速度快得多，分别减少了35.53%和27.05%的系统和个体成本。在能源自我管理和无人机集群传感评估中进一步表明，资源分配、功率峰值调节和传感效率得到了改善。这些结果表明，为现有的协调过程学习战略指导可以在不牺牲未来资源分配的情况下保持可扩展的去中心化协调。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper proposes Hierarchical Reinforcement and Collective Learning (HRCL) to address the challenge of efficient resource allocation in multi-agent systems over long time horizons. HRCL uses multi-agent reinforcement learning (MARL) to guide decentralized coordination, reducing the decision space and allowing short-term trade-offs to be evaluated based on long-term effects. Experiments show that HRCL converges faster and reduces system-wide and individual costs by 35.53% and 27.05%, respectively, compared to standalone MARL. The approach also improves resource allocation, power-peak regulation, and sensing efficiency in energy self-management and drone swarm sensing tasks.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种层次强化学习和集体学习（HRCL）方法，以解决多智能体系统中长期资源分配的挑战。HRCL 使用 MARL 引导分散协调，减少决策空间，并允许根据长期效果评估短期权衡。实验表明，HRCL 的收敛速度更快，成本降低幅度更大。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a hierarchical framework that uses MARL to guide rather than replace decentralized multi-agent coordination.
+2. Separates the learning space to allow short-term coordination trade-offs to be evaluated based on their long-term effects.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种层次化的框架，将 MARL 用于指导而非替代分散的多智能体协调。
+2. 通过分离层次结构，减少了学习空间，使得短期协调权衡能够基于长期效果进行评估。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Finite-Sample Probabilistic Safety Certification for AI-Based Grid-Edge Coordination</div>
+<div class="meta-line">Authors: Yihong Zhou, Hanbin Yang, Thomas Morstyn</div>
+<div class="meta-line">First: 2026-09-23T14:24:46+00:00 · Latest: 2026-09-23T14:24:46+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.28182v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.28182v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Coordinating large population of flexible grid-edge devices can alleviate the need for time-consuming and capital-intensive network upgrades, and AI-based control methods such as multi-agent reinforcement learning or imitation learning are promising in their real-time decision scalability. However, system operators still need an independent and rigorous way to decide whether a given AI system is safe enough for deployment. This paper develops a finite-sample probabilistic safety certification framework for black-box AI decision models in closed-loop grid operation. The central idea is to reduce the complete input--AI--grid evaluator workflow to a binary unsafe outcome under an operator-defined safety specification, and then use exact binomial inference to certify the corresponding unsafe operation probability. Given a set of held-out calibration scenarios, the framework returns the tightest one-sided upper certificate and an accept/reject deployment criterion that controls the probability of false safety certification. Because the certification is for the calibration distribution that may deviate from the future operation, we further combine the nominal certificate with physically interpretable sample-space adversarial attacks, a concept widely used in AI to investigate the fragility of AI models. Case studies on grid-edge flexibility coordination with 1{,}000-agent AI models (independent parameters) verify the finite-sample safety guarantee and the value of integrating adversarial attacks into a rolling-window training-certification-deployment flow.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于AI的电网边缘协调的有限样本概率安全性认证</div>
+<div class="mono" style="margin-top:8px">协调大量灵活的电网边缘设备可以减轻对耗时且资本密集型网络升级的需求，基于AI的控制方法，如多智能体强化学习或模仿学习，在实时决策扩展性方面具有潜力。然而，系统运营商仍需要一种独立且严谨的方式来决定给定的AI系统是否足够安全以部署。本文开发了一种针对闭环电网操作中黑盒AI决策模型的有限样本概率安全性认证框架。核心思想是将完整的输入—AI—电网评估工作流简化为操作员定义的安全规范下的二元不安全结果，然后使用精确的二项式推断来认证相应的不安全操作概率。给定一组保留的校准场景，该框架返回最紧的一侧上界证书和一个接受/拒绝部署标准，该标准控制误报安全认证的概率。由于认证针对的是可能与未来操作不同的校准分布，我们进一步结合了名义证书与物理可解释的样本空间对抗攻击，这是在AI中广泛用于研究AI模型脆弱性的概念。针对具有1000个智能体（独立参数）的电网边缘灵活性协调案例研究验证了有限样本的安全保证以及将对抗攻击整合到滚动窗口训练—认证—部署流程中的价值。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper presents a finite-sample probabilistic safety certification framework for AI-based grid-edge coordination. It converts the complete workflow into a binary unsafe outcome under a safety specification and uses exact binomial inference to certify the unsafe operation probability. The framework provides a tight upper certificate and an accept/reject criterion, and integrates physically interpretable sample-space adversarial attacks to enhance safety certification. Case studies with 1,000-agent AI models validate the framework’s effectiveness.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种针对基于AI的电网边缘协调的有限样本概率安全性认证框架。该框架将复杂的工作流程简化为二元的不安全结果，并通过精确二项式推断来认证不安全操作的概率。该框架提供了最紧的一侧上界证书和接受/拒绝标准，确保AI模型在部署过程中的安全性。案例研究验证了该框架在保证有限样本安全性以及将对抗攻击整合到训练-认证-部署流程中的价值。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a framework that simplifies the complex workflow into a binary unsafe outcome.
+2. Utilizes exact binomial inference to certify the unsafe operation probability.
+3. Provides the tightest one-sided upper certificate and an accept/reject criterion.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种将复杂工作流程简化为二元不安全结果的框架。
+2. 使用精确二项式推断来认证不安全操作的概率。
+3. 提供了最紧的一侧上界证书和接受/拒绝标准。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Evolutionary Stability Does Not Guarantee Learning Accessibility: A Multi-Agent Reinforcement Learning Perspective on Cooperation Emergence</div>
+<div class="meta-line">Authors: Yijie Wang</div>
+<div class="meta-line">First: 2026-09-23T10:35:50+00:00 · Latest: 2026-09-23T10:35:50+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.27664v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.27664v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Cooperation emergence is a central problem in multi-agent systems because decentralized agents must coordinate while adapting to the changing behavior of others. Evolutionary game theory identifies strategically stable outcomes, but stability under a population adjustment dynamic need not imply that finite-sample learning agents can reach the same outcome through local reward feedback.
+  We study this distinction in a transparent three-agent governance-motivated game involving a government, a platform firm, and users. We derive replicator dynamics for the fixed stage-game incentives, evaluate the cooperative evolutionary basin on a symmetric initial-condition grid, and compare it with learning-basin estimates for three decentralized value-based learners. The learning analysis uses independent Q-learning with \varepsilon-greedy action selection, scaled Boltzmann exploration, and SA--EA BQL under the same payoff environment and outcome criterion.
+  The evolutionary basin has volume V_E=1.00 on the sampled grid. The empirical learning basin is 0.88 for \varepsilon-IQL and 0.00 for both scaled Boltzmann and SA--EA BQL. Diagnostic traces show that broader action diversity and nonzero value separation can coexist with failure to sustain the cooperative joint action in this fixed configuration.
+  These results indicate that evolutionary stability and learning accessibility are distinct properties of a coupled game--learning system. The shared-bike setting is a motivating application; the broader contribution is a framework for comparing population-level stability with the finite-sample accessibility of cooperation under specified multi-agent learning dynamics.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>进化稳定性并不保证学习可达性：基于多智能体强化学习的合作涌现视角</div>
+<div class="mono" style="margin-top:8px">合作涌现是多智能体系统中的一个核心问题，因为分散的智能体必须在适应他人的行为变化的同时进行协调。进化博弈理论识别出战略稳定的结局，但这种稳定性在种群调整动态下并不意味着有限样本学习智能体可以通过局部奖励反馈达到相同的结局。
+我们从一个透明的三智能体治理动机博弈入手，涉及政府、平台企业和用户。我们推导出固定阶段博弈激励的复制子动力学，评估对称初始条件网格上的合作进化盆地，并将其与三种分散的价值基础学习者的学习盆地估计值进行比较。学习分析使用独立的\varepsilon-贪婪动作选择、缩放的玻尔兹曼探索以及SA--EA BQL，在相同的收益环境和结局标准下进行。
+进化盆地在采样网格上的体积V_E=1.00。经验学习盆地对于\varepsilon-IQL为0.88，对于缩放的玻尔兹曼和SA--EA BQL均为0.00。诊断轨迹显示，在这种固定配置下，更广泛的行动多样性和非零价值分离可以共存，但无法维持合作联合行动。
+这些结果表明，进化稳定性和学习可达性是耦合博弈-学习系统中的不同属性。共享自行车场景是一个激励应用；更广泛的贡献是一个框架，用于比较种群水平的稳定性与在指定的多智能体学习动态下合作的有限样本可达性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This study explores the distinction between evolutionary stability and learning accessibility in multi-agent systems through a governance-motivated game involving a government, a platform firm, and users. By comparing replicator dynamics with learning basins for different Q-learning methods, the research reveals that while evolutionary stability is achieved, learning accessibility is not guaranteed, highlighting the need for a framework to compare these properties.</div>
+<div class="mono" style="margin-top:8px">研究通过一个涉及政府、平台企业和用户的游戏，探讨了多智能体系统中进化稳定性和学习可达性之间的区别。使用复制子动力学和具有不同探索策略的Q学习来评估合作进化盆地和学习盆地。结果表明，进化稳定性并不保证学习可达性，强调了在耦合博弈学习系统中比较这些属性的框架的重要性。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. A framework for comparing population-level stability with the finite-sample accessibility of cooperation under specified multi-agent learning dynamics is proposed.
+2. Replicator dynamics and Q-learning with different exploration strategies are used to evaluate cooperative evolutionary basins and learning basins.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一个框架来比较群体层面的稳定性与特定多智能体学习动态下的合作学习可达性。
+2. 使用复制子动力学和不同探索策略的Q学习评估合作进化盆地和学习盆地。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">RideSkill: A Hierarchical Algorithm for Generalized Ride Sharing with LLM-Driven Automatic Evolution</div>
+<div class="meta-line">Authors: Zijian Zhao, Sen Li, Xialiang Tong, Mingxuan Yuan</div>
+<div class="meta-line">First: 2026-09-02T07:57:03+00:00 · Latest: 2026-09-23T05:42:50+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.02250v2">Abs</a> · <a href="https://arxiv.org/pdf/2609.02250v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Ride-sharing, which allows multiple passengers with different origin-destination (OD) pairs to share a single vehicle, is a challenging operational problem, as it requires orders with different OD pairs to be efficiently bundled and assigned to vehicles under uncertain and varying scenarios. Although multi-agent reinforcement learning (MARL) solutions have achieved promising performance, they suffer from limited generalization (adapting to different environmental scenarios), low transferability (adapting to different platform objectives), and training difficulties in large-scale systems, such as the curse of dimensionality. Recently, motivated by the scaling of large language models (LLMs), several works have incorporated LLMs into ride-hailing systems, either by employing LLMs directly as decision-making agents or using them for automatic algorithm design. However, none of these approaches support vehicle sharing, which complicates the problem by expanding both the state and action spaces exponentially. Moreover, most of them require frequent LLM calls at inference time, making them infeasible for real-time deployment. To address these issues, we propose RideSkill, a hierarchical method for ride-sharing that leverages LLM-assisted automatic algorithmic design. RideSkill consists of a combiner that assigns appropriate skills to each vehicle from a learned skill repository, enabling adaptive dispatch under varying scenarios and objectives, and a repositioner that sequentially relocates idle vehicles to emerging regions, avoiding conflicts among vehicles. Crucially, the skill repository, combiner, and repositioner are all trained by an LLM-based automatic evolutionary method, eliminating the need for LLM calls during deployment and thus ensuring high real-time performance.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>RideSkill：一种基于LLM驱动自动进化的通用拼车层次算法</div>
+<div class="mono" style="margin-top:8px">拼车是一种允许多名乘客共享一辆车的服务，但由于不同乘客的起终点对（OD对）需要在不确定和变化的场景下高效地组合和分配给车辆，因此是一个具有挑战性的运营问题。尽管多智能体强化学习（MARL）解决方案取得了令人鼓舞的性能，但它们在适应不同环境场景、适应不同平台目标以及在大规模系统中的训练难度（如维数灾难）方面存在局限性。最近，受大型语言模型（LLMs）扩展的启发，一些研究将LLMs集成到拼车系统中，要么直接使用LLMs作为决策代理，要么使用它们进行自动算法设计。然而，这些方法都不支持车辆共享，这使得问题复杂化，因为这会将状态空间和动作空间指数级地扩展。此外，大多数方法在推理时需要频繁调用LLMs，使其不适合实时部署。为了解决这些问题，我们提出了一种基于LLM辅助自动算法设计的拼车层次方法RideSkill。RideSkill包括一个分配器，它从学习到的技能库中为每辆车分配合适的技能，以适应不同场景和目标下的动态调度，以及一个重新定位器，它按顺序将空闲车辆重新定位到新兴区域，避免车辆之间的冲突。关键的是，技能库、分配器和重新定位器都是通过基于LLM的自动进化方法训练的，部署时无需调用LLMs，从而确保了高实时性能。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">RideSkill is a hierarchical algorithm for generalized ride-sharing that uses large language models (LLMs) for automatic algorithmic design. It addresses the challenges of multi-agent reinforcement learning by leveraging a learned skill repository and a repositioner to adaptively dispatch and relocate vehicles. The key advantage is that it eliminates the need for frequent LLM calls during deployment, ensuring high real-time performance.</div>
+<div class="mono" style="margin-top:8px">RideSkill 是一种分层算法，旨在解决通用拼车问题，通过大型语言模型（LLM）进行自动算法设计。该算法利用 LLM 辅助技能库、分配器和重新定位器，分配技能给车辆，并按需重新定位空闲车辆以优化调度。这种方法显著提高了适应性和实时性能，克服了传统多智能体强化学习方法在大规模系统中的局限。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Utilizing LLM-assisted skill repository for automatic algorithm design
+2. Combiner assigning skills to vehicles adaptively under varying scenarios and objectives
+3. Repositioner sequentially relocating idle vehicles to emerging regions</div>
+<div class="mono" style="margin-top:8px">1. 利用 LLM 辅助技能库进行自动算法设计
+2. 分配器根据场景和目标自适应地分配技能给车辆
+3. 重新定位器按需重新定位空闲车辆以优化调度</div>
+</details>
+</div>
+<div class="card">
+<div class="title">FairTest: Search-Based Fairness Testing for Multi-Agent Reinforcement Learning Systems</div>
+<div class="meta-line">Authors: Xiaotong Wang, Xuan Xie</div>
+<div class="meta-line">First: 2026-09-23T03:41:57+00:00 · Latest: 2026-09-23T03:41:57+00:00</div>
+<div class="meta-line">Comments: 28 pages, 7 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.27309v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.27309v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent Reinforcement Learning (MARL) trains a team of agents that share one environment and learn their policies together. Training maximizes the team return, and a high return does not imply that the rewards are shared fairly among the agents in every episode. Testing is an established way to discover the failures of deep reinforcement learning, yet few methods address the fairness of MARL. In this work, we propose FairTest, a search-based testing approach that seeks the unfair executions of a MARL policy. The design combines search guidance with test prioritization. The guidance scores each candidate with three fitness functions. One measures the fairness of the runs already performed, another predicts the fairness from abstract states and fairness features, and the third reads the decision uncertainty from the policy. Crossover and mutation derive further candidates from the observed executions. The prioritization ranks the candidates by the predicted fairness and the decision uncertainty, so that the runs reach the candidates where failures are expected. FairTest is evaluated on three environments and two MARL algorithms, and four baselines are given the same budget. It detects the most fairness failures compared to three baselines with statistical significance and large effect sizes. The failure count exceeds that of the strongest baseline by 221% on average and coverage improves by an average of 23%.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>FairTest：基于搜索的多智能体强化学习系统的公平性测试方法</div>
+<div class="mono" style="margin-top:8px">多智能体强化学习（MARL）训练一个共享一个环境的智能体团队，并且这些智能体共同学习其策略。训练最大化团队回报，但高回报并不意味着每个回合中智能体之间的奖励分配是公平的。测试是发现深度强化学习失败的一种已建立的方法，然而很少有方法关注MARL的公平性。在本工作中，我们提出了FairTest，一种基于搜索的测试方法，旨在寻找MARL策略中的不公平执行。设计结合了搜索指导与测试优先级。指导使用三个适应度函数对每个候选执行进行评分。一个衡量已执行运行的公平性，另一个从抽象状态和公平性特征预测公平性，第三个从策略中读取决策不确定性。交叉和变异从观察到的执行中衍生出进一步的候选执行。优先级根据预测的公平性和决策不确定性对候选执行进行排序，以便运行达到预期失败的候选执行。FairTest在三个环境中和两种MARL算法上进行了评估，并且给定相同预算的四个基线。与三个基线相比，FairTest在统计学上显著地检测到更多的公平性失败，并且效应量较大。平均而言，失败计数比最强的基线高出221%，覆盖率提高了平均23%。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">FairTest is a search-based testing approach for identifying fairness issues in Multi-Agent Reinforcement Learning (MARL) systems. It uses three fitness functions to guide the search and prioritize candidates based on predicted fairness and decision uncertainty. FairTest outperforms four baselines in detecting fairness failures across three environments and two MARL algorithms, with a 221% higher failure count and 23% better coverage on average.</div>
+<div class="mono" style="margin-top:8px">FairTest 是一种基于搜索的测试方法，用于识别多智能体强化学习（MARL）系统中的不公平行为。该方法通过三个适应度函数引导搜索，并根据预测的公平性和决策不确定性来优先选择候选方案。FairTest 在检测公平性失败方面优于四个基线，平均失败次数高出 221%，覆盖率提高 23%。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Combines three fitness functions to guide the search.
+2. Prioritizes candidates based on predicted fairness and decision uncertainty.
+3. Evaluates multiple MARL algorithms across various environments.</div>
+<div class="mono" style="margin-top:8px">1. 结合了三种适应度函数来指导搜索。
+2. 通过预测公平性和决策不确定性来优先选择候选方案。
+3. 在多个环境中对多种MARL算法进行了评估。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Fully Byzantine-Resilient Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Haejoon Lee, Dimitra Panagou</div>
+<div class="meta-line">First: 2026-09-22T05:09:10+00:00 · Latest: 2026-09-22T05:09:10+00:00</div>
+<div class="meta-line">Comments: 12 pages, 3 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.25701v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.25701v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">We study distributed Byzantine-resilient actor-critic multi-agent reinforcement learning (AC-MARL), where agents collectively learn policies through local interactions. Existing methods guarantee convergence of the agents&#x27; parameters only to a neighborhood of the attack-free limit points, resulting in degraded performance. We propose Fully Resilient AC-MARL (FRAC-MARL), a decentralized method in which each agent leverages redundancy in two-hop messages to identify reliable messages. Under linear parameterizations of the value and team-reward functions and Byzantine edge attacks, where adversarial behavior is confined to the communication layer, we prove that agents&#x27; parameters converge almost surely to the same limit points as in the attack-free case over time-varying communication graphs. We introduce a novel topological condition for the convergence of our method, present a systematic method to construct such networks, and prove that this condition can be verified in polynomial time. Finally, we demonstrate our method on cooperative multi-robot formation control tasks.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>完全拜占庭容错多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">我们研究了分布式拜占庭容错演员-评论家多智能体强化学习（AC-MARL），其中智能体通过局部交互共同学习策略。现有方法仅保证智能体参数收敛到攻击未发生情况下的邻域，导致性能下降。我们提出了完全容错AC-MARL（FRAC-MARL），这是一种去中心化的方法，其中每个智能体利用两跳消息中的冗余性来识别可靠的消息。在价值和团队奖励函数的线性参数化以及拜占庭边攻击下，其中敌对行为仅限于通信层，我们证明了在时变通信图上，智能体的参数几乎必然收敛到与攻击未发生情况相同的极限点。我们引入了一种新的拓扑条件来保证我们方法的收敛性，提出了一种系统的方法来构建此类网络，并证明了该条件可以在多项式时间内验证。最后，我们在协同多机器人编队控制任务中演示了我们的方法。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper investigates Byzantine-resilient actor-critic multi-agent reinforcement learning (AC-MARL) where agents learn policies through local interactions. Existing methods only ensure convergence to a neighborhood of the attack-free limit points, leading to suboptimal performance. The authors propose FRAC-MARL, a decentralized method that uses redundancy in two-hop messages to identify reliable communications. They prove that under certain conditions, agents&#x27; parameters converge to the same limit points as in the attack-free scenario. The paper also introduces a novel topological condition for convergence and demonstrates the method in cooperative multi-robot formation control tasks.</div>
+<div class="mono" style="margin-top:8px">该研究探讨了通过局部交互学习策略的分布式 Byzantine 抗毁 actor-critic 多智能体强化学习（AC-MARL）。提出了一种名为 FRAC-MARL 的去中心化方法，利用两跳消息中的冗余性来识别可靠的通信。该方法确保在有 Byzantine 边缘攻击的情况下，智能体的参数几乎肯定收敛到与无攻击情况相同的极限点。此外，该研究还引入了一个新的拓扑条件以确保收敛，并在协同多机器人编队控制任务中进行了演示。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduced a decentralized method leveraging redundancy in two-hop messages
+2. Proposed a novel topological condition for convergence
+3. Ensured parameter convergence under Byzantine edge attacks</div>
+<div class="mono" style="margin-top:8px">1. 引入了利用两跳消息冗余性的去中心化方法
+2. 提出了一个确保收敛的新拓扑条件
+3. 在有 Byzantine 边缘攻击的情况下保证了参数的收敛性</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20260921_2306.html">20260921_2306</a>
+<a href="archive/20260907_2218.html">20260907_2218</a>
+<a href="archive/20260824_1700.html">20260824_1700</a>
+<a href="archive/20260817_1701.html">20260817_1701</a>
+<a href="archive/20260810_1754.html">20260810_1754</a>
+<a href="archive/20260803_1941.html">20260803_1941</a>
+<a href="archive/20260727_1946.html">20260727_1946</a>
+<a href="archive/20260720_1916.html">20260720_1916</a>
+<a href="archive/20260713_1932.html">20260713_1932</a>
+<a href="archive/20260706_2021.html">20260706_2021</a>
+<a href="archive/20260629_2047.html">20260629_2047</a>
+<a href="archive/20260622_2149.html">20260622_2149</a>
+<a href="archive/20260615_2251.html">20260615_2251</a>
+<a href="archive/20260608_2057.html">20260608_2057</a>
+<a href="archive/20260525_2014.html">20260525_2014</a>
+<a href="archive/20260518_2006.html">20260518_2006</a>
+<a href="archive/20260511_1952.html">20260511_1952</a>
+<a href="archive/20260504_1825.html">20260504_1825</a>
+<a href="archive/20260427_1826.html">20260427_1826</a>
+<a href="archive/20260420_1812.html">20260420_1812</a>
+<a href="archive/20260413_1810.html">20260413_1810</a>
+<a href="archive/20260406_1724.html">20260406_1724</a>
+<a href="archive/20260330_1727.html">20260330_1727</a>
+<a href="archive/20260323_1712.html">20260323_1712</a>
+<a href="archive/20260316_1713.html">20260316_1713</a>
+<a href="archive/20260309_1956.html">20260309_1956</a>
+<a href="archive/20260309_1814.html">20260309_1814</a>
+<a href="archive/20260309_1729.html">20260309_1729</a>
+<a href="archive/20260309_1658.html">20260309_1658</a>
+<a href="archive/20260309_1651.html">20260309_1651</a>
+<a href="archive/20260309_1638.html">20260309_1638</a>
+<a href="archive/20260309_1537.html">20260309_1537</a>
+<a href="archive/20260309_1519.html">20260309_1519</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>
