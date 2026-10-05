@@ -1,0 +1,574 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-10-06 01:08</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20261006_0108</div>
+    <div class="row"><div class="card">
+<div class="title">Turnover-Orthogonal Credit Assignment for Open-Team Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Amit Thakur, Mukesh Singhal</div>
+<div class="meta-line">First: 2026-10-02T05:35:04+00:00 · Latest: 2026-10-02T05:35:04+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.02847v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.02847v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Open-team multi-agent reinforcement learning studies cooperative systems in which agents may join, leave, or be replaced during an episode. In such settings, the team return changes both because agents choose useful actions and because the active population itself changes. Standard centralized critics and shared advantages often mix these two effects into one scalar credit signal, allowing surviving agents to be rewarded or penalized for exogenous turnover events outside their control. We introduce turnover-orthogonal credit assignment (TOCA), a value decomposition for open teams that separates action effects, pure turnover effects, and action--turnover interactions. Under exogenous turnover, the event-conditioned value admits a centered decomposition whose event-conditioned baseline removes the pure turnover component while preserving credit for actions that make the team robust to future replacements. We instantiate this idea with a permutation-invariant centralized critic over variable-size agent sets and event tokens, and derive both a counterfactual per-agent credit signal and a softly weighted interaction variant, TOCA-β, for high-variance control environments. Controlled diagnostic experiments show that TOCA improves return over event-aware MAPPO-style critics and that removing interaction credit substantially hurts performance. In a replacement-only Dynamic Spread benchmark, TOCA-β achieves the best mean return at high turnover rates and improves over its no-interaction ablation. These results suggest that explicitly separating turnover from action credit is a useful principle for robust learning in dynamic cooperative teams.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>转换正交信用分配在开放团队多智能体强化学习中的应用</div>
+<div class="mono" style="margin-top:8px">开放团队多智能体强化学习研究在智能体可能在一次过程中加入、离开或被替换的协作系统。在这种环境中，团队回报不仅因为智能体选择有用的动作而变化，还因为活跃群体本身的变化而变化。标准的集中评论者和共享优势通常将这两种效应混合成一个标量信用信号，使得幸存的智能体因不受其控制的外部转换事件而受到奖励或惩罚。我们引入了转换正交信用分配（TOCA），这是一种为开放团队设计的价值分解，将动作效应、纯粹的转换效应和动作-转换交互分离出来。在外部转换下，事件条件下的价值可以进行居中分解，事件条件下的基线消除了纯粹的转换成分，同时保留了使团队对未来替换具有鲁棒性的动作的信用。我们通过一个对智能体集合和事件标记具有置换不变性的集中评论者实例化了这一想法，并推导出一个反事实的单个智能体信用信号以及一个软加权交互变体TOCA-β，适用于高方差控制环境。受控诊断实验表明，TOCA 在事件感知的MAPPO风格评论者中提高了回报，并且去除交互信用显著降低了性能。在仅替换的动态传播基准中，TOCA-β 在高转换率下实现了最佳平均回报，并且优于其无交互的消融版本。这些结果表明，明确地将转换与动作信用分离是动态协作团队中稳健学习的一个有用原则。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses open-team multi-agent reinforcement learning where agents can join, leave, or be replaced during an episode. It introduces turnover-orthogonal credit assignment (TOCA), which decomposes the value function into action effects, pure turnover effects, and action-turnover interactions. The method uses a permutation-invariant centralized critic and provides a counterfactual per-agent credit signal, improving performance in high-turnover environments compared to existing methods.</div>
+<div class="mono" style="margin-top:8px">该研究探讨了在多智能体强化学习中，智能体可以加入、离开或被替换的开放团队场景。研究引入了周转正交信用分配（TOCA），将价值分解为行动效果、纯粹的周转效果和交互作用。TOCA通过分离这些效果，在高周转率下提高了性能，并在动态合作团队中优于现有方法。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduced turnover-orthogonal credit assignment (TOCA) to decompose value into action effects, pure turnover effects, and interactions.
+2. TOCA significantly improves performance under high turnover rates.
+3. TOCA-β achieves the best mean return in the replacement-only Dynamic Spread benchmark.</div>
+<div class="mono" style="margin-top:8px">1. 提出了周转正交信用分配（TOCA），将价值分解为行动效果、纯粹的周转效果和交互作用。
+2. 在高周转率下，TOCA显著提高了性能。
+3. TOCA-β在仅替换的动态传播基准中表现出最佳均值回报。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Test-time Multi-agent Coordination by Decomposed Value Gradient Flow</div>
+<div class="meta-line">Authors: Dongsu Lee, Haoran Xu, Amy Zhang</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-10-01T22:38:27+00:00 · Latest: 2026-10-01T22:38:27+00:00</div>
+<div class="meta-line">Comments: NeurIPS 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.02554v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.02554v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Offline multi-agent reinforcement learning (MARL) faces a persistent trade-off. Expressive generative policies can represent multi-modal coordination in the data, but cannot distinguish high-value regions, while value-optimized policies exploit the learned Q-function but collapse the multi-modal into a single dominant mode. A single agent&#x27;s mode collapse can break joint coordination, and simultaneous drift across agents can push the joint policy into unseen regions of the action space. We propose scalable coordination via optimal unified transport (SCOUT), the first offline MARL framework to combine a generative foundation model with a learned value function through test-time action refinement. SCOUT trains two decoupled components: a flow-matching behavioral prior and a decomposed value function. At test-time, it transports behavioral samples toward high-value regions via Stein variational gradient descent. The number of transport steps controls adaptive test-time scaling, replacing a fixed regularization coefficient. Under the individual-global-max (IGM) principle, we prove a single-term KL bound on the joint soft-value gap that vanishes as transport converges, with an irreducible additive residual proportional to the IGM violation. Empirically, SCOUT achieves the best average performance across discrete and continuous offline MARL benchmarks and yields performance improvements in all offline-to-online configurations.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>通过分解价值梯度流实现测试时多智能体协调</div>
+<div class="mono" style="margin-top:8px">离线多智能体强化学习（MARL）面临持续的权衡。表达性强的生成策略可以表示数据中的多模态协调，但无法区分高价值区域，而价值优化策略则利用学习到的Q函数但会将多模态压缩为单一主导模式。单个智能体的模式崩溃会破坏联合协调，同时多个智能体的漂移会将联合策略推向动作空间的未见区域。我们提出了可扩展的联合协调通过最优统一传输（SCOUT），这是第一个将生成基础模型与学习到的价值函数通过测试时动作细化相结合的离线MARL框架。SCOUT 训练两个解耦的组件：流匹配行为先验和分解的价值函数。在测试时，它通过Stein变分梯度下降将行为样本运输到高价值区域。运输步骤的数量控制着适应性测试时缩放，替代固定的正则化系数。在个体-全局最大（IGM）原则下，我们证明了联合软价值差距的单项KL界，在运输收敛时消失，不可约的附加残差与IGM违反成正比。实验上，SCOUT 在离线MARL基准测试中实现了最佳的平均性能，并在所有离线到在线配置中提高了性能。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper introduces SCOUT, a novel offline multi-agent reinforcement learning (MARL) framework that combines a generative policy with a learned value function for test-time action refinement. SCOUT trains two components: a flow-matching behavioral prior and a decomposed value function. It uses Stein variational gradient descent to transport behavioral samples towards high-value regions, and the number of transport steps controls adaptive test-time scaling. Empirically, SCOUT outperforms existing methods across various offline MARL benchmarks and improves performance in all offline-to-online configurations.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种名为SCOUT的离线多智能体强化学习（MARL）框架，该框架通过测试时的动作精炼将生成性策略与价值函数结合起来。它训练了两个组件：流匹配的行为先验和分解的价值函数。在测试时，通过Stein变分梯度下降将行为样本运输到高价值区域，并根据运输步骤数进行自适应调整。实验表明，SCOUT在各种基准测试中表现出色，并且在离线到在线配置中提高了性能。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed the SCOUT framework that combines generative policies and value functions.
+2. Utilized Stein variational gradient descent for action refinement at test-time.
+3. Proved a single-term KL bound that vanishes as transport converges.</div>
+<div class="mono" style="margin-top:8px">1. 提出了结合生成性策略和价值函数的SCOUT框架。
+2. 通过Stein变分梯度下降在测试时进行行为样本的运输。
+3. 证明了单个项的KL距离界，并随着运输收敛而消失。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Flowing Faster to Coordinate: One-Step Online Multi-Agent Flow Policies</div>
+<div class="meta-line">Authors: Zhuoran Li, Yunzhan Li, Xun Wang, Yihan Du, Longbo Huang</div>
+<div class="meta-line">First: 2026-10-01T15:36:31+00:00 · Latest: 2026-10-01T15:36:31+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.01882v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.01882v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent reinforcement learning (MARL) provides a powerful framework for learning coordinated behaviors through interactions with the environment. Developing MARL policies requires balancing expressive modeling of complex and multimodal action distributions with efficient training and execution. Generative policies, particularly diffusionbased policies, can faithfully capture complex and multimodal behaviors, but costly iterative sampling hinders their scalability in online multi-agent settings. We propose an Online MARL framework via one-step Flow model (OMAF) that combines expressive generative policies with efficient one-step action generation. OMAF employs a Transformer-based flow policy to capture complex coordination behaviors, while its approximate path score surrogate provides a principled route to synchronized flow policy optimization. To enable stable and sampleefficient learning, we further develop a joint optimization scheme coupling softmax Q-value estimation with a joint flow policy objective for coordinated policy learning. By eliminating iterative sampling, OMAF dramatically reduces training overhead without sacrificing policy expressiveness. Extensive experiments across 10 standard tasks from MPE and MAMuJoCo show that OMAF consistently achieves superior performance, with up to 3.4x higher returns and 10.5x sample efficiency improvement compared with baseline methods. These results validate the effectiveness of OMAF as an expressive and computationally efficient one-step flow policy paradigm for online MARL.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>更快流动以协调：一步在线多智能体流策略</div>
+<div class="mono" style="margin-top:8px">多智能体强化学习（MARL）提供了一种强大的框架，通过与环境的交互学习协调行为。开发MARL策略需要在复杂和多模态动作分布的表达性建模与高效训练和执行之间取得平衡。生成性策略，尤其是基于扩散的策略，能够忠实捕捉复杂和多模态行为，但成本高昂的迭代采样阻碍了它们在在线多智能体环境中的可扩展性。我们提出了一种结合表达性生成性策略和高效一步动作生成的在线MARL框架（OMAF）。OMAF采用基于Transformer的流策略捕捉复杂协调行为，而其近似路径得分代理提供了一种同步流策略优化的原理性途径。为了实现稳定和样本高效的训练，我们进一步开发了一种联合优化方案，将softmax Q值估计与联合流策略目标耦合，以实现协调策略学习。通过消除迭代采样，OMAF显著减少了训练开销，而不会牺牲策略的表达性。在MPE和MAMuJoCo的10个标准任务中进行的广泛实验表明，OMAF始终能够实现优越的性能，与基线方法相比，回报最高可提高3.4倍，样本效率提高10.5倍。这些结果验证了OMAF作为在线MARL中表达性和计算效率兼备的一步流策略范式的有效性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">OMAF is an online MARL framework that integrates expressive generative policies with efficient one-step action generation. It uses a Transformer-based flow policy to capture complex coordination behaviors and an approximate path score surrogate for synchronized optimization. OMAF reduces training overhead while maintaining policy expressiveness, achieving up to 3.4x higher returns and 10.5x better sample efficiency compared to baseline methods across 10 standard tasks.</div>
+<div class="mono" style="margin-top:8px">OMAF 是一种结合了表达性强的生成策略和高效的一步动作生成的在线多智能体强化学习框架。它使用基于 Transformer 的流策略来捕捉复杂的协调行为，并通过近似路径评分近似值进行优化。OMAF 在大幅减少训练开销的同时保持了策略的表达性，与基线方法相比，其回报提高了 3.4 倍，样本效率提高了 10.5 倍。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Integrates expressive generative policies with efficient one-step action generation.
+2. Employs a Transformer-based flow policy to capture complex coordination behaviors.
+3. Utilizes an approximate path score surrogate for synchronized flow policy optimization.</div>
+<div class="mono" style="margin-top:8px">1. 结合了表达性强的生成策略和高效的一步动作生成。
+2. 使用基于 Transformer 的流策略捕捉复杂的协调行为。
+3. 通过近似路径评分近似值进行优化，实现同步流策略优化。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MASkillBlender: Decentralized Whole-Body Coordination for Multi-Humanoid Loco-Manipulation via Skill Blending</div>
+<div class="meta-line">Authors: Yifan Hu, Luhang Hong, Mingkang Long, Danning Wang, Chengfeng Jia, Rong Su, Junjie Fu, Guanghui Wen</div>
+<div class="meta-line">First: 2026-10-01T05:42:42+00:00 · Latest: 2026-10-01T05:42:42+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.01102v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.01102v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Coordinated multi-humanoid loco-manipulation is promising yet challenging due to high-dimensional whole-body control, decentralized decision making, and scalability. While recent reinforcement learning methods have improved single-humanoid whole-body control, extending them to the multi-humanoid setting remains nontrivial and often requires substantial reward engineering or task-specific design. We propose MASkillBlender, a general multi-agent reinforcement learning framework to achieve decentralized multi-humanoid whole-body coordination. By learning a shared decentralized high-level policy over reusable pre-trained single-humanoid skills, MASkillBlender enables coordinated behaviors using only task-level rewards, without requiring task-specific motion references. To improve learning efficiency, we further introduce a permutation-based data augmentation strategy for homogeneous multi-humanoid systems, and theoretically show that the permuted samples preserve the policy-gradient direction of the original samples under the homogeneous Markov game formulation. We evaluate MASkillBlender on multiple multi-humanoid coordination tasks across two humanoid embodiments. Simulation results demonstrate that the proposed framework consistently achieves strong task performance and enables coordinated behaviors across different tasks and humanoid embodiments.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>MASkillBlender: 多人形协调操控的去中心化全身协调通过技能融合实现</div>
+<div class="mono" style="margin-top:8px">协调多人形操控具有前景但极具挑战性，原因在于高维全身控制、去中心化决策以及可扩展性。尽管最近的强化学习方法提高了单人形的全身控制，但将其扩展到多人形设置仍然非平凡，并且通常需要大量的奖励工程或特定任务设计。我们提出MASkillBlender，这是一种通用的多智能体强化学习框架，用于实现多人形的去中心化全身协调。通过学习可重用的预训练单人形技能的共享去中心化高层策略，MASkillBlender仅使用任务级奖励即可实现协调行为，无需特定任务的运动参考。为了提高学习效率，我们进一步引入了一种基于排列的数据增强策略，适用于同构多人形系统，并从同构马尔可夫博弈形式理论上证明了排列样本保留了原始样本的策略梯度方向。我们在两个类人形体的多个协调任务上评估了MASkillBlender。仿真结果表明，所提出框架在多个任务和类人形体上实现了强大的任务性能，并能够实现跨任务和类人形体的协调行为。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">MASkillBlender is a decentralized framework for multi-humanoid loco-manipulation that uses skill blending to achieve whole-body coordination. It learns a shared high-level policy from pre-trained single-humanoid skills, enabling coordinated behaviors with task-level rewards. The framework also introduces a permutation-based data augmentation strategy to improve learning efficiency, theoretically preserving the policy gradient direction in homogeneous Markov games. Simulation results show strong task performance and consistent coordinated behaviors across different humanoid embodiments.</div>
+<div class="mono" style="margin-top:8px">MASkillBlender 是一个用于多类人协调移动与操作的去中心化多智能体强化学习框架。该框架利用预训练的单类人技能实现整体协调，无需特定任务的运动参考。它采用共享的高层策略和基于排列的数据增强策略以提高学习效率。仿真结果显示，MASkillBlender 在多种协调任务和类人机器人中表现良好。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a decentralized multi-agent reinforcement learning framework based on skill blending.
+2. Employs a shared high-level policy for multi-humanoid coordination.
+3. Introduces a permutation-based data augmentation strategy to enhance learning efficiency.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种基于技能融合的去中心化多智能体强化学习框架。
+2. 通过共享的高层策略实现多类人协调。
+3. 引入了基于排列的数据增强策略以提高学习效率。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Meta-Multi-Agent Reinforcement Learning for Fast Adaptation of Interactive Policies with Applications to Autonomous Driving</div>
+<div class="meta-line">Authors: Huiwen Yan, Kyriakos G. Vamvoudakis, Mushuang Liu</div>
+<div class="meta-line">First: 2026-09-30T20:52:19+00:00 · Latest: 2026-09-30T20:52:19+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.00705v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.00705v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">This paper develops a meta-multi-agent reinforcement learning (meta-MARL) framework to enable fast adaptation of interactive policies in a multi-agent system (MAS). Meta-reinforcement learning (meta-RL) enables agents to rapidly adapt to new tasks/environments using a bi-level optimization mechanism. However, existing meta-RL generally focuses on single-agent systems. Extending these frameworks and algorithms to multi-agent systems poses additional challenges, as tasks are characterized by not only the environment but also agents&#x27; strategic interactions. To address these challenges, we model multi-agent reinforcement learning (MARL) problems as Markov games (MGs) and develop a meta-MARL framework for rapid interactive policy adaptation across a distribution of MGs. A new concept, called meta-NE, is defined to describe the desired solution concept in a meta-MARL problem. Sufficient conditions for the equivalence between a meta-NE and a stationary point of the gradient-play-based meta-MARL algorithm are established. Our evaluation on autonomous-driving tasks demonstrates that the proposed meta-MARL method achieves faster adaptation than pretrained MARL baselines, validating the effectiveness of our framework.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>元多智能体强化学习：快速适应交互策略的应用于自主驾驶</div>
+<div class="mono" style="margin-top:8px">本文提出了一种元多智能体强化学习（meta-MARL）框架，以使多智能体系统（MAS）中的交互策略能够快速适应。元强化学习（meta-RL）使智能体能够通过双层优化机制快速适应新任务/环境。然而，现有的meta-RL主要集中在单智能体系统上。将这些框架和算法扩展到多智能体系统带来了额外的挑战，因为任务不仅由环境定义，还由智能体的战略互动定义。为了解决这些挑战，我们将多智能体强化学习（MARL）问题建模为马尔可夫博弈（MGs），并开发了一种元-MARL框架，以实现对MGs分布的快速交互策略适应。定义了一个新概念，称为元-NE，以描述元-MARL问题中的期望解概念。建立了元-NE与基于梯度博弈的元-MARL算法的稳定点之间的等价条件。在自主驾驶任务上的评估表明，所提出的元-MARL方法比预训练的MARL基线方法具有更快的适应性，验证了我们框架的有效性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper introduces a meta-multi-agent reinforcement learning (meta-MARL) framework for fast adaptation of interactive policies in multi-agent systems (MAS). By modeling MARL problems as Markov games (MGs), the authors develop a meta-MARL framework that enables rapid policy adaptation across a distribution of MGs. The proposed method, which includes a new concept called meta-Nash equilibrium (meta-NE), demonstrates faster adaptation compared to pretrained MARL baselines in autonomous-driving tasks.</div>
+<div class="mono" style="margin-top:8px">该研究提出了一种元多智能体强化学习（meta-MARL）框架，用于多智能体系统（MAS）中快速适应交互策略。通过将MARL问题建模为马尔可夫游戏（MGs），并定义了一个新的概念——元纳什均衡（meta-NE），作者开发了一种元MARL框架，能够在MGs分布上实现快速策略适应。该方法在自主驾驶任务中优于预训练的MARL基线，验证了其有效性。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed a meta-MARL framework for fast adaptation of interactive policies in multi-agent systems.
+2. Modeled MARL problems as Markov games and defined a new concept called meta-Nash equilibrium.
+3. Established the equivalence between meta-NE and the stationary points of the gradient-play-based meta-MARL algorithm.</div>
+<div class="mono" style="margin-top:8px">1. 提出了元多智能体强化学习框架，用于快速适应多智能体系统中的交互策略。
+2. 将MARL问题建模为马尔可夫游戏，定义了元纳什均衡的概念。
+3. 证明了元-NE与基于梯度玩法的元MARL算法的渐近点等价。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Belief-Aware Multi-Agent Path Finding under Map Uncertainty</div>
+<div class="meta-line">Authors: Viraj Parimi, Shao-Hung Chan, Han Zhang, Jingkai Chen, Brian Williams</div>
+<div class="meta-line">First: 2026-09-30T17:44:19+00:00 · Latest: 2026-09-30T17:44:19+00:00</div>
+<div class="meta-line">Comments: Under review</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.40269v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.40269v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-Agent Path Finding (MAPF) aims to find collision-free paths for multiple agents in a shared environment. Classical MAPF assumes that all static obstacles are known in advance, but real-world environments can change unexpectedly due to fallen objects, spills, or other local disturbances. When such changes are spatially correlated, an observation can inform traversability estimates beyond the observed location. Prior approaches address uncertainty in traversability through contingent plans or replanning based on direct observations, but do not leverage this spatial dependence to infer the traversability of nearby unobserved locations. As a result, they cannot use one observation to anticipate nearby unobserved obstacles that may cause costly rerouting later. We focus on Belief-Aware MAPF, where map discrepancies are fixed during execution but initially unknown, and observations can be informative beyond the observed location. We propose Multi-Agent Gaussian belief Inference for Coordination (MAGIC), a framework that updates a shared belief about traversability online based on agents&#x27; observations. MAGIC uses a Gaussian Markov Random Field and Gaussian Belief Propagation to approximately infer traversability and construct detour-aware costs for standard MAPF planners. Our experiments on MAPF benchmarks show that MAGIC reduces the executed sum of costs compared to existing approaches on 96.3% of instances, across several planner families and teams of up to 800 agents, demonstrating its applicability to large-scale MAPF problems.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于地图不确定性信念感知的多智能体路径规划</div>
+<div class="mono" style="margin-top:8px">多智能体路径规划（MAPF）旨在为多个智能体在共享环境中找到无碰撞路径。经典MAPF假设所有静态障碍物在规划前已知，但现实环境可能会由于掉落物、溢出或其他局部干扰而意外变化。当这些变化在空间上相关时，一个观察可以提供超出观察位置的通行性估计。先前的方法通过条件计划或基于直接观察的重新规划来应对通行性不确定性，但没有利用这种空间依赖性来推断附近未观察位置的通行性。因此，它们不能利用一个观察来预见可能需要昂贵重路由的附近未观察障碍物。我们关注基于地图差异的信念感知MAPF，其中地图差异在执行过程中被修正但最初未知，观察可以超出观察位置提供信息。我们提出了多智能体高斯信念推理协调（MAGIC），一种框架，基于智能体的观察在线更新关于通行性的共享信念。MAGIC 使用高斯马尔可夫随机场和高斯信念传播来近似推断通行性并为标准MAPF规划器构建避绕感知成本。我们的实验表明，MAGIC 在 96.3% 的实例中减少了执行的总成本，跨越多个规划器家族和多达 800 个智能体的团队，证明了其在大规模MAPF问题中的适用性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the Multi-Agent Path Finding (MAPF) problem under map uncertainty, where obstacles can change due to local disturbances. It introduces MAGIC, a framework that uses Gaussian belief inference to update a shared belief about traversability based on agents&#x27; observations. MAGIC leverages spatial correlation to infer the traversability of unobserved locations, reducing rerouting costs. Experiments show that MAGIC outperforms existing approaches on 96.3% of instances across various planner families and large-scale scenarios.</div>
+<div class="mono" style="margin-top:8px">该研究针对地图不确定性下的多智能体路径规划问题，其中障碍物可能因意外变化而改变。研究提出了一种名为MAGIC的框架，利用变化的空间相关性来推断未观察位置的通行性。MAGIC利用高斯马尔可夫随机场和高斯信念传播来在线更新通行性的共享信念，在多种规划器家族和大规模场景下，实验结果表明其能有效降低路径规划的总成本。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Leverages spatial correlation to infer traversability beyond observed locations
+2. Utilizes Gaussian Markov Random Fields and Gaussian Belief Propagation for online belief updates
+3. Scalable to large-scale multi-agent path finding problems</div>
+<div class="mono" style="margin-top:8px">1. 利用空间相关性推断未观察位置的通行性
+2. 使用高斯马尔可夫随机场和高斯信念传播进行在线更新
+3. 适用于大规模多智能体路径规划问题</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Divide and Collapse: MAPF-Collapse via Exact Decomposition into Independent Sub-Instances</div>
+<div class="meta-line">Authors: Oren Salzman</div>
+<div class="meta-line">First: 2026-09-30T11:57:35+00:00 · Latest: 2026-09-30T11:57:35+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.39559v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.39559v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">In this work we study the problem of MAPFC, a post-optimization step for Multi-Agent Path Finding (MAPF) plans where we are given a feasible plan produced by a modern MAPF solver and are tasked with removing avoidable moves while preserving feasibility. This NP-hard problem naturally arises when using learning-based state-of-the-art (SOTA) solvers which construct plans that contain redundant moves that can be removed. Recently, Tang et al. presented Judgelight, which uses Integer Linear Programming (ILP) to solve MAPFC. Importantly, the ILP is constructed over all agents jointly, so its cost is governed by the full instance rather than by the small coupled residue that actually requires joint reasoning. Our key insight, motivating this work, is that MAPFC instances naturally decompose into independent sub-problems, most of which involve a single agent and can be solved without any inter-agent reasoning. To this end, we first identify which agents need to coordinate their motion and partition the instance into sub-problems accordingly. For the cases where no coordination is required, we introduce an extremely lightweight solver that is \approx\!1{,}900\times faster than Judgelight. For cases where coordination is required, Judgelight can be used but we introduce an alternative CBS-like solver which is more efficient on easier problems. The resulting framework is exact, uses no commercial ILP solver, and matches Judgelight&#x27;s quality while running substantially faster on the coordination-light majority of instances; on the coordination-heavy instances we propose a regime-aware hybrid planner that falls back to Judgelight. Over all benchmarks tested, this planner achieves a median 10.5\times per-instance speedup over Judgelight.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>分割与坍缩：通过精确分解为独立子实例的MAPF-坍缩</div>
+<div class="mono" style="margin-top:8px">在本文中，我们研究了MAPFC问题，这是多智能体路径规划（MAPF）计划的一个后优化步骤，当我们已获得现代MAPF求解器生成的可行计划，并被要求移除可避免的移动以保持可行性时，就会出现该问题。这是一个NP难问题，当使用基于学习的最先进的（SOTA）求解器构建包含可移除冗余移动的计划时，该问题自然会出现。最近，Tang等人提出了Judgelight，它使用整数线性规划（ILP）来解决MAPFC。重要的是，ILP是基于所有智能体联合构建的，因此其成本由整个实例决定，而不是由实际需要联合推理的小耦合残余决定。我们这一工作的关键洞察是，MAPFC实例自然分解为独立子问题，大多数情况下涉及单个智能体，无需任何跨智能体推理即可解决。为此，我们首先确定哪些智能体需要协调其运动，并相应地将实例划分为子问题。对于不需要协调的情况，我们引入了一个极其轻量级的求解器，其速度比Judgelight快约1,900倍。对于需要协调的情况，可以使用Judgelight，但我们引入了一种类似CBS的求解器，对于较简单的问题更有效。由此产生的框架是精确的，不使用商业ILP求解器，同时在协调较轻的大多数实例中匹配Judgelight的质量，而在协调较重的实例中，我们提出了一种基于场景的混合规划者，当需要时会退回到Judgelight。在所有测试的基准中，该规划者在每个实例上的速度比Judgelight快中位数10.5倍。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses the MAPF-C problem, a post-optimization step in Multi-Agent Path Finding (MAPF) where redundant moves are removed while maintaining feasibility. The authors propose a divide-and-collapse approach that decomposes the problem into independent sub-instances, significantly reducing computational cost. For coordination-free sub-problems, they introduce a highly efficient solver, while for coordination-heavy cases, they propose an alternative solver or fall back to Judgelight. The resulting framework is exact, faster than Judgelight on most instances, and matches its quality on more complex cases.</div>
+<div class="mono" style="margin-top:8px">本文研究了多智能体路径规划（MAPF）计划中的MAPFC问题。作者提出了一种分而治之的方法，将问题分解为独立子问题，显著降低了计算成本。他们为无需协调的情况引入了一个轻量级求解器，为需要协调的情况引入了一个高效的CBS-like求解器。该框架在大多数实例上与Judgelight的质量相当，但在大多数实例上实现了约10.5倍的速度提升。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed a divide-and-collapse approach that decomposes the MAPFC problem into independent sub-problems.
+2. Introduced a lightweight solver for cases without coordination.
+3. Proposed an efficient CBS-like solver for cases requiring coordination.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种分而治之的方法，将MAPFC问题分解为独立子问题。
+2. 引入了一个轻量级求解器处理无需协调的情况。
+3. 提出了一个高效的CBS-like求解器处理需要协调的情况。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">PowerMarketJax: A JAX Benchmark Suite for Multi-Agent Reinforcement Learning in Power Markets</div>
+<div class="meta-line">Authors: Zhanhua Pan, Xin Qin, Xiao Liu, Zhilong Cao, Jianhong Wang, Dawei Qiu</div>
+<div class="meta-line">First: 2026-09-29T12:00:09+00:00 · Latest: 2026-09-29T12:00:09+00:00</div>
+<div class="meta-line">Comments: 69 pages</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.37321v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.37321v1">PDF</a> · <a href="https://github.com/powermarketjax/PowerMarketJax">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Power markets are a natural testbed for multi-agent reinforcement learning (MARL), where multiple self-interested participants repeatedly submit bids. A market-clearing mechanism then determines dispatch and prices subject to power grid constraints and market settlement rules. However, existing MARL environments typically focus on a single market setting, implement simplified clearing mechanisms, or rely on CPU-based optimization solvers that slow large-scale training and limit the systematic study of bidding strategies and market behavior. We introduce PowerMarketJax, a benchmark suite for MARL across five power markets: day-ahead wholesale, real-time balancing, ancillary services, peer-to-peer double auctions, and local flexibility. Each environment implements its own clearing, pricing, and settlement rules while providing a common framework for learning and evaluation. We find that learned bidding behavior depends strongly on the market design: independent learners can miss better strategies when gains require many agents to change together, when more profitable strategies lie beyond a region of lower profit, or when profits disappear as more agents adopt the same strategy. PowerMarketJax implements both market simulation and policy training in JAX, allowing the entire pipeline to run on the GPU with 1,024 X 1,200 parallelisms across both environments and market participants, achieving up to 33X speedup over CPU-based baselines. Our open-source benchmark is available at: https://github.com/powermarketjax/PowerMarketJax.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>PowerMarketJax：电力市场多智能体强化学习基准套件</div>
+<div class="mono" style="margin-top:8px">电力市场是多智能体强化学习（MARL）的自然测试平台，在这里，多个自利参与者反复提交报价。市场清算机制随后根据电力网络约束和市场结算规则确定调度和价格。然而，现有的MARL环境通常专注于单一市场设置，实现简化的清算机制，或者依赖于基于CPU的优化求解器，这会减慢大规模训练速度并限制对投标策略和市场行为的系统研究。我们介绍了PowerMarketJax，这是一个覆盖五个电力市场的MARL基准套件：日前批发市场、实时平衡市场、辅助服务市场、点对点双拍卖市场和本地灵活性市场。每个环境都实现了自己的清算、定价和结算规则，同时提供了一个共同的学习和评估框架。我们发现，学习到的投标行为强烈依赖于市场设计：独立学习者可能会错过更好的策略，当收益需要许多智能体共同改变时，当更有利可图的策略位于较低利润区域之外时，或者当利润随着更多智能体采用相同策略而消失时。PowerMarketJax在JAX中实现了市场模拟和策略训练，整个管道可以在GPU上运行，实现1,024 x 1,200并行性，跨环境和市场参与者，比基于CPU的基线快33倍。我们的开源基准可在：https://github.com/powermarketjax/PowerMarketJax/ 获取。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">PowerMarketJax is a benchmark suite for multi-agent reinforcement learning in power markets, covering five market types. It implements market-clearing mechanisms, pricing, and settlement rules, enabling a common framework for learning and evaluation. The study finds that learned bidding strategies vary significantly based on market design. PowerMarketJax runs on GPU, achieving up to 33X speedup over CPU-based methods.</div>
+<div class="mono" style="margin-top:8px">PowerMarketJax 是一个涵盖五种电力市场类型的多智能体强化学习（MARL）基准套件，实现了市场清算机制、定价和结算规则，提供了一个共同的学习和评估框架。研究发现，学习到的出价策略高度依赖于市场设计。PowerMarketJax 在 GPU 上运行，相比基于 CPU 的方法可实现高达 33 倍的加速。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Implements market-clearing mechanisms, pricing, and settlement rules for various power markets.
+2. Provides a unified framework for learning and evaluation.
+3. Runs on GPU for efficient parallel computation.</div>
+<div class="mono" style="margin-top:8px">1. 实现了多种电力市场的清算机制、定价和结算规则。
+2. 提供了统一的学习和评估框架。
+3. 在 GPU 上运行，实现高效并行计算。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Physics-Informed Multi-Agent Coordination for Hospital Patient Flow Optimization</div>
+<div class="meta-line">Authors: Guoqing Zhang, Rafik Hadfi, Takayuki Ito</div>
+<div class="meta-line">First: 2026-09-29T08:38:20+00:00 · Latest: 2026-09-29T08:38:20+00:00</div>
+<div class="meta-line">Comments: Accepted to PRIMA 2026 (Full paper). 16 pages, 2 figures, 3 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.37022v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.37022v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Efficient patient flow coordination across autonomous hospital departments is critical for mitigating overcrowding and balancing resource utilization. While classical queueing theory, specifically open Baskett--Chandy--Muntz--Palacios (BCMP) networks, provides an interpretable mathematical topology for healthcare operations, analytical models rely on stationary assumptions and fixed routing matrices that degrade under state-dependent real-world dynamics. Conversely, centralized reinforcement learning approaches struggle to accommodate the decentralized structure of hospital governance, where individual clinical departments function with localized observations, heterogeneous resources, and divergent operational objectives. In this paper, we present a Multi-Agent Systems (MAS) framework titled <em>Physics-Informed Multi-Agent Coordination</em>, which embeds empirically calibrated BCMP queueing topologies as physical priors within a decentralized multi-agent reinforcement learning architecture. Formulated as a Decentralized Partially Observable Markov Decision Process (Dec-POMDP) under coupled resource constraints, our method enables autonomous departmental agents to cooperatively negotiate patient routing and dynamic service scaling. To mitigate environmental non-stationarity without inducing excessive communication overhead, agents exchange localized action fingerprints along network edges and optimize a spatially decomposed reward structure. Empirical evaluations driven by real-world MIMIC-IV patient trajectories indicate that this cooperative multi-agent approach substantially reduces cumulative system delay compared to static Markovian approximations, heuristic dispatching, and independent multi-agent baselines, while maintaining clinical safety constraints.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于物理信息的多智能体协调在医院患者流优化中的应用</div>
+<div class="mono" style="margin-top:8px">跨自主医院部门的有效患者流协调对于缓解拥挤和平衡资源利用至关重要。虽然经典的队列理论，特别是开放的Baskett--Chandy--Muntz--Palacios (BCMP) 网络，为医疗保健运营提供了可解释的数学拓扑结构，但分析模型依赖于稳态假设和固定路由矩阵，在状态依赖的现实世界动态下会退化。相反，集中式的强化学习方法难以适应医院治理的分散结构，其中各个临床部门以局部观察、异质资源和不同的运营目标运行。在本文中，我们提出了一种多智能体系统（MAS）框架，称为“基于物理信息的多智能体协调”，该框架将经验校准的BCMP队列拓扑嵌入到分散的多智能体强化学习架构中作为物理先验。该方法以耦合资源约束下的分散部分可观测马尔可夫决策过程（Dec-POMDP）形式表述，使自主部门智能体能够合作协商患者路由和动态服务扩展。为了缓解环境非稳态性而不引起过多的通信开销，智能体在网络边缘交换局部动作指纹并优化空间分解的奖励结构。由实际世界MIMIC-IV患者轨迹驱动的实证评估表明，这种合作多智能体方法在减少系统累积延迟方面显著优于静态马尔可夫近似、启发式调度和独立多智能体基线，同时保持临床安全约束。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper introduces a Physics-Informed Multi-Agent Coordination framework for optimizing hospital patient flow. By integrating empirically calibrated BCMP queueing models into a decentralized multi-agent reinforcement learning system, the approach addresses the limitations of classical queueing theory and centralized reinforcement learning. The Dec-POMDP formulation under coupled resource constraints allows autonomous departments to negotiate patient routing and dynamically scale services. Evaluations using real-world MIMIC-IV patient data show significant reductions in system delay compared to static models and heuristics, while adhering to clinical safety constraints.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种基于物理信息的多智能体协调框架，用于优化医院患者流动。通过将经验校准的BCMP排队模型嵌入到去中心化的多智能体强化学习架构中，该方法使各个部门能够自主协商患者路由和动态调整服务规模。基于实际MIMIC-IV患者数据的实验表明，该协作多智能体方法在系统延迟方面显著优于静态模型和启发式调度方法，同时满足临床安全要求。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Embed BCMP queueing models into a decentralized multi-agent reinforcement learning architecture.
+2. Formulate the method as a Decentralized Partially Observable Markov Decision Process (Dec-POMDP) under coupled resource constraints.
+3. Exchange localized action fingerprints along network edges and optimize a spatially decomposed reward structure.</div>
+<div class="mono" style="margin-top:8px">1. 将BCMP排队模型嵌入到去中心化的多智能体强化学习架构中。
+2. 采用去中心化的部分可观测马尔可夫决策过程（Dec-POMDP）框架。
+3. 通过局部动作指纹在网络边缘交换信息，优化空间分解的奖励结构。</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20260929_0046.html">20260929_0046</a>
+<a href="archive/20260921_2306.html">20260921_2306</a>
+<a href="archive/20260907_2218.html">20260907_2218</a>
+<a href="archive/20260824_1700.html">20260824_1700</a>
+<a href="archive/20260817_1701.html">20260817_1701</a>
+<a href="archive/20260810_1754.html">20260810_1754</a>
+<a href="archive/20260803_1941.html">20260803_1941</a>
+<a href="archive/20260727_1946.html">20260727_1946</a>
+<a href="archive/20260720_1916.html">20260720_1916</a>
+<a href="archive/20260713_1932.html">20260713_1932</a>
+<a href="archive/20260706_2021.html">20260706_2021</a>
+<a href="archive/20260629_2047.html">20260629_2047</a>
+<a href="archive/20260622_2149.html">20260622_2149</a>
+<a href="archive/20260615_2251.html">20260615_2251</a>
+<a href="archive/20260608_2057.html">20260608_2057</a>
+<a href="archive/20260525_2014.html">20260525_2014</a>
+<a href="archive/20260518_2006.html">20260518_2006</a>
+<a href="archive/20260511_1952.html">20260511_1952</a>
+<a href="archive/20260504_1825.html">20260504_1825</a>
+<a href="archive/20260427_1826.html">20260427_1826</a>
+<a href="archive/20260420_1812.html">20260420_1812</a>
+<a href="archive/20260413_1810.html">20260413_1810</a>
+<a href="archive/20260406_1724.html">20260406_1724</a>
+<a href="archive/20260330_1727.html">20260330_1727</a>
+<a href="archive/20260323_1712.html">20260323_1712</a>
+<a href="archive/20260316_1713.html">20260316_1713</a>
+<a href="archive/20260309_1956.html">20260309_1956</a>
+<a href="archive/20260309_1814.html">20260309_1814</a>
+<a href="archive/20260309_1729.html">20260309_1729</a>
+<a href="archive/20260309_1658.html">20260309_1658</a>
+<a href="archive/20260309_1651.html">20260309_1651</a>
+<a href="archive/20260309_1638.html">20260309_1638</a>
+<a href="archive/20260309_1537.html">20260309_1537</a>
+<a href="archive/20260309_1519.html">20260309_1519</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>
