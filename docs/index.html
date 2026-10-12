@@ -74,225 +74,401 @@ summary{cursor:pointer;color:var(--acc)}
   <button class="btn" onclick="__expandAll(false)">Collapse All</button>
 </div>
 
-        <span class="badge">2026-10-06 01:08</span>
+        <span class="badge">2026-10-13 01:49</span>
       </div>
     </div>
     <div class="hr"></div>
     <div>Latest digest</div>
     <div class="row"><div class="card">
-<div class="title">Turnover-Orthogonal Credit Assignment for Open-Team Multi-Agent Reinforcement Learning</div>
-<div class="meta-line">Authors: Amit Thakur, Mukesh Singhal</div>
-<div class="meta-line">First: 2026-10-02T05:35:04+00:00 · Latest: 2026-10-02T05:35:04+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.02847v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.02847v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">SafeDiSTL: Decomposing Joint Constraints for Safe Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Hongrui Zheng, Aditya Singh, Rahul Mangharam</div>
+<div class="meta-line">First: 2026-10-09T15:32:06+00:00 · Latest: 2026-10-09T15:32:06+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.13737v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.13737v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Open-team multi-agent reinforcement learning studies cooperative systems in which agents may join, leave, or be replaced during an episode. In such settings, the team return changes both because agents choose useful actions and because the active population itself changes. Standard centralized critics and shared advantages often mix these two effects into one scalar credit signal, allowing surviving agents to be rewarded or penalized for exogenous turnover events outside their control. We introduce turnover-orthogonal credit assignment (TOCA), a value decomposition for open teams that separates action effects, pure turnover effects, and action--turnover interactions. Under exogenous turnover, the event-conditioned value admits a centered decomposition whose event-conditioned baseline removes the pure turnover component while preserving credit for actions that make the team robust to future replacements. We instantiate this idea with a permutation-invariant centralized critic over variable-size agent sets and event tokens, and derive both a counterfactual per-agent credit signal and a softly weighted interaction variant, TOCA-β, for high-variance control environments. Controlled diagnostic experiments show that TOCA improves return over event-aware MAPPO-style critics and that removing interaction credit substantially hurts performance. In a replacement-only Dynamic Spread benchmark, TOCA-β achieves the best mean return at high turnover rates and improves over its no-interaction ablation. These results suggest that explicitly separating turnover from action credit is a useful principle for robust learning in dynamic cooperative teams.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>转换正交信用分配在开放团队多智能体强化学习中的应用</div>
-<div class="mono" style="margin-top:8px">开放团队多智能体强化学习研究在智能体可能在一次过程中加入、离开或被替换的协作系统。在这种环境中，团队回报不仅因为智能体选择有用的动作而变化，还因为活跃群体本身的变化而变化。标准的集中评论者和共享优势通常将这两种效应混合成一个标量信用信号，使得幸存的智能体因不受其控制的外部转换事件而受到奖励或惩罚。我们引入了转换正交信用分配（TOCA），这是一种为开放团队设计的价值分解，将动作效应、纯粹的转换效应和动作-转换交互分离出来。在外部转换下，事件条件下的价值可以进行居中分解，事件条件下的基线消除了纯粹的转换成分，同时保留了使团队对未来替换具有鲁棒性的动作的信用。我们通过一个对智能体集合和事件标记具有置换不变性的集中评论者实例化了这一想法，并推导出一个反事实的单个智能体信用信号以及一个软加权交互变体TOCA-β，适用于高方差控制环境。受控诊断实验表明，TOCA 在事件感知的MAPPO风格评论者中提高了回报，并且去除交互信用显著降低了性能。在仅替换的动态传播基准中，TOCA-β 在高转换率下实现了最佳平均回报，并且优于其无交互的消融版本。这些结果表明，明确地将转换与动作信用分离是动态协作团队中稳健学习的一个有用原则。</div>
+<div class="mono">Cooperative multi-agent tasks often impose constraints on a shared objective or collective safety. A team level violation cost function can measure this constraint outcome, but does not distinguish which agents&#x27; actions most strongly influence that violation. We present SafeDiSTL, a constrained multi-agent reinforcement learning framework that allows for credit assignment even with joint constraint measurements. We use Signal Temporal Logic (STL) robustness to measure episode-level violation through running-maximum cost increments. Smooth full-episode robustness and differentiable dynamics provide action sensitivities, which allocate each cost increment across agents at the same decision time. These sensitivities account for delayed effects when weighting agents&#x27; shares of each cost increment. We study the framework in cooperative payload transport, connected navigation, and networked traffic control tasks. SafeDiSTL achieves 1.6-5.1x the safe-success rate in transport, improves navigation safe-success by 11.1%, and delivers 50-68% more throughput in traffic when compared to constrained baselines. Results demonstrate a strong improvement of the learned policy in dealing with shared constraint while retaining the performance of unconstrained policies.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>SafeDiSTL：分解联合约束以实现安全的多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">合作多智能体任务通常会对共享目标或集体安全性施加约束。团队层面的违规成本函数可以衡量这种约束结果，但无法区分哪些智能体的行为对违规影响最大。我们提出了SafeDiSTL，这是一种约束多智能体强化学习框架，即使在联合约束测量的情况下也能实现责任分配。我们使用信号时序逻辑（STL）鲁棒性来通过运行最大成本增量衡量整个回合的违规情况。平滑的完整回合鲁棒性和可微分动力学提供了动作敏感性，这些敏感性在相同决策时间将每个成本增量分配给各个智能体。这些敏感性在加权智能体对每个成本增量的份额时考虑了延迟效应。我们在协同负载运输、连接导航和网络化交通控制任务中研究了该框架。SafeDiSTL 在运输中的安全成功率提高了 1.6-5.1 倍，在导航中的安全成功率提高了 11.1%，在交通中的吞吐量提高了 50-68%。结果表明，SafeDiSTL 在处理共享约束方面表现出显著改进，同时保持了无约束策略的性能。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper addresses open-team multi-agent reinforcement learning where agents can join, leave, or be replaced during an episode. It introduces turnover-orthogonal credit assignment (TOCA), which decomposes the value function into action effects, pure turnover effects, and action-turnover interactions. The method uses a permutation-invariant centralized critic and provides a counterfactual per-agent credit signal, improving performance in high-turnover environments compared to existing methods.</div>
-<div class="mono" style="margin-top:8px">该研究探讨了在多智能体强化学习中，智能体可以加入、离开或被替换的开放团队场景。研究引入了周转正交信用分配（TOCA），将价值分解为行动效果、纯粹的周转效果和交互作用。TOCA通过分离这些效果，在高周转率下提高了性能，并在动态合作团队中优于现有方法。</div>
+<div class="mono">SafeDiSTL is a constrained multi-agent reinforcement learning framework that decomposes joint constraints to enable credit assignment. It uses Signal Temporal Logic (STL) robustness to measure episode-level violations and smooth full-episode robustness to provide action sensitivities. SafeDiSTL outperforms constrained baselines in cooperative payload transport, navigation, and traffic control tasks, achieving up to 5.1x higher safe-success rates and 50-68% more throughput.</div>
+<div class="mono" style="margin-top:8px">SafeDiSTL 是一种约束多智能体强化学习框架，能够将联合约束分解为个体智能体的贡献，从而实现有效的责任分配。它利用信号时序逻辑（STL）稳健性来衡量约束违规情况，并提供平滑的、可微分的动力学以获取动作敏感性。SafeDiSTL 在各种协同任务中显著提高了安全成功率和吞吐量，优于约束基线。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Introduced turnover-orthogonal credit assignment (TOCA) to decompose value into action effects, pure turnover effects, and interactions.
-2. TOCA significantly improves performance under high turnover rates.
-3. TOCA-β achieves the best mean return in the replacement-only Dynamic Spread benchmark.</div>
-<div class="mono" style="margin-top:8px">1. 提出了周转正交信用分配（TOCA），将价值分解为行动效果、纯粹的周转效果和交互作用。
-2. 在高周转率下，TOCA显著提高了性能。
-3. TOCA-β在仅替换的动态传播基准中表现出最佳均值回报。</div>
+<div class="mono">1. Proposes a joint constraint decomposition method based on Signal Temporal Logic (STL) robustness.
+2. Introduces smooth, differentiable dynamics to obtain action sensitivities.
+3. Achieves effective credit assignment for joint constraint violations.</div>
+<div class="mono" style="margin-top:8px">1. 提出了基于信号时序逻辑（STL）稳健性的联合约束分解方法。
+2. 引入了平滑的、可微分的动力学以获取动作敏感性。
+3. 实现了联合约束违规情况的有效责任分配。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Test-time Multi-agent Coordination by Decomposed Value Gradient Flow</div>
-<div class="meta-line">Authors: Dongsu Lee, Haoran Xu, Amy Zhang</div>
+<div class="title">Collective Autonomous Vehicle Routing Needs Social Awareness for Coexistence with Human Drivers</div>
+<div class="meta-line">Authors: Anastasia Psarou, Mikolaj Rams, Blazej Torbus, Rafal Kucharski</div>
+<div class="meta-line">First: 2026-10-09T11:37:47+00:00 · Latest: 2026-10-09T11:37:47+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.13439v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.13439v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Collective Autonomous Vehicle (AV) route choices in real-world traffic networks can create externalities for Human-Driven Vehicles (HDVs), as routes that benefit AVs may increase travel times for other road users. To address this, we introduce a social component, the marginal cost, to the selfish travel time AV reward. Marginal cost captures an AV&#x27;s impact on other road users by comparing their travel times with those in a counterfactual simulation in which the AV is removed.
+  We study AV route choice in mixed-autonomy traffic settings using Multi-Agent Reinforcement Learning (MARL), where AVs learn routing policies through repeated interactions with the traffic environment. Experiments on the real-world networks of Ingolstadt and Provins show that incorporating marginal cost into the AV reward not only limits the increase in HDV travel times and shortens AV travel times relative to selfish AV routing, but also improves overall system performance. In Ingolstadt, selfish routing of 40\% AVs increases the travel times of other vehicles by 1.7\%, and this drops to 1.1\% when the social reward is included. Interestingly, not only does overall system performance improve, but the AVs are also better off when acting socially.This effect is consistent across tested cities, penetration rates, and replications, yet when the weight of the social component in the reward increases, the system fails to reach the desired performance.
+  For a more scalable approach to social AV routing in mixed-autonomy traffic, we compute the marginal cost only for the AVs whose route choices most affect the traffic system. This reduces the number of counterfactual simulations and achieves similar performance at a significantly lower computational cost. Our results suggest that AV routing should go beyond selfish rewards and, for the benefit of all traffic participants, include a social component in its objective.</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The study addresses the externality issue caused by Autonomous Vehicles (AVs) in mixed-autonomy traffic networks by incorporating a social component, marginal cost, into the AV reward. Using Multi-Agent Reinforcement Learning (MARL), AVs learn optimal routing policies. Experiments on real-world networks show that including marginal cost reduces HDV travel times and improves overall system performance. A scalable approach is proposed, focusing on AVs with the most significant impact on traffic, which achieves similar performance with lower computational cost.</div>
+<div class="mono" style="margin-top:8px">该研究通过将社会成本（边际成本）纳入自动驾驶车辆（AV）的奖励系统中，解决其对人类驾驶车辆（HDV）造成的外部性问题。利用多智能体强化学习（MARL），AV 学习最优的路线策略。实验结果显示，加入边际成本可以减少 HDV 的行驶时间并缩短 AV 的行驶时间，从而提高整体系统性能。一种更可扩展的方法仅计算对交通系统影响较大的 AV 的边际成本，以较低的计算成本实现类似的效果。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduce marginal cost as a component of the AV reward to reduce impacts on other road users.
+2. Use Multi-Agent Reinforcement Learning (MARL) to enable AVs to learn optimal routing policies.
+3. Compute marginal cost only for AVs with significant impact on the traffic system to achieve more efficient computation.</div>
+<div class="mono" style="margin-top:8px">1. 引入边际成本作为AV奖励的组成部分，以减少对其他道路使用者的影响。
+2. 使用多智能体强化学习（MARL）使AV学习最优的路线策略。
+3. 通过仅计算对交通系统影响较大的AV的边际成本，实现更高效的计算。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MA-JEPA: Joint-Embedding World Models for Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Brandon Gary Kaplowitz, Osaze James Obahor, Christian Schroeder de Witt</div>
+<div class="meta-line">First: 2026-09-27T13:37:30+00:00 · Latest: 2026-10-08T17:57:30+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.33563v2">Abs</a> · <a href="https://arxiv.org/pdf/2609.33563v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">World models improve sample efficiency by training policies on imagined trajectories, but their usefulness depends on learning representations that capture the information needed for future control. We study whether self-supervised joint-embedding prediction (JEPA) can provide this learning signal for multi-agent reinforcement learning. We introduce MA-JEPA, a stochastic world model that replaces observation reconstruction with prediction of target representations, enabling model-based multi-agent reinforcement learning with centralized training and decentralized execution. A categorical latent state and a causal Transformer are trained with posterior and action-conditioned dynamics prediction objectives and are then used for actor-critic learning from latent imagination. A training-only joint predictor conditions on all agents&#x27; local states and actions to predict each agent&#x27;s next local observation embedding. These predictions are passed through the same local posterior used during real interaction with a centralized critic that is used only for value learning, with execution remaining decentralized. Our experiments show that this architecture performs strongly on SMAC, matching or exceeding the strongest reported comparator mean win rate on four of eight evaluated maps.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>MA-JEPA：多智能体强化学习的联合嵌入世界模型</div>
+<div class="mono" style="margin-top:8px">世界模型通过在想象的轨迹上训练策略来提高样本效率，但它们的有效性取决于能否学习到捕捉未来控制所需信息的表示。我们研究自监督联合嵌入预测(JEPA)是否能为多智能体强化学习提供这种学习信号。我们引入了MA-JEPA，这是一种随机世界模型，用目标表示的预测替代了观察重建，使基于模型的多智能体强化学习能够进行集中训练和分散执行。一个分类的潜在状态和因果Transformer通过后验和动作条件的动力学预测目标进行训练，并用于从潜在想象中进行演员-评论家学习。仅在训练中联合预测器基于所有智能体的局部状态和动作来预测每个智能体的下一个局部观察嵌入。这些预测通过与实际交互中相同的局部后验传递，并由集中式评论家用于价值学习，执行保持分散。我们的实验表明，这种架构在SMAC上表现强劲，匹配或超越了四个评估地图中四个最强报告对照组的平均胜率。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">MA-JEPA integrates self-supervised joint-embedding prediction into multi-agent reinforcement learning, improving sample efficiency by predicting target representations. It uses a categorical latent state and a causal Transformer, and employs a decentralized execution strategy. Experiments on SMAC demonstrate that MA-JEPA matches or surpasses the strongest reported comparator on four out of eight maps.</div>
+<div class="mono" style="margin-top:8px">MA-JEPA 通过使用预测目标表示而非重建观察的随机世界模型，提高了多智能体强化学习的效果。该模型支持集中式训练和分布式执行，并通过因果 Transformer 和后验动力学预测进行训练。实验表明，该模型在 SMAC 上表现出色，四个地图中的四个达到了或超过了最佳比较器的表现。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Introduced a stochastic world model predicting target representations instead of reconstructing observations.
+2. Trained with a causal Transformer and posterior dynamics prediction.
+3. Centralized training but decentralized execution.</div>
+<div class="mono" style="margin-top:8px">1. 引入了预测目标表示的随机世界模型，替代了观察重建。
+2. 使用因果 Transformer 和后验动力学预测进行训练。
+3. 中央化训练但分布式执行。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Simultaneous Computation with Multiple Prioritizations in Multi-Agent Motion Planning</div>
+<div class="meta-line">Authors: Patrick Scheffe, Julius Kahle, Bassam Alrifaee</div>
+<div class="meta-line">Venue: Journal of Artificial Intelligence Research, Vol. 86, 2026</div>
+<div class="meta-line">First: 2025-01-18T14:35:32+00:00 · Latest: 2026-10-08T09:48:10+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2501.10781v2">Abs</a> · <a href="https://arxiv.org/pdf/2501.10781v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Multi-agent path finding (MAPF) in large networks is computationally challenging. An approach for MAPF is prioritized planning (PP), in which agents plan sequentially according to their priority. Albeit a computationally efficient approach for MAPF, the solution quality strongly depends on the prioritization. Most prioritizations rely either on heuristics, which do not generalize well, or iterate to find adequate priorities, which costs computational effort. In this work, we show how agents can compute with multiple prioritizations simultaneously. Our approach is general as it does not rely on domain-specific knowledge. The context of this work is multi-agent motion planning (MAMP) with a receding horizon subject to computation time constraints. MAMP considers the system dynamics in more detail compared to MAPF. In numerical experiments on MAMP, we demonstrate that our approach achieves near-optimal prioritization and outperforms state-of-the-art methods with only a minor increase in computation time. We show real-time capability in an experiment on a road network with ten vehicles in our Cyber-Physical Mobility Lab.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>多智能体运动规划中的多优先级同时计算</div>
+<div class="mono" style="margin-top:8px">在大型网络中的多智能体路径寻找（MAPF）具有计算挑战性。一种MAPF的方法是优先级规划（PP），其中智能体根据其优先级顺序规划。尽管PP是一种计算高效的MAPF方法，但其解的质量强烈依赖于优先级的选择。大多数优先级依赖于不具有良好泛化能力的启发式方法，或者需要迭代以找到合适的优先级，这会增加计算成本。在本文中，我们展示了智能体如何同时使用多个优先级进行计算。我们的方法是通用的，因为它不依赖于特定领域的知识。本文的研究背景是受计算时间约束的多智能体运动规划（MAMP），MAMP比MAPF更详细地考虑了系统动力学。在MAMP的数值实验中，我们证明了我们的方法实现了接近最优的优先级，并且与最先进的方法相比，仅增加了轻微的计算时间。我们在Cyber-Physical Mobility Lab中的道路网络实验中展示了实时能力，该实验涉及十辆车辆。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses the computational challenges of multi-agent path finding (MAPF) in large networks by proposing a method for simultaneous computation with multiple prioritizations. The approach is general and does not require domain-specific knowledge. In numerical experiments, the method achieves near-optimal prioritization and outperforms existing methods with minimal additional computational cost. The approach is demonstrated to be real-time capable in a road network scenario with ten vehicles.</div>
+<div class="mono" style="margin-top:8px">该研究针对大型网络中的多智能体路径规划（MAPF）问题，提出了一种同时使用多种优先级的计算方法。不同于传统的优先级规划（PP），该方法允许智能体同时计算多种优先级，从而提高解决方案的质量并保持计算效率。通过在具有实时约束的多智能体运动规划（MAMP）中的数值实验验证了该方法的有效性，显示了接近最优的表现，并且仅增加了少量的计算时间。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposes a method for simultaneous computation with multiple prioritizations.
+2. The method improves solution quality while maintaining computational efficiency.
+3. Numerical experiments validate the method&#x27;s effectiveness.</div>
+<div class="mono" style="margin-top:8px">1. 提出了一种同时使用多种优先级的计算方法。
+2. 该方法在保持计算效率的同时提高了解决方案的质量。
+3. 通过数值实验验证了方法的有效性。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SynCo: Data Synthesis Co-Training for Self-Evolving LLMs via Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Wei Yang, Shawn Li, Yuehan Qin, Yawei Wang, Mingxi Wang, Shixuan Li, Tiankai Yang, Jiate Li, Jesse Thomason, Xuezhe Ma, Yue Zhao</div>
+<div class="meta-line">First: 2026-10-08T06:40:18+00:00 · Latest: 2026-10-08T06:40:18+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.11345v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.11345v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Self-evolving LLM agents promise to improve autonomously through continual interaction and learning, reducing their dependence on manually curated supervision. Realizing this promise requires not only updating the agent, but also evolving its training experience as its capabilities change. However, most existing pipelines rely on static datasets or separately updated synthesis models, causing previously useful tasks to become trivial while overly difficult tasks remain uninformative. This growing mismatch between agent capability and training experience limits sustained self-improvement. To address this problem, we propose SynCo, an agentic data synthesis co-training framework for self-evolving LLMs based on multi-agent reinforcement learning. SynCo jointly optimizes two independently parameterized agents: a Synthesizer that constructs training tasks from the Reasoner&#x27;s evolving capability state, and a Reasoner that learns from the resulting experience. Each synthesized task induces multiple Reasoner rollouts whose outcomes provide complementary rewards to both agents. Correctness feedback improves the Reasoner, while task quality, answer reliability, and outcome-grounded teachability guide the Synthesizer. Their updates are fed back into subsequent synthesis rounds, allowing the task-solving policy and its training distribution to evolve together. Extensive experiments across eight mathematical reasoning benchmarks demonstrate that SynCo substantially outperforms a broad range of existing synthetic-data methods and controlled baselines, achieving the strongest overall performance while deriving most of its gains from previously unsolved problems.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>SynCo: 基于多智能体强化学习的自进化LLM数据合成共训练框架</div>
+<div class="mono" style="margin-top:8px">自进化LLM代理通过持续的交互和学习自主改进，减少了对人工标注监督的依赖。实现这一目标不仅需要更新代理，还需要随着其能力的变化进化其训练体验。然而，大多数现有管道依赖静态数据集或分别更新的合成模型，导致先前有用的任务变得简单，而过于困难的任务仍然没有信息性。这种代理能力和训练体验之间的不断增长的不匹配限制了持续的自我改进。为了解决这个问题，我们提出了一种基于多智能体强化学习的自进化LLM数据合成共训练框架SynCo。SynCo联合优化两个独立参数化的智能体：一个合成器从推理器不断变化的能力状态构建训练任务，另一个推理器从结果中学习。每个合成的任务诱导多个推理器的展开，其结果为两个智能体提供互补的奖励。正确性反馈改进了推理器，而任务质量、答案可靠性以及结果导向的可教性指导了合成器。它们的更新反馈到后续的合成轮次，使任务解决策略及其训练分布共同进化。在八个数学推理基准测试中的广泛实验表明，SynCo在广泛现有的合成数据方法和受控基线中表现出显著的优越性，实现了最佳的整体性能，其大部分收益来自之前未解决的问题。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">SynCo is a data synthesis co-training framework for self-evolving LLMs using multi-agent reinforcement learning. It jointly optimizes a Synthesizer and a Reasoner, where the Synthesizer constructs tasks based on the Reasoner&#x27;s evolving capability, and the Reasoner learns from these tasks. The outcomes of the Reasoner&#x27;s rollouts provide rewards to both agents, enabling continuous improvement. Extensive experiments show that SynCo significantly outperforms existing methods, especially on previously unsolved problems.</div>
+<div class="mono" style="margin-top:8px">SynCo 是一种基于多智能体强化学习的自进化 LLM 数据合成共训练框架。该框架同时优化合成器和推理器，合成器根据推理器的能力生成任务，推理器则通过完成这些任务进行学习。任务执行的结果为两个智能体提供奖励，从而逐步提升其性能。在八个数学推理基准测试中的实验表明，SynCo 在性能上优于现有方法，尤其是在解决未解决问题方面。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed a data synthesis co-training framework for self-evolving LLMs based on multi-agent reinforcement learning.
+2. Both the synthesizer and reasoner are rewarded based on the outcomes of the reasoner&#x27;s rollouts, enabling iterative performance improvement.
+3. Experiments show that SynCo excels particularly in solving previously unsolved problems.</div>
+<div class="mono" style="margin-top:8px">1. 提出了基于多智能体强化学习的自进化 LLM 数据合成共训练框架。
+2. 合成器和推理器通过任务执行结果相互提供奖励，实现性能的迭代提升。
+3. 实验表明 SynCo 在解决未解决问题方面表现突出。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Multi-Agent Coordination via Support-Preserving Distillation</div>
+<div class="meta-line">Authors: Sangmin Lee, Youngju Na, Chanmi Lee, Sung-eui Yoon</div>
 <div class="meta-line">Venue: NeurIPS 2026</div>
-<div class="meta-line">First: 2026-10-01T22:38:27+00:00 · Latest: 2026-10-01T22:38:27+00:00</div>
-<div class="meta-line">Comments: NeurIPS 2026</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.02554v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.02554v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="meta-line">First: 2026-10-07T13:48:27+00:00 · Latest: 2026-10-08T06:18:32+00:00</div>
+<div class="meta-line">Comments: NeurIPS 2026, Project page: https://alex6095.github.io/mosdot/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.10087v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.10087v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://alex6095.github.io/mosdot/">Project1</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Offline multi-agent reinforcement learning (MARL) faces a persistent trade-off. Expressive generative policies can represent multi-modal coordination in the data, but cannot distinguish high-value regions, while value-optimized policies exploit the learned Q-function but collapse the multi-modal into a single dominant mode. A single agent&#x27;s mode collapse can break joint coordination, and simultaneous drift across agents can push the joint policy into unseen regions of the action space. We propose scalable coordination via optimal unified transport (SCOUT), the first offline MARL framework to combine a generative foundation model with a learned value function through test-time action refinement. SCOUT trains two decoupled components: a flow-matching behavioral prior and a decomposed value function. At test-time, it transports behavioral samples toward high-value regions via Stein variational gradient descent. The number of transport steps controls adaptive test-time scaling, replacing a fixed regularization coefficient. Under the individual-global-max (IGM) principle, we prove a single-term KL bound on the joint soft-value gap that vanishes as transport converges, with an irreducible additive residual proportional to the IGM violation. Empirically, SCOUT achieves the best average performance across discrete and continuous offline MARL benchmarks and yields performance improvements in all offline-to-online configurations.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>通过分解价值梯度流实现测试时多智能体协调</div>
-<div class="mono" style="margin-top:8px">离线多智能体强化学习（MARL）面临持续的权衡。表达性强的生成策略可以表示数据中的多模态协调，但无法区分高价值区域，而价值优化策略则利用学习到的Q函数但会将多模态压缩为单一主导模式。单个智能体的模式崩溃会破坏联合协调，同时多个智能体的漂移会将联合策略推向动作空间的未见区域。我们提出了可扩展的联合协调通过最优统一传输（SCOUT），这是第一个将生成基础模型与学习到的价值函数通过测试时动作细化相结合的离线MARL框架。SCOUT 训练两个解耦的组件：流匹配行为先验和分解的价值函数。在测试时，它通过Stein变分梯度下降将行为样本运输到高价值区域。运输步骤的数量控制着适应性测试时缩放，替代固定的正则化系数。在个体-全局最大（IGM）原则下，我们证明了联合软价值差距的单项KL界，在运输收敛时消失，不可约的附加残差与IGM违反成正比。实验上，SCOUT 在离线MARL基准测试中实现了最佳的平均性能，并在所有离线到在线配置中提高了性能。</div>
+<div class="mono">Offline MARL increasingly relies on generative policies to model multimodal joint behavior, typically by distilling a centralized teacher into decentralized one-step actors under the CTDE. We identify a failure mode at the teacher training stage: standard flow-based teachers pair noise with replay targets independently, so nearby noise samples can be routed toward conflicting coordination modes. The teacher then produces samples between valid modes, and because the distillation loss regresses each local actor onto the conditional mean of the teacher&#x27;s output given local input, this error is not absorbed but propagated to the student. To remove this teacher-side artifact, we propose Mode-Support Semi-Discrete Optimal Transport (MoSDOT), which summarizes multimodal replay into a finite mode support with prescribed capacities and uses conditional semi-discrete optimal transport to assign each noise sample to a single mode before teacher training. We additionally study a shared-randomness variant that uses a shared noise component at execution to expose the residual gap intrinsic to strict-product execution. On controlled diagnostics and offline MARL benchmarks, MoSDOT improves endpoint quality and routing consistency, particularly on datasets exhibiting multimodal joint behavior.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>支持保持蒸馏的多智能体协调</div>
+<div class="mono" style="margin-top:8px">离线多智能体强化学习（MARL）越来越多地依赖生成策略来建模多模态联合行为，通常通过将集中式教师蒸馏为去中心化的单步智能体来实现。我们识别出教师训练阶段的一个失败模式：标准基于流的教师独立地将噪声与回放目标配对，因此附近的噪声样本可能会被导向冲突的协调模式。教师随后生成在有效模式之间的样本，由于蒸馏损失将每个局部智能体回归到给定局部输入条件下教师输出的条件均值，这种错误不会被吸收而是传播到学生。为了消除这种教师端的缺陷，我们提出了模式支持半离散最优传输（MoSDOT），它将多模态回放总结为具有指定容量的有限模式支持，并在教师训练前使用条件半离散最优传输将每个噪声样本分配到单一模式。我们还研究了一种共享随机性变体，在执行时使用共享噪声组件来暴露严格积执行固有的残余差距。在受控诊断和离线MARL基准测试中，MoSDOT提高了端点质量和路由一致性，特别是在表现出多模态联合行为的数据集上。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">The paper introduces SCOUT, a novel offline multi-agent reinforcement learning (MARL) framework that combines a generative policy with a learned value function for test-time action refinement. SCOUT trains two components: a flow-matching behavioral prior and a decomposed value function. It uses Stein variational gradient descent to transport behavioral samples towards high-value regions, and the number of transport steps controls adaptive test-time scaling. Empirically, SCOUT outperforms existing methods across various offline MARL benchmarks and improves performance in all offline-to-online configurations.</div>
-<div class="mono" style="margin-top:8px">该研究提出了一种名为SCOUT的离线多智能体强化学习（MARL）框架，该框架通过测试时的动作精炼将生成性策略与价值函数结合起来。它训练了两个组件：流匹配的行为先验和分解的价值函数。在测试时，通过Stein变分梯度下降将行为样本运输到高价值区域，并根据运输步骤数进行自适应调整。实验表明，SCOUT在各种基准测试中表现出色，并且在离线到在线配置中提高了性能。</div>
+<div class="mono">This paper addresses the issue of multimodal joint behavior modeling in offline Multi-Agent Reinforcement Learning (MARL) using a novel method called Mode-Support Semi-Discrete Optimal Transport (MoSDOT). MoSDOT mitigates the failure of standard flow-based teachers by summarizing multimodal replay into a finite mode support and using conditional semi-discrete optimal transport to assign each noise sample to a single mode. The study demonstrates improved endpoint quality and routing consistency, especially on multimodal datasets.</div>
+<div class="mono" style="margin-top:8px">该研究通过支持保持的蒸馏方法解决多智能体强化学习（MARL）中多模态联合行为建模的问题。提出了模式支持半离散最优传输（MoSDOT）来提高生成样本的质量和路由一致性。MoSDOT 在教师训练前将多模态回放总结为有限模式支持，并使用条件半离散最优传输将每个噪声样本分配到单一模式。该方法在控制诊断和离线 MARL 基准测试中表现出色，特别是在多模态数据集上，提高了端点质量和路由一致性。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposed the SCOUT framework that combines generative policies and value functions.
-2. Utilized Stein variational gradient descent for action refinement at test-time.
-3. Proved a single-term KL bound that vanishes as transport converges.</div>
-<div class="mono" style="margin-top:8px">1. 提出了结合生成性策略和价值函数的SCOUT框架。
-2. 通过Stein变分梯度下降在测试时进行行为样本的运输。
-3. 证明了单个项的KL距离界，并随着运输收敛而消失。</div>
+<div class="mono">1. Proposed Mode-Support Semi-Discrete Optimal Transport (MoSDOT) method.
+2. Summarized multimodal replay into a finite mode support before teacher training.
+3. Used conditional semi-discrete optimal transport to assign each noise sample to a single mode.</div>
+<div class="mono" style="margin-top:8px">1. 提出了模式支持半离散最优传输（MoSDOT）方法。
+2. 在教师训练前将多模态回放总结为有限模式支持。
+3. 使用条件半离散最优传输将每个噪声样本分配到单一模式。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Flowing Faster to Coordinate: One-Step Online Multi-Agent Flow Policies</div>
-<div class="meta-line">Authors: Zhuoran Li, Yunzhan Li, Xun Wang, Yihan Du, Longbo Huang</div>
-<div class="meta-line">First: 2026-10-01T15:36:31+00:00 · Latest: 2026-10-01T15:36:31+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.01882v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.01882v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">MAPF-World: Action World Model for Multi-Agent Path Finding</div>
+<div class="meta-line">Authors: Zhanjiang Yang, Yueming Li, Yang Shen, Meng Li, Lijun Sun</div>
+<div class="meta-line">First: 2025-08-16T15:50:26+00:00 · Latest: 2026-10-08T03:29:23+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2508.12087v3">Abs</a> · <a href="https://arxiv.org/pdf/2508.12087v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Multi-agent reinforcement learning (MARL) provides a powerful framework for learning coordinated behaviors through interactions with the environment. Developing MARL policies requires balancing expressive modeling of complex and multimodal action distributions with efficient training and execution. Generative policies, particularly diffusionbased policies, can faithfully capture complex and multimodal behaviors, but costly iterative sampling hinders their scalability in online multi-agent settings. We propose an Online MARL framework via one-step Flow model (OMAF) that combines expressive generative policies with efficient one-step action generation. OMAF employs a Transformer-based flow policy to capture complex coordination behaviors, while its approximate path score surrogate provides a principled route to synchronized flow policy optimization. To enable stable and sampleefficient learning, we further develop a joint optimization scheme coupling softmax Q-value estimation with a joint flow policy objective for coordinated policy learning. By eliminating iterative sampling, OMAF dramatically reduces training overhead without sacrificing policy expressiveness. Extensive experiments across 10 standard tasks from MPE and MAMuJoCo show that OMAF consistently achieves superior performance, with up to 3.4x higher returns and 10.5x sample efficiency improvement compared with baseline methods. These results validate the effectiveness of OMAF as an expressive and computationally efficient one-step flow policy paradigm for online MARL.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>更快流动以协调：一步在线多智能体流策略</div>
-<div class="mono" style="margin-top:8px">多智能体强化学习（MARL）提供了一种强大的框架，通过与环境的交互学习协调行为。开发MARL策略需要在复杂和多模态动作分布的表达性建模与高效训练和执行之间取得平衡。生成性策略，尤其是基于扩散的策略，能够忠实捕捉复杂和多模态行为，但成本高昂的迭代采样阻碍了它们在在线多智能体环境中的可扩展性。我们提出了一种结合表达性生成性策略和高效一步动作生成的在线MARL框架（OMAF）。OMAF采用基于Transformer的流策略捕捉复杂协调行为，而其近似路径得分代理提供了一种同步流策略优化的原理性途径。为了实现稳定和样本高效的训练，我们进一步开发了一种联合优化方案，将softmax Q值估计与联合流策略目标耦合，以实现协调策略学习。通过消除迭代采样，OMAF显著减少了训练开销，而不会牺牲策略的表达性。在MPE和MAMuJoCo的10个标准任务中进行的广泛实验表明，OMAF始终能够实现优越的性能，与基线方法相比，回报最高可提高3.4倍，样本效率提高10.5倍。这些结果验证了OMAF作为在线MARL中表达性和计算效率兼备的一步流策略范式的有效性。</div>
+<div class="mono">Multi-agent path finding (MAPF) studies the problem of planning conflict-free paths for multiple agents from given start locations to designated goals, with applications in robot-assisted logistics and social navigation. Recent decentralized learned solvers have shown promise for large-scale MAPF, particularly when leveraging foundation models and large datasets. However, most existing methods rely on reactive policies, often resulting in congestion, deadlocks, and degraded generalization in high agent-density environments. To address these limitations, we propose MAPF-World, an autoregressive action world model for MAPF that unifies short-horizon local future prediction and action generation, enabling decision-making beyond immediate local observations. MAPF-World models short-horizon local dynamics by predicting the next local observation and neighboring agents&#x27; action intentions, capturing both spatial structures and temporal interaction patterns. We further introduce a spatio-agent positional encoding that integrates spatial awareness with agent-level semantics in Transformer-based architectures, facilitating more coordinated multi-agent behaviors. In addition, we augment existing MAPF benchmarks by introducing an automated map generator grounded in real-world urban layouts, aiming to narrow the gap between synthetic simulation and practical deployment scenarios. Extensive experiments across diverse map types and interaction settings demonstrate that MAPF-World achieves strong performance compared with existing learned solvers. Notably, it exhibits robust zero-shot generalization and maintains a high success rate even as agent density increases.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>MAPF-World：多智能体路径规划的动作世界模型</div>
+<div class="mono" style="margin-top:8px">多智能体路径规划（MAPF）研究了为多个智能体从给定的起始位置规划到指定目标的无冲突路径的问题，应用于机器人辅助物流和社会导航。最近的去中心化学习求解器在大规模MAPF中显示出前景，特别是在利用基础模型和大数据集时。然而，大多数现有方法依赖于反应性策略，通常导致高密度智能体环境中的拥堵、死锁和泛化能力下降。为了解决这些限制，我们提出了MAPF-World，这是一种自回归动作世界模型，统一了短期局部未来预测和动作生成，使决策超越即时局部观察。MAPF-World通过预测下一个局部观察和邻近智能体的动作意图，建模短期局部动态，捕捉空间结构和时间交互模式。我们进一步引入了一种时空智能体位置编码，将空间意识与基于Transformer架构的智能体级别语义相结合，促进更协调的多智能体行为。此外，我们通过引入基于真实世界城市布局的自动地图生成器，增强了现有的MAPF基准测试，旨在缩小合成模拟与实际部署场景之间的差距。在多种地图类型和交互设置下的广泛实验表明，MAPF-World在与现有学习求解器的性能上表现出色。值得注意的是，它表现出强大的零样本泛化能力，并且即使智能体密度增加，成功率仍然很高。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">OMAF is an online MARL framework that integrates expressive generative policies with efficient one-step action generation. It uses a Transformer-based flow policy to capture complex coordination behaviors and an approximate path score surrogate for synchronized optimization. OMAF reduces training overhead while maintaining policy expressiveness, achieving up to 3.4x higher returns and 10.5x better sample efficiency compared to baseline methods across 10 standard tasks.</div>
-<div class="mono" style="margin-top:8px">OMAF 是一种结合了表达性强的生成策略和高效的一步动作生成的在线多智能体强化学习框架。它使用基于 Transformer 的流策略来捕捉复杂的协调行为，并通过近似路径评分近似值进行优化。OMAF 在大幅减少训练开销的同时保持了策略的表达性，与基线方法相比，其回报提高了 3.4 倍，样本效率提高了 10.5 倍。</div>
+<div class="mono">MAPF-World is an autoregressive action world model for multi-agent path finding (MAPF) that predicts short-horizon local dynamics and integrates spatial awareness with agent-level semantics. It outperforms existing learned solvers in various map types and interaction settings, showing robust zero-shot generalization and high success rates in high agent-density environments. The model introduces a spatio-agent positional encoding and an automated map generator based on real-world urban layouts, enhancing multi-agent coordination and practical applicability.</div>
+<div class="mono" style="margin-top:8px">MAPF-World 是一个多智能体路径规划（MAPF）的自回归行动世界模型，通过预测短时局部动态和行动意图来提升智能体间的协调性。它引入了空间-智能体位置编码以增强基于Transformer的架构，并通过基于真实城市布局的自动地图生成器来实现更实际的应用场景。实验表明，MAPF-World 在高智能体密度环境中表现出色，优于现有学习求解器。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Integrates expressive generative policies with efficient one-step action generation.
-2. Employs a Transformer-based flow policy to capture complex coordination behaviors.
-3. Utilizes an approximate path score surrogate for synchronized flow policy optimization.</div>
-<div class="mono" style="margin-top:8px">1. 结合了表达性强的生成策略和高效的一步动作生成。
-2. 使用基于 Transformer 的流策略捕捉复杂的协调行为。
-3. 通过近似路径评分近似值进行优化，实现同步流策略优化。</div>
+<div class="mono">1. Introduced a spatio-agent positional encoding to enhance Transformer-based architectures.
+2. Proposed an automated map generator grounded in real-world urban layouts.
+3. Implemented short-horizon local dynamics prediction and action intention prediction.</div>
+<div class="mono" style="margin-top:8px">1. 引入了空间-智能体位置编码，增强了基于Transformer的架构。
+2. 提出了自动地图生成器，基于真实城市布局。
+3. 实现了短时局部动态预测和行动意图预测。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">MASkillBlender: Decentralized Whole-Body Coordination for Multi-Humanoid Loco-Manipulation via Skill Blending</div>
-<div class="meta-line">Authors: Yifan Hu, Luhang Hong, Mingkang Long, Danning Wang, Chengfeng Jia, Rong Su, Junjie Fu, Guanghui Wen</div>
-<div class="meta-line">First: 2026-10-01T05:42:42+00:00 · Latest: 2026-10-01T05:42:42+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.01102v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.01102v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Self-Referenced Social Preferences: Cooperation without Observing Others Rewards</div>
+<div class="meta-line">Authors: Mohamed Ayman Mohamed, Harshil Kotamreddy, Marcos Menon Jose</div>
+<div class="meta-line">First: 2026-10-06T07:29:38+00:00 · Latest: 2026-10-07T18:03:05+00:00</div>
+<div class="meta-line">Comments: Under Review</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.07881v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.07881v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Coordinated multi-humanoid loco-manipulation is promising yet challenging due to high-dimensional whole-body control, decentralized decision making, and scalability. While recent reinforcement learning methods have improved single-humanoid whole-body control, extending them to the multi-humanoid setting remains nontrivial and often requires substantial reward engineering or task-specific design. We propose MASkillBlender, a general multi-agent reinforcement learning framework to achieve decentralized multi-humanoid whole-body coordination. By learning a shared decentralized high-level policy over reusable pre-trained single-humanoid skills, MASkillBlender enables coordinated behaviors using only task-level rewards, without requiring task-specific motion references. To improve learning efficiency, we further introduce a permutation-based data augmentation strategy for homogeneous multi-humanoid systems, and theoretically show that the permuted samples preserve the policy-gradient direction of the original samples under the homogeneous Markov game formulation. We evaluate MASkillBlender on multiple multi-humanoid coordination tasks across two humanoid embodiments. Simulation results demonstrate that the proposed framework consistently achieves strong task performance and enables coordinated behaviors across different tasks and humanoid embodiments.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>MASkillBlender: 多人形协调操控的去中心化全身协调通过技能融合实现</div>
-<div class="mono" style="margin-top:8px">协调多人形操控具有前景但极具挑战性，原因在于高维全身控制、去中心化决策以及可扩展性。尽管最近的强化学习方法提高了单人形的全身控制，但将其扩展到多人形设置仍然非平凡，并且通常需要大量的奖励工程或特定任务设计。我们提出MASkillBlender，这是一种通用的多智能体强化学习框架，用于实现多人形的去中心化全身协调。通过学习可重用的预训练单人形技能的共享去中心化高层策略，MASkillBlender仅使用任务级奖励即可实现协调行为，无需特定任务的运动参考。为了提高学习效率，我们进一步引入了一种基于排列的数据增强策略，适用于同构多人形系统，并从同构马尔可夫博弈形式理论上证明了排列样本保留了原始样本的策略梯度方向。我们在两个类人形体的多个协调任务上评估了MASkillBlender。仿真结果表明，所提出框架在多个任务和类人形体上实现了强大的任务性能，并能够实现跨任务和类人形体的协调行为。</div>
+<div class="mono">Social preferences can promote cooperation in multi-agent reinforcement learning, but existing approaches often require agents to observe the rewards of their peers. In many real-world interactions, however, an agent can, as humans do, observe others&#x27; behavior and outcomes without access to their private reward signals. We introduce self-referenced social preferences, in which each agent learns a model of its own reward, applies it to other agents&#x27; observed transitions to assess their outcomes from its own perspective, and feeds these self-referenced assessments into standard social preferences. We study two ways to incorporate these assessments: modifying the learning reward, or using them to weight policy updates. We evaluate the approach on three sequential social dilemmas, Escape Room, Clean Up, and Commons Harvest, which require volunteering, public-good contribution, and resource restraint, respectively. Across all three environments, agents learn cooperative behavior without observing others&#x27; rewards, including in settings where independent learners fail to cooperate, and frequently achieve more equitable divisions of jointly produced returns than agents with access to true rewards. The effective integration point depends on the social preference: inequity aversion works best in the reward together with a value look-ahead, whereas a purely benevolent preference benefits from policy-update weighting. Under partial observability, the policy-update approach continues to support cooperation. These results show that explicit access to other agents&#x27; reward signals is not necessary for learning cooperative behavior: social preferences can instead be grounded in self-referenced assessments of others&#x27; outcomes derived from their observed behavior.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>自我参照的社会偏好：无需观察他人奖励的协作</div>
+<div class="mono" style="margin-top:8px">社会偏好可以在多智能体强化学习中促进合作，但现有方法通常要求智能体观察同伴的奖励。然而，在许多实际交互中，智能体可以像人类一样，通过观察他人的行为和结果来评估他人的表现，而无需访问其私有奖励信号。我们引入了自我参照的社会偏好，其中每个智能体学习自己的奖励模型，将其应用于其他智能体的观察过渡，从自己的视角评估其结果，并将这些自我参照的评估输入到标准的社会偏好中。我们研究了将这些评估融入的两种方式：修改学习奖励，或使用它们来加权策略更新。我们在这三个顺序社会困境中评估了该方法：Escape Room、Clean Up和Commons Harvest，分别需要志愿服务、公共物品贡献和资源约束。在所有三个环境中，智能体在无需观察他人奖励的情况下学会了合作行为，包括在独立学习者无法合作的环境中，经常比能够访问真实奖励的智能体更公平地分配共同产生的回报。社会偏好有效结合点取决于社会偏好：不平等厌恶与奖励一起使用值前瞻效果最佳，而纯粹利他偏好则受益于策略更新加权。在部分可观测性下，策略更新方法继续支持合作。这些结果表明，明确访问其他智能体的奖励信号不是学习合作行为的必要条件：社会偏好可以基于从其观察行为推断出的他人结果的自我参照评估来建立。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">MASkillBlender is a decentralized framework for multi-humanoid loco-manipulation that uses skill blending to achieve whole-body coordination. It learns a shared high-level policy from pre-trained single-humanoid skills, enabling coordinated behaviors with task-level rewards. The framework also introduces a permutation-based data augmentation strategy to improve learning efficiency, theoretically preserving the policy gradient direction in homogeneous Markov games. Simulation results show strong task performance and consistent coordinated behaviors across different humanoid embodiments.</div>
-<div class="mono" style="margin-top:8px">MASkillBlender 是一个用于多类人协调移动与操作的去中心化多智能体强化学习框架。该框架利用预训练的单类人技能实现整体协调，无需特定任务的运动参考。它采用共享的高层策略和基于排列的数据增强策略以提高学习效率。仿真结果显示，MASkillBlender 在多种协调任务和类人机器人中表现良好。</div>
+<div class="mono">This study explores self-referenced social preferences in multi-agent reinforcement learning, where agents assess others&#x27; outcomes from their own perspective without observing their rewards. The approach is evaluated in three social dilemmas: Escape Room, Clean Up, and Commons Harvest. Agents learn cooperative behavior without observing others&#x27; rewards, achieving more equitable outcomes than those with access to true rewards. The study finds that different social preferences benefit from distinct integration points, with inequity aversion working best with a value look-ahead and purely benevolent preferences benefiting from policy-update weighting.</div>
+<div class="mono" style="margin-top:8px">该研究提出了自我参照的社会偏好，使智能体能够在不观察其他智能体奖励信号的情况下学习合作行为。通过从自身视角评估其他智能体的结果并将其整合到标准社会偏好中。在三个社会困境实验中，智能体在没有直接访问同伴奖励信号的情况下实现了合作行为和公平的成果，某些情况下超越了独立学习者。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposes a decentralized multi-agent reinforcement learning framework based on skill blending.
-2. Employs a shared high-level policy for multi-humanoid coordination.
-3. Introduces a permutation-based data augmentation strategy to enhance learning efficiency.</div>
-<div class="mono" style="margin-top:8px">1. 提出了一种基于技能融合的去中心化多智能体强化学习框架。
-2. 通过共享的高层策略实现多类人协调。
-3. 引入了基于排列的数据增强策略以提高学习效率。</div>
+<div class="mono">1. Introduced self-referenced social preferences, enabling agents to assess others&#x27; outcomes from their own perspective.
+2. Demonstrated the ability to achieve cooperative behavior and equitable outcomes without direct access to peers&#x27; rewards in three social dilemmas.</div>
+<div class="mono" style="margin-top:8px">1. 提出了自我参照的社会偏好，使智能体能够从自身视角评估其他智能体的结果。
+2. 该方法在三个社会困境实验中展示了在没有直接访问同伴奖励信号的情况下实现合作行为和公平成果的能力。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Meta-Multi-Agent Reinforcement Learning for Fast Adaptation of Interactive Policies with Applications to Autonomous Driving</div>
-<div class="meta-line">Authors: Huiwen Yan, Kyriakos G. Vamvoudakis, Mushuang Liu</div>
-<div class="meta-line">First: 2026-09-30T20:52:19+00:00 · Latest: 2026-09-30T20:52:19+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.00705v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.00705v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Continual Graph Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Tommaso Marzi, Ahmed Hendawy, Jan Peters, Carlo D&#x27;Eramo, Andrea Cini, Cesare Alippi</div>
+<div class="meta-line">First: 2026-10-07T15:56:31+00:00 · Latest: 2026-10-07T15:56:31+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.10302v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.10302v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">This paper develops a meta-multi-agent reinforcement learning (meta-MARL) framework to enable fast adaptation of interactive policies in a multi-agent system (MAS). Meta-reinforcement learning (meta-RL) enables agents to rapidly adapt to new tasks/environments using a bi-level optimization mechanism. However, existing meta-RL generally focuses on single-agent systems. Extending these frameworks and algorithms to multi-agent systems poses additional challenges, as tasks are characterized by not only the environment but also agents&#x27; strategic interactions. To address these challenges, we model multi-agent reinforcement learning (MARL) problems as Markov games (MGs) and develop a meta-MARL framework for rapid interactive policy adaptation across a distribution of MGs. A new concept, called meta-NE, is defined to describe the desired solution concept in a meta-MARL problem. Sufficient conditions for the equivalence between a meta-NE and a stationary point of the gradient-play-based meta-MARL algorithm are established. Our evaluation on autonomous-driving tasks demonstrates that the proposed meta-MARL method achieves faster adaptation than pretrained MARL baselines, validating the effectiveness of our framework.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>元多智能体强化学习：快速适应交互策略的应用于自主驾驶</div>
-<div class="mono" style="margin-top:8px">本文提出了一种元多智能体强化学习（meta-MARL）框架，以使多智能体系统（MAS）中的交互策略能够快速适应。元强化学习（meta-RL）使智能体能够通过双层优化机制快速适应新任务/环境。然而，现有的meta-RL主要集中在单智能体系统上。将这些框架和算法扩展到多智能体系统带来了额外的挑战，因为任务不仅由环境定义，还由智能体的战略互动定义。为了解决这些挑战，我们将多智能体强化学习（MARL）问题建模为马尔可夫博弈（MGs），并开发了一种元-MARL框架，以实现对MGs分布的快速交互策略适应。定义了一个新概念，称为元-NE，以描述元-MARL问题中的期望解概念。建立了元-NE与基于梯度博弈的元-MARL算法的稳定点之间的等价条件。在自主驾驶任务上的评估表明，所提出的元-MARL方法比预训练的MARL基线方法具有更快的适应性，验证了我们框架的有效性。</div>
+<div class="mono">In Continual Multi-Agent Reinforcement Learning (CMARL), agents learn cooperative policies across sequences of tasks, aiming to adapt effectively to new tasks while preserving the ability to solve previously encountered ones. In many applications, tasks differ in their underlying structure, which can represent, for example, distinct operational conditions or target configurations (e.g., different network topologies in power grids or arrangements in formation control). Existing CMARL methods lack dedicated mechanisms to leverage this structural information when learning new tasks, failing to promote transfer and mitigate forgetting. To fill this gap, we propose Continual Graph Multi-Agent Reinforcement Learning (CGMARL), a novel framework for CMARL problems in which task sequences are mapped into a series of attributed graphs, each modeling a task-specific structure. In CGMARL, each graph determines the environment dynamics (next states and/or rewards) and the number of agents for the corresponding task. Then, we present Graph-based Formation (GRAFO), the first CGMARL benchmark, and show how forgetting arises in this setting. Finally, to address this limitation, we propose Frozen Graph Encoder (FROG), a method that relies on a frozen graph backbone to preserve past structural information in graph-based CMARL policies. Experiments on GRAFO show that pairing FROG with existing CL methods substantially improves performance on multiple CGMARL scenarios.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>持续图多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">在持续多智能体强化学习（CMARL）中，智能体在任务序列中学习合作策略，旨在有效适应新任务的同时保留解决之前遇到任务的能力。在许多应用中，任务在基础结构上有所不同，这可以代表不同的操作条件或目标配置（例如，电力网络中的不同网络拓扑或编队控制中的不同排列）。现有的CMARL方法缺乏专门机制来利用这种结构信息来学习新任务，无法促进迁移并减轻遗忘。为了解决这一问题，我们提出了持续图多智能体强化学习（CGMARL），这是一种新的CMARL框架，其中任务序列映射为一系列带属性的图，每个图都模拟特定任务的结构。在CGMARL中，每个图确定对应任务的环境动力学（下一个状态和/或奖励）以及智能体的数量。然后，我们提出了基于图的编队（GRAFO），这是第一个CGMARL基准，并展示了在这种设置中遗忘是如何产生的。最后，为了应对这一局限性，我们提出了冻结图编码器（FROG），该方法依赖于冻结的图骨干来在基于图的CMARL策略中保留过去结构信息。在GRAFO上的实验表明，将FROG与现有连续学习方法结合使用可以显著提高CGMARL场景中的性能。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper introduces a meta-multi-agent reinforcement learning (meta-MARL) framework for fast adaptation of interactive policies in multi-agent systems (MAS). By modeling MARL problems as Markov games (MGs), the authors develop a meta-MARL framework that enables rapid policy adaptation across a distribution of MGs. The proposed method, which includes a new concept called meta-Nash equilibrium (meta-NE), demonstrates faster adaptation compared to pretrained MARL baselines in autonomous-driving tasks.</div>
-<div class="mono" style="margin-top:8px">该研究提出了一种元多智能体强化学习（meta-MARL）框架，用于多智能体系统（MAS）中快速适应交互策略。通过将MARL问题建模为马尔可夫游戏（MGs），并定义了一个新的概念——元纳什均衡（meta-NE），作者开发了一种元MARL框架，能够在MGs分布上实现快速策略适应。该方法在自主驾驶任务中优于预训练的MARL基线，验证了其有效性。</div>
+<div class="mono">The paper introduces Continual Graph Multi-Agent Reinforcement Learning (CGMARL), a framework for CMARL where tasks are represented as attributed graphs. This approach aims to leverage task-specific structural information to enhance transfer learning and reduce forgetting. The authors propose Frozen Graph Encoder (FROG) to preserve past structural information, demonstrating significant performance improvements in CGMARL scenarios.</div>
+<div class="mono" style="margin-top:8px">该研究探讨了连续图多智能体强化学习（CGMARL），其中智能体在任务序列中学习合作策略。提出了CGMARL框架，将任务映射为带属性的图以利用结构信息，并引入了FROG方法以保留过去的结构信息。实验表明，FROG在CGMARL场景中显著提高了性能。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposed a meta-MARL framework for fast adaptation of interactive policies in multi-agent systems.
-2. Modeled MARL problems as Markov games and defined a new concept called meta-Nash equilibrium.
-3. Established the equivalence between meta-NE and the stationary points of the gradient-play-based meta-MARL algorithm.</div>
-<div class="mono" style="margin-top:8px">1. 提出了元多智能体强化学习框架，用于快速适应多智能体系统中的交互策略。
-2. 将MARL问题建模为马尔可夫游戏，定义了元纳什均衡的概念。
-3. 证明了元-NE与基于梯度玩法的元MARL算法的渐近点等价。</div>
+<div class="mono">1. Proposed CGMARL framework mapping tasks into attributed graphs.
+2. Introduced FROG method to preserve past structural information.
+3. Designed GRAFO benchmark to demonstrate forgetting phenomena.</div>
+<div class="mono" style="margin-top:8px">1. 提出了CGMARL框架，将任务映射为带属性的图。
+2. 引入了FROG方法，用于保留过去的结构信息。
+3. 设计了GRAFO基准，展示了遗忘现象。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Belief-Aware Multi-Agent Path Finding under Map Uncertainty</div>
-<div class="meta-line">Authors: Viraj Parimi, Shao-Hung Chan, Han Zhang, Jingkai Chen, Brian Williams</div>
-<div class="meta-line">First: 2026-09-30T17:44:19+00:00 · Latest: 2026-09-30T17:44:19+00:00</div>
-<div class="meta-line">Comments: Under review</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.40269v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.40269v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Deadline-Aware Multi-Agent Reinforcement Learning for TSN-Based Vehicular Edge Networks</div>
+<div class="meta-line">Authors: Bernardo A. C. Pereira, Marcos Carvalho, Fatih Temiz, Shavbo Salehi, Melike Erol-Kantarci, Andreas Gavrielides, Johann M. Marquez-Barja, Daniel F. Macedo</div>
+<div class="meta-line">First: 2026-10-07T11:30:19+00:00 · Latest: 2026-10-07T11:30:19+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.09870v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.09870v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Multi-Agent Path Finding (MAPF) aims to find collision-free paths for multiple agents in a shared environment. Classical MAPF assumes that all static obstacles are known in advance, but real-world environments can change unexpectedly due to fallen objects, spills, or other local disturbances. When such changes are spatially correlated, an observation can inform traversability estimates beyond the observed location. Prior approaches address uncertainty in traversability through contingent plans or replanning based on direct observations, but do not leverage this spatial dependence to infer the traversability of nearby unobserved locations. As a result, they cannot use one observation to anticipate nearby unobserved obstacles that may cause costly rerouting later. We focus on Belief-Aware MAPF, where map discrepancies are fixed during execution but initially unknown, and observations can be informative beyond the observed location. We propose Multi-Agent Gaussian belief Inference for Coordination (MAGIC), a framework that updates a shared belief about traversability online based on agents&#x27; observations. MAGIC uses a Gaussian Markov Random Field and Gaussian Belief Propagation to approximately infer traversability and construct detour-aware costs for standard MAPF planners. Our experiments on MAPF benchmarks show that MAGIC reduces the executed sum of costs compared to existing approaches on 96.3% of instances, across several planner families and teams of up to 800 agents, demonstrating its applicability to large-scale MAPF problems.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>基于地图不确定性信念感知的多智能体路径规划</div>
-<div class="mono" style="margin-top:8px">多智能体路径规划（MAPF）旨在为多个智能体在共享环境中找到无碰撞路径。经典MAPF假设所有静态障碍物在规划前已知，但现实环境可能会由于掉落物、溢出或其他局部干扰而意外变化。当这些变化在空间上相关时，一个观察可以提供超出观察位置的通行性估计。先前的方法通过条件计划或基于直接观察的重新规划来应对通行性不确定性，但没有利用这种空间依赖性来推断附近未观察位置的通行性。因此，它们不能利用一个观察来预见可能需要昂贵重路由的附近未观察障碍物。我们关注基于地图差异的信念感知MAPF，其中地图差异在执行过程中被修正但最初未知，观察可以超出观察位置提供信息。我们提出了多智能体高斯信念推理协调（MAGIC），一种框架，基于智能体的观察在线更新关于通行性的共享信念。MAGIC 使用高斯马尔可夫随机场和高斯信念传播来近似推断通行性并为标准MAPF规划器构建避绕感知成本。我们的实验表明，MAGIC 在 96.3% 的实例中减少了执行的总成本，跨越多个规划器家族和多达 800 个智能体的团队，证明了其在大规模MAPF问题中的适用性。</div>
+<div class="mono">Vehicular edge computing (VEC) enables latency-sensitive applications by bringing computing and networking resources closer to vehicles. However, existing approaches often overlook network contention among co-located services with heterogeneous and dynamic latency requirements. While time-sensitive networking (TSN) provides bounded-latency communication, conventional and reinforcement learning-based schedulers struggle to adapt to highly dynamic vehicular environments and inter-queue dependencies. To address these limitations, we propose a multi-agent reinforcement learning (MARL) approach for queue-level scheduling in TSN-enabled VEC. Each TSN queue is assigned an autonomous agent that jointly learns the queue service order and time-slot duration to minimize deadline misses under speed-dependent latency requirements. We employ multi-agent proximal policy optimization (MAPPO) to enable coordinated yet autonomous scheduling decisions. Evaluation against single-agent, multi-agent, and non-learning-based baselines shows that MAPPO provides robust performance across different traffic profiles. Compared with centralized single-agent methods, it reduces service latency by up to 66.2% and improves reliability by up to 271.8%. Furthermore, unlike urgency-based heuristics, MAPPO ensures balanced scheduling while achieving lower inference times compared to other MARL methods.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>面向TSN的车辆边缘网络中具有截止时间意识的多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">车辆边缘计算（VEC）通过将计算和网络资源移近车辆，使延迟敏感型应用成为可能。然而，现有的方法往往忽视了具有异构和动态延迟要求的共存服务之间的网络争用。虽然时间敏感网络（TSN）提供了有界延迟通信，但传统的和基于强化学习的调度器难以适应高度动态的车辆环境和队列间依赖性。为了解决这些局限性，我们提出了一种TSN使能的VEC中队列级调度的多智能体强化学习（MARL）方法。每个TSN队列都被分配了一个自主智能体，该智能体共同学习队列服务顺序和时间槽持续时间，以在速度依赖的延迟要求下最小化截止时间错过。我们采用多智能体近端策略优化（MAPPO）来实现协调且自主的调度决策。与单智能体、多智能体和非学习基线方法的评估表明，MAPPO在不同交通流量配置下提供了稳健的性能。与集中式单智能体方法相比，它将服务延迟降低了高达66.2%，并提高了可靠性高达271.8%。此外，与基于紧迫性的启发式方法相比，MAPPO确保了均衡的调度，同时实现了与其他MARL方法相比更低的推理时间。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">The paper addresses the Multi-Agent Path Finding (MAPF) problem under map uncertainty, where obstacles can change due to local disturbances. It introduces MAGIC, a framework that uses Gaussian belief inference to update a shared belief about traversability based on agents&#x27; observations. MAGIC leverages spatial correlation to infer the traversability of unobserved locations, reducing rerouting costs. Experiments show that MAGIC outperforms existing approaches on 96.3% of instances across various planner families and large-scale scenarios.</div>
-<div class="mono" style="margin-top:8px">该研究针对地图不确定性下的多智能体路径规划问题，其中障碍物可能因意外变化而改变。研究提出了一种名为MAGIC的框架，利用变化的空间相关性来推断未观察位置的通行性。MAGIC利用高斯马尔可夫随机场和高斯信念传播来在线更新通行性的共享信念，在多种规划器家族和大规模场景下，实验结果表明其能有效降低路径规划的总成本。</div>
+<div class="mono">This paper proposes a deadline-aware multi-agent reinforcement learning (MARL) approach for queue-level scheduling in TSN-enabled vehicular edge networks. Each TSN queue is managed by an autonomous agent that learns the optimal service order and time-slot duration to minimize deadline misses. The multi-agent proximal policy optimization (MAPPO) algorithm is used to enable coordinated yet independent scheduling decisions. The proposed method outperforms single-agent and non-learning-based baselines, reducing service latency by up to 66.2% and improving reliability by up to 271.8%.</div>
+<div class="mono" style="margin-top:8px">本文提出了一种针对TSN增强型车载边缘网络的具有截止时间感知的多智能体强化学习（MARL）排队级调度方法。每个TSN队列分配一个自主智能体，学习最优的服务顺序和时间槽持续时间，以最小化截止时间错过。使用多智能体近端策略优化（MAPPO）方法来实现协调且自主的调度决策。所提出的方法在单智能体和非学习基线方法中表现出色，将服务延迟降低高达66.2%，可靠性提高高达271.8%。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Leverages spatial correlation to infer traversability beyond observed locations
-2. Utilizes Gaussian Markov Random Fields and Gaussian Belief Propagation for online belief updates
-3. Scalable to large-scale multi-agent path finding problems</div>
-<div class="mono" style="margin-top:8px">1. 利用空间相关性推断未观察位置的通行性
-2. 使用高斯马尔可夫随机场和高斯信念传播进行在线更新
-3. 适用于大规模多智能体路径规划问题</div>
+<div class="mono">1. Proposes a deadline-aware multi-agent reinforcement learning approach for queue-level scheduling in TSN-enabled vehicular edge networks.
+2. Employs multi-agent proximal policy optimization to enable coordinated yet autonomous scheduling decisions.
+3. Demonstrates robust performance across different traffic profiles.</div>
+<div class="mono" style="margin-top:8px">1. 提出了具有截止时间感知的多智能体强化学习方法，用于TSN增强型车载边缘网络的排队级调度。
+2. 使用多智能体近端策略优化方法实现协调且自主的调度决策。
+3. 该方法在不同交通流量配置中表现出稳健性能。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Divide and Collapse: MAPF-Collapse via Exact Decomposition into Independent Sub-Instances</div>
-<div class="meta-line">Authors: Oren Salzman</div>
-<div class="meta-line">First: 2026-09-30T11:57:35+00:00 · Latest: 2026-09-30T11:57:35+00:00</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.39559v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.39559v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">The Deceptive Bandit Problem: Exploratory Coupling and the Fragility of Multi-Agent Learning</div>
+<div class="meta-line">Authors: Michael Tang, Mahmoud Abdelgalil, Jorge I. Poveda</div>
+<div class="meta-line">First: 2026-10-06T21:12:21+00:00 · Latest: 2026-10-06T21:12:21+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.09120v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.09120v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">In this work we study the problem of MAPFC, a post-optimization step for Multi-Agent Path Finding (MAPF) plans where we are given a feasible plan produced by a modern MAPF solver and are tasked with removing avoidable moves while preserving feasibility. This NP-hard problem naturally arises when using learning-based state-of-the-art (SOTA) solvers which construct plans that contain redundant moves that can be removed. Recently, Tang et al. presented Judgelight, which uses Integer Linear Programming (ILP) to solve MAPFC. Importantly, the ILP is constructed over all agents jointly, so its cost is governed by the full instance rather than by the small coupled residue that actually requires joint reasoning. Our key insight, motivating this work, is that MAPFC instances naturally decompose into independent sub-problems, most of which involve a single agent and can be solved without any inter-agent reasoning. To this end, we first identify which agents need to coordinate their motion and partition the instance into sub-problems accordingly. For the cases where no coordination is required, we introduce an extremely lightweight solver that is \approx\!1{,}900\times faster than Judgelight. For cases where coordination is required, Judgelight can be used but we introduce an alternative CBS-like solver which is more efficient on easier problems. The resulting framework is exact, uses no commercial ILP solver, and matches Judgelight&#x27;s quality while running substantially faster on the coordination-light majority of instances; on the coordination-heavy instances we propose a regime-aware hybrid planner that falls back to Judgelight. Over all benchmarks tested, this planner achieves a median 10.5\times per-instance speedup over Judgelight.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>分割与坍缩：通过精确分解为独立子实例的MAPF-坍缩</div>
-<div class="mono" style="margin-top:8px">在本文中，我们研究了MAPFC问题，这是多智能体路径规划（MAPF）计划的一个后优化步骤，当我们已获得现代MAPF求解器生成的可行计划，并被要求移除可避免的移动以保持可行性时，就会出现该问题。这是一个NP难问题，当使用基于学习的最先进的（SOTA）求解器构建包含可移除冗余移动的计划时，该问题自然会出现。最近，Tang等人提出了Judgelight，它使用整数线性规划（ILP）来解决MAPFC。重要的是，ILP是基于所有智能体联合构建的，因此其成本由整个实例决定，而不是由实际需要联合推理的小耦合残余决定。我们这一工作的关键洞察是，MAPFC实例自然分解为独立子问题，大多数情况下涉及单个智能体，无需任何跨智能体推理即可解决。为此，我们首先确定哪些智能体需要协调其运动，并相应地将实例划分为子问题。对于不需要协调的情况，我们引入了一个极其轻量级的求解器，其速度比Judgelight快约1,900倍。对于需要协调的情况，可以使用Judgelight，但我们引入了一种类似CBS的求解器，对于较简单的问题更有效。由此产生的框架是精确的，不使用商业ILP求解器，同时在协调较轻的大多数实例中匹配Judgelight的质量，而在协调较重的实例中，我们提出了一种基于场景的混合规划者，当需要时会退回到Judgelight。在所有测试的基准中，该规划者在每个实例上的速度比Judgelight快中位数10.5倍。</div>
+<div class="mono">Randomized exploration is central to bandit learning, multi-agent reinforcement learning, and zeroth-order policy search, yet its independence and privacy are usually only treated as technical assumptions. We show that these properties are critical for security purposes and demonstrate how an adversarial agent can exploit privileged information on another agent&#x27;s exploration. We analyze a deceiver-victim pair in the minimal two-player strongly monotone setting, where a deceptive player obtains leaked signals that are merely correlated with the victim&#x27;s exploration. We show that, by coupling their own exploratory action with this information, the deceptive player injects an externality that steers the learning dynamics to a new steady state, called the deceptive Nash equilibrium (DNE). We prove that the deceptive bandit learning (DBL) dynamics converge to an arbitrarily small neighborhood of the DNE while retaining optimal convergence rates. Interestingly, our analysis attains these optimal rates while relaxing second-order smoothness conditions from standard bandit optimization literature. We characterize conditions under which deception strictly shifts the steady state and its effect on the deceiver&#x27;s cost, illustrating the results in a resource-allocation game.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>欺骗性劫匪问题：探索性耦合与多智能体学习的脆弱性</div>
+<div class="mono" style="margin-top:8px">随机探索是多臂老虎机学习、多智能体强化学习和零阶策略搜索的核心，但其独立性和隐私性通常仅被视为技术假设。我们展示了这些属性对于安全目的至关重要，并演示了恶意智能体如何利用另一个智能体探索的特权信息。我们分析了在最小的两人强单调设置中的一对欺骗者-受害者，其中欺骗者获得了与受害者探索仅相关联的泄露信号。我们证明，通过将自身探索行为与这些信息耦合，欺骗者可以注入一种外部性，引导学习动态进入一个新的稳态，称为欺骗性纳什均衡（DNE）。我们证明，欺骗性劫匪学习（DBL）动力学收敛到DNE的任意小邻域，同时保持最优的收敛速率。有趣的是，我们的分析在放松标准多臂老虎机优化文献中的二阶光滑性条件的同时，达到了这些最优速率。我们刻画了欺骗严格改变稳态及其对欺骗者成本影响的条件，展示了这些结果在一个资源分配博弈中的应用。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper addresses the MAPF-C problem, a post-optimization step in Multi-Agent Path Finding (MAPF) where redundant moves are removed while maintaining feasibility. The authors propose a divide-and-collapse approach that decomposes the problem into independent sub-instances, significantly reducing computational cost. For coordination-free sub-problems, they introduce a highly efficient solver, while for coordination-heavy cases, they propose an alternative solver or fall back to Judgelight. The resulting framework is exact, faster than Judgelight on most instances, and matches its quality on more complex cases.</div>
-<div class="mono" style="margin-top:8px">本文研究了多智能体路径规划（MAPF）计划中的MAPFC问题。作者提出了一种分而治之的方法，将问题分解为独立子问题，显著降低了计算成本。他们为无需协调的情况引入了一个轻量级求解器，为需要协调的情况引入了一个高效的CBS-like求解器。该框架在大多数实例上与Judgelight的质量相当，但在大多数实例上实现了约10.5倍的速度提升。</div>
+<div class="mono">The study addresses the deceptive bandit problem, where an adversarial agent exploits another agent&#x27;s exploration signals to manipulate the learning process. By coupling its actions with leaked information, the deceptive agent can steer the learning dynamics to a new equilibrium, called the deceptive Nash equilibrium (DNE). The research demonstrates that the deceptive bandit learning (DBL) dynamics converge to an arbitrarily small neighborhood of the DNE while maintaining optimal convergence rates, even under relaxed smoothness conditions.</div>
+<div class="mono" style="margin-top:8px">研究探讨了欺骗性多臂老虎机问题，其中恶意代理利用另一个代理的探索信号来操控学习过程。通过将其行动与泄露的信息耦合，恶意代理可以引导受害者的学习动力学达到一个新的平衡状态，即欺骗性纳什均衡（DNE）。研究显示，尽管存在这种操纵，欺骗性多臂老虎机（DBL）动力学仍然能够以最优的收敛速率收敛，即使在放宽了标准光滑条件的情况下。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Proposed a divide-and-collapse approach that decomposes the MAPFC problem into independent sub-problems.
-2. Introduced a lightweight solver for cases without coordination.
-3. Proposed an efficient CBS-like solver for cases requiring coordination.</div>
-<div class="mono" style="margin-top:8px">1. 提出了一种分而治之的方法，将MAPFC问题分解为独立子问题。
-2. 引入了一个轻量级求解器处理无需协调的情况。
-3. 提出了一个高效的CBS-like求解器处理需要协调的情况。</div>
+<div class="mono">1. Reveals how a malicious agent can manipulate the learning process by coupling its actions with leaked information.
+2. Proves that the deceptive bandit learning dynamics still achieve optimal convergence rates even under relaxed smoothness conditions.
+3. Analyzes the conditions for the deceptive Nash equilibrium and its impact on the malicious agent&#x27;s cost.</div>
+<div class="mono" style="margin-top:8px">1. 揭示了恶意代理如何通过耦合其行动与泄露的信息来操纵学习过程。
+2. 证明了即使在放宽了标准光滑条件的情况下，欺骗性多臂老虎机动力学仍能以最优的收敛速率收敛。
+3. 分析了欺骗性纳什均衡的条件及其对恶意代理成本的影响。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">PowerMarketJax: A JAX Benchmark Suite for Multi-Agent Reinforcement Learning in Power Markets</div>
-<div class="meta-line">Authors: Zhanhua Pan, Xin Qin, Xiao Liu, Zhilong Cao, Jianhong Wang, Dawei Qiu</div>
-<div class="meta-line">First: 2026-09-29T12:00:09+00:00 · Latest: 2026-09-29T12:00:09+00:00</div>
-<div class="meta-line">Comments: 69 pages</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.37321v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.37321v1">PDF</a> · <a href="https://github.com/powermarketjax/PowerMarketJax">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<div class="title">Precomputing Multi-Agent Path Replanning Using Temporal Flexibility</div>
+<div class="meta-line">Authors: Issa Hanou, Eric Kemmeren, Devin Wild Thomas, Mathijs de Weerdt</div>
+<div class="meta-line">First: 2026-01-08T12:30:36+00:00 · Latest: 2026-10-06T12:48:01+00:00</div>
+<div class="meta-line">Comments: Revision after a bug was found in the code. The fixes do not alter the conclusions; the MAPF results are slightly different from those published at SoCS26. The railway results changed as the code was rearranged, now returning proper valid paths, with a new data representation to show the actual differences between FlexSIPP and MAEDeR. In the Fig1 example a3s route changed to show a1s rerouting</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2601.04884v4">Abs</a> · <a href="https://arxiv.org/pdf/2601.04884v4">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Power markets are a natural testbed for multi-agent reinforcement learning (MARL), where multiple self-interested participants repeatedly submit bids. A market-clearing mechanism then determines dispatch and prices subject to power grid constraints and market settlement rules. However, existing MARL environments typically focus on a single market setting, implement simplified clearing mechanisms, or rely on CPU-based optimization solvers that slow large-scale training and limit the systematic study of bidding strategies and market behavior. We introduce PowerMarketJax, a benchmark suite for MARL across five power markets: day-ahead wholesale, real-time balancing, ancillary services, peer-to-peer double auctions, and local flexibility. Each environment implements its own clearing, pricing, and settlement rules while providing a common framework for learning and evaluation. We find that learned bidding behavior depends strongly on the market design: independent learners can miss better strategies when gains require many agents to change together, when more profitable strategies lie beyond a region of lower profit, or when profits disappear as more agents adopt the same strategy. PowerMarketJax implements both market simulation and policy training in JAX, allowing the entire pipeline to run on the GPU with 1,024 X 1,200 parallelisms across both environments and market participants, achieving up to 33X speedup over CPU-based baselines. Our open-source benchmark is available at: https://github.com/powermarketjax/PowerMarketJax.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>PowerMarketJax：电力市场多智能体强化学习基准套件</div>
-<div class="mono" style="margin-top:8px">电力市场是多智能体强化学习（MARL）的自然测试平台，在这里，多个自利参与者反复提交报价。市场清算机制随后根据电力网络约束和市场结算规则确定调度和价格。然而，现有的MARL环境通常专注于单一市场设置，实现简化的清算机制，或者依赖于基于CPU的优化求解器，这会减慢大规模训练速度并限制对投标策略和市场行为的系统研究。我们介绍了PowerMarketJax，这是一个覆盖五个电力市场的MARL基准套件：日前批发市场、实时平衡市场、辅助服务市场、点对点双拍卖市场和本地灵活性市场。每个环境都实现了自己的清算、定价和结算规则，同时提供了一个共同的学习和评估框架。我们发现，学习到的投标行为强烈依赖于市场设计：独立学习者可能会错过更好的策略，当收益需要许多智能体共同改变时，当更有利可图的策略位于较低利润区域之外时，或者当利润随着更多智能体采用相同策略而消失时。PowerMarketJax在JAX中实现了市场模拟和策略训练，整个管道可以在GPU上运行，实现1,024 x 1,200并行性，跨环境和市场参与者，比基于CPU的基线快33倍。我们的开源基准可在：https://github.com/powermarketjax/PowerMarketJax/ 获取。</div>
+<div class="mono">Executing a multi-agent plan can be challenging when an agent is delayed, because this typically creates conflicts with other agents. So, we need to quickly find a new safe plan. Replanning only the delayed agent often does not yield an efficient plan, and sometimes cannot even yield a feasible one. On the other hand, replanning other agents may lead to a cascade of changes and delays, and it is computationally expensive. We show how to efficiently replan a single delayed agent by tracking and using the temporal flexibility of other agents while avoiding cascading delays. This flexibility is the maximum delay that the agent can take without changing the order with agents other than the initially delayed agent, or further delaying other agents. Our algorithm, FlexSIPP, precomputes all possible plans for the delayed agent and returns the changes to the other agents within the given scenario. We demonstrate our method in a real-world case study of replanning trains in the densely-used Dutch railway network and in the MovingAI MAPF benchmark set. Our experiments show that FlexSIPP provides effective solutions relevant to real-world adjustments, and within a reasonable timeframe.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>使用时间灵活性预先计算多智能体路径重规划</div>
+<div class="mono" style="margin-top:8px">当一个智能体延迟时执行多智能体计划会很具挑战性，因为这通常会与其他智能体产生冲突。因此，我们需要快速找到一个新安全的计划。仅仅重新规划延迟的智能体通常不能产生高效的计划，有时甚至不能产生可行的计划。另一方面，重新规划其他智能体可能会导致一系列变化和延迟，并且计算成本很高。我们展示了如何通过跟踪和利用其他智能体的时间灵活性，同时避免连锁延迟来高效地重新规划单个延迟的智能体。这种灵活性是智能体在不改变与初始延迟智能体以外的其他智能体的顺序或进一步延迟其他智能体的情况下可以承受的最大延迟。我们的算法FlexSIPP预先计算了延迟智能体的所有可能计划，并在给定场景内返回对其他智能体的更改。我们在荷兰繁忙的铁路网络中的列车重新规划以及MovingAI的MAPF基准测试集中演示了我们的方法。我们的实验表明，FlexSIPP提供了有效且适用于实际调整的解决方案，并且在合理的时间内完成。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">PowerMarketJax is a benchmark suite for multi-agent reinforcement learning in power markets, covering five market types. It implements market-clearing mechanisms, pricing, and settlement rules, enabling a common framework for learning and evaluation. The study finds that learned bidding strategies vary significantly based on market design. PowerMarketJax runs on GPU, achieving up to 33X speedup over CPU-based methods.</div>
-<div class="mono" style="margin-top:8px">PowerMarketJax 是一个涵盖五种电力市场类型的多智能体强化学习（MARL）基准套件，实现了市场清算机制、定价和结算规则，提供了一个共同的学习和评估框架。研究发现，学习到的出价策略高度依赖于市场设计。PowerMarketJax 在 GPU 上运行，相比基于 CPU 的方法可实现高达 33 倍的加速。</div>
-</details>
-<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Implements market-clearing mechanisms, pricing, and settlement rules for various power markets.
-2. Provides a unified framework for learning and evaluation.
-3. Runs on GPU for efficient parallel computation.</div>
-<div class="mono" style="margin-top:8px">1. 实现了多种电力市场的清算机制、定价和结算规则。
-2. 提供了统一的学习和评估框架。
-3. 在 GPU 上运行，实现高效并行计算。</div>
+<div class="mono">The study addresses the challenge of replanning in multi-agent systems when an agent is delayed. It introduces FlexSIPP, an algorithm that precomputes replans for a single delayed agent by leveraging the temporal flexibility of other agents. This approach avoids cascading delays and ensures efficient and feasible solutions. The algorithm is validated through real-world and benchmark scenarios, demonstrating its effectiveness in providing timely and practical adjustments.</div>
+<div class="mono" style="margin-top:8px">研究旨在解决多智能体系统中因单个智能体延迟而导致的重新规划问题。提出了一种名为FlexSIPP的算法，通过利用其他智能体的时间灵活性来为延迟的智能体预先计算重新规划方案，从而避免级联延迟并确保高效和可行的解决方案。该算法通过实际案例和基准测试进行了验证，展示了其在提供及时且实用调整方面的有效性。</div>
 </details>
 </div>
 <div class="card">
-<div class="title">Physics-Informed Multi-Agent Coordination for Hospital Patient Flow Optimization</div>
-<div class="meta-line">Authors: Guoqing Zhang, Rafik Hadfi, Takayuki Ito</div>
-<div class="meta-line">First: 2026-09-29T08:38:20+00:00 · Latest: 2026-09-29T08:38:20+00:00</div>
-<div class="meta-line">Comments: Accepted to PRIMA 2026 (Full paper). 16 pages, 2 figures, 3 tables</div>
-<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.37022v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.37022v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<div class="title">Independent Multi-Agent Reinforcement Learning with Counterfactual Semantic-Social World Models</div>
+<div class="meta-line">Authors: Fernando Martinez, Tao Li, Yingdong Lu, Juntao Chen</div>
+<div class="meta-line">First: 2026-10-06T03:53:47+00:00 · Latest: 2026-10-06T03:53:47+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.07704v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.07704v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
 <details class="detail"><summary>Abstract / 摘要</summary>
-<div class="mono">Efficient patient flow coordination across autonomous hospital departments is critical for mitigating overcrowding and balancing resource utilization. While classical queueing theory, specifically open Baskett--Chandy--Muntz--Palacios (BCMP) networks, provides an interpretable mathematical topology for healthcare operations, analytical models rely on stationary assumptions and fixed routing matrices that degrade under state-dependent real-world dynamics. Conversely, centralized reinforcement learning approaches struggle to accommodate the decentralized structure of hospital governance, where individual clinical departments function with localized observations, heterogeneous resources, and divergent operational objectives. In this paper, we present a Multi-Agent Systems (MAS) framework titled <em>Physics-Informed Multi-Agent Coordination</em>, which embeds empirically calibrated BCMP queueing topologies as physical priors within a decentralized multi-agent reinforcement learning architecture. Formulated as a Decentralized Partially Observable Markov Decision Process (Dec-POMDP) under coupled resource constraints, our method enables autonomous departmental agents to cooperatively negotiate patient routing and dynamic service scaling. To mitigate environmental non-stationarity without inducing excessive communication overhead, agents exchange localized action fingerprints along network edges and optimize a spatially decomposed reward structure. Empirical evaluations driven by real-world MIMIC-IV patient trajectories indicate that this cooperative multi-agent approach substantially reduces cumulative system delay compared to static Markovian approximations, heuristic dispatching, and independent multi-agent baselines, while maintaining clinical safety constraints.</div>
-<div class="mono" style="margin-top:8px"><b>标题：</b>基于物理信息的多智能体协调在医院患者流优化中的应用</div>
-<div class="mono" style="margin-top:8px">跨自主医院部门的有效患者流协调对于缓解拥挤和平衡资源利用至关重要。虽然经典的队列理论，特别是开放的Baskett--Chandy--Muntz--Palacios (BCMP) 网络，为医疗保健运营提供了可解释的数学拓扑结构，但分析模型依赖于稳态假设和固定路由矩阵，在状态依赖的现实世界动态下会退化。相反，集中式的强化学习方法难以适应医院治理的分散结构，其中各个临床部门以局部观察、异质资源和不同的运营目标运行。在本文中，我们提出了一种多智能体系统（MAS）框架，称为“基于物理信息的多智能体协调”，该框架将经验校准的BCMP队列拓扑嵌入到分散的多智能体强化学习架构中作为物理先验。该方法以耦合资源约束下的分散部分可观测马尔可夫决策过程（Dec-POMDP）形式表述，使自主部门智能体能够合作协商患者路由和动态服务扩展。为了缓解环境非稳态性而不引起过多的通信开销，智能体在网络边缘交换局部动作指纹并优化空间分解的奖励结构。由实际世界MIMIC-IV患者轨迹驱动的实证评估表明，这种合作多智能体方法在减少系统累积延迟方面显著优于静态马尔可夫近似、启发式调度和独立多智能体基线，同时保持临床安全约束。</div>
+<div class="mono">Fully decentralized multi-agent reinforcement learning (MARL), also referred to as independent learning, requires each agent to learn and act using only its local information and experience, without a centralized critic or inter-agent communication. Such a stringent information structure renders the conventional reward signal ambiguous. A poor return may result from an ineffective ego action, an incompatible teammate response, or an effective opponent response, yet scalar rewards alone do not reveal which explanation is responsible. We argue that agents can learn more effectively by prospectively comparing the consequences of candidate actions rather than diagnosing failures only from realized returns. We introduce CASTLE (Counterfactual Action-conditioned Semantic Tokens for Local Execution in Decentralized MARL), an offline-training, online-in-context guidance framework with two complementary world models. A Local Dynamics World Model, offline pre-trained over agents&#x27; local trajectories, summarizes the agent&#x27;s local trajectory dynamics and partial observability, while a Semantic-Social World Model predicts compact short-horizon task and social consequences for each candidate ego action. The latter is trained from counterfactual simulator rollouts that expose plausible teammate and opponent responses to alternative actions taken from the same logged rollout state. During online learning and execution, both world models remain frozen and are queried by agents using only locally available information. Their prediction logits provide in-context guidance to an independent PPO policy. Across 30 matched seeds on Tag, Spread, and Adversary in the benchmark multi-particle environments, our proposed CASTLE achieves the highest mean final score among the evaluated methods, exceeding the strongest baseline on each task by 10.67, 6.46, and 0.33 normalized points, respectively.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>独立多智能体强化学习与反事实语义-社会世界模型</div>
+<div class="mono" style="margin-top:8px">完全去中心化的多智能体强化学习（MARL），也称为独立学习，要求每个智能体仅使用其本地信息和经验进行学习和行动，无需中央评论者或智能体间通信。这种严格的信息结构使传统的奖励信号变得模糊。一个无效的回报可能是由于无效的自我行动、不兼容的队友响应或有效的对手响应导致的，但仅靠标量奖励无法揭示哪个解释是正确的。我们认为，智能体可以通过前瞻性地比较候选行动的后果来更有效地学习，而不是仅从实现的回报中诊断失败。我们引入了CASTLE（反事实条件语义令牌用于去中心化MARL中的局部执行），这是一种离线训练、在线情境指导框架，包含两个互补的世界模型。一个局部动力学世界模型在智能体的本地轨迹上离线预训练，总结了智能体的局部轨迹动力学和部分可观测性，而一个语义-社会世界模型预测每个候选自我行动的紧凑短期任务和社会后果。后者从反事实模拟器滚动力学中训练，揭示了从相同记录轨迹状态采取不同行动时可能的队友和对手响应。在在线学习和执行过程中，两个世界模型保持冻结，并仅使用本地可用信息查询智能体。它们的预测概率提供情境指导给独立的PPO策略。在基准多粒子环境中的Tag、Spread和Adversary的30个匹配种子上，我们提出的CASTLE在评估方法中实现了最高的平均最终得分，分别在每个任务上超过了最强基线10.67、6.46和0.33标准化点。</div>
 </details>
 <details class="detail"><summary>Summary / 总结</summary>
-<div class="mono">This paper introduces a Physics-Informed Multi-Agent Coordination framework for optimizing hospital patient flow. By integrating empirically calibrated BCMP queueing models into a decentralized multi-agent reinforcement learning system, the approach addresses the limitations of classical queueing theory and centralized reinforcement learning. The Dec-POMDP formulation under coupled resource constraints allows autonomous departments to negotiate patient routing and dynamically scale services. Evaluations using real-world MIMIC-IV patient data show significant reductions in system delay compared to static models and heuristics, while adhering to clinical safety constraints.</div>
-<div class="mono" style="margin-top:8px">本文提出了一种基于物理信息的多智能体协调框架，用于优化医院患者流动。通过将经验校准的BCMP排队模型嵌入到去中心化的多智能体强化学习架构中，该方法使各个部门能够自主协商患者路由和动态调整服务规模。基于实际MIMIC-IV患者数据的实验表明，该协作多智能体方法在系统延迟方面显著优于静态模型和启发式调度方法，同时满足临床安全要求。</div>
+<div class="mono">The study addresses the challenge of fully decentralized multi-agent reinforcement learning (MARL) by introducing CASTLE, a framework that uses counterfactual semantic-social world models for offline training and online guidance. It leverages a Local Dynamics World Model to summarize local trajectory dynamics and a Semantic-Social World Model to predict task and social consequences of candidate actions. The framework significantly outperforms existing methods across three benchmark tasks, demonstrating superior performance in decentralized learning environments.</div>
+<div class="mono" style="margin-top:8px">该研究探讨了独立多智能体强化学习（MARL）的问题，其中每个智能体仅依赖于局部信息进行学习。研究引入了CASTLE框架，该框架使用两个世界模型来预测行动的结果。局部动力学世界模型总结了智能体的局部动态，而语义-社会世界模型则预测每个行动的社会和任务后果。CASTLE在三个基准任务中表现出色，实现了最高的平均最终得分。</div>
 </details>
 <details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
-<div class="mono">1. Embed BCMP queueing models into a decentralized multi-agent reinforcement learning architecture.
-2. Formulate the method as a Decentralized Partially Observable Markov Decision Process (Dec-POMDP) under coupled resource constraints.
-3. Exchange localized action fingerprints along network edges and optimize a spatially decomposed reward structure.</div>
-<div class="mono" style="margin-top:8px">1. 将BCMP排队模型嵌入到去中心化的多智能体强化学习架构中。
-2. 采用去中心化的部分可观测马尔可夫决策过程（Dec-POMDP）框架。
-3. 通过局部动作指纹在网络边缘交换信息，优化空间分解的奖励结构。</div>
+<div class="mono">1. Introduced the CASTLE framework, combining a local dynamics world model and a semantic-social world model.
+2. Enabled agents to learn more effectively by predicting the consequences of candidate actions.
+3. Achieved the best performance across multiple benchmark tasks.</div>
+<div class="mono" style="margin-top:8px">1. 引入了CASTLE框架，结合了局部动力学世界模型和语义-社会世界模型。
+2. 通过预测候选行动的后果，使智能体能够更有效地学习。
+3. 在多个基准任务中取得了最佳性能。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Cooperating with Future Collaborators: Multi-Agent RL under Staggered Participation</div>
+<div class="meta-line">Authors: Jianglin Qiao, Siyi Hu, Thien Hoang Nguyen, Zehong Cao, Salah Sukkarieh</div>
+<div class="meta-line">First: 2026-10-06T01:13:24+00:00 · Latest: 2026-10-06T01:13:24+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.07578v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.07578v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">In cooperative Multi-Agent Reinforcement Learning (MARL), agents are often trained under concurrent participation, while in many tasks some agents act earlier and leave task-relevant information that becomes useful to agents participating later. We study this setting as staggered participation (SP), which introduces a cross-time, cross-agent learning dependency because an early action may affect the return through the information it provides and the later policy that uses it. Learning under SP therefore requires both identifying what information is useful for future decisions and learning how later agents should use it. We propose Staggered Participation Learning (SPL), a training-time augmentation that addresses these two parts with prospective acquisition supervision for earlier agents and outcome-supervised receiver learning for later agents. We evaluate SPL across multiple policy-based MARL backbones, environments, and staggered-participation patterns. Across 60 MPE/RWARE backbone setting comparisons, SPL achieves higher observed mean task completion in every case, with an average difference of 14.1%. The gains also extend to eight-agent teams and a physics-based UAV-UGV environment in Isaac Lab, providing evidence across algorithmic, temporal, and embodied settings.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>与未来合作者合作：在错时参与下的多智能体强化学习</div>
+<div class="mono" style="margin-top:8px">在合作多智能体强化学习（MARL）中，智能体通常在同时参与的情况下进行训练，而在许多任务中，一些智能体较早行动并留下对后续参与智能体有用的任务相关信息。我们研究了这种错时参与（SP）的设置，这引入了跨时间、跨智能体的学习依赖性，因为早期行动可能通过提供信息以及后续使用该信息的策略来影响回报。在SP下进行学习需要识别哪些信息对未来决策有用，并学习后续智能体如何使用这些信息。我们提出了错时参与学习（SPL），这是一种训练时增强方法，通过前瞻性的获取监督来解决早期智能体的问题，并通过结果监督来解决后续智能体的问题。我们跨多个基于策略的MARL架构、环境和错时参与模式评估了SPL。在60种MPE/RWARE架构设置比较中，SPL在每种情况下都实现了更高的任务完成度，平均差异为14.1%。这些收益也扩展到了八智能体团队以及Isaac Lab中的基于物理的无人机-地面车辆环境，提供了跨算法、时间和具身设置的证据。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The study investigates Multi-Agent Reinforcement Learning (MARL) under staggered participation (SP), where agents act at different times, leaving useful information for later agents. The proposed Staggered Participation Learning (SPL) addresses this by supervising earlier agents to acquire useful information and later agents to use it effectively. Evaluations across various MARL settings show that SPL consistently improves task completion by 14.1% on average, with significant gains in complex eight-agent teams and physics-based environments.</div>
+<div class="mono" style="margin-top:8px">研究探讨了在 staggered participation（SP）场景下的多智能体强化学习（MARL），即一些智能体较早行动并提供有用信息给后续智能体。提出了一种名为 Staggered Participation Learning（SPL）的方法，该方法包括对早期智能体进行前瞻性的信息获取监督和对后续智能体进行结果监督的学习。SPL 在多种 MARL 框架和环境中进行了评估，结果显示任务完成率平均提高了 14.1%。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed Staggered Participation Learning (SPL).
+2. Introduced prospective acquisition supervision and outcome-supervised receiver learning.
+3. Evaluated across various MARL frameworks and environments.</div>
+<div class="mono" style="margin-top:8px">1. 提出了 Staggered Participation Learning（SPL）方法。
+2. 引入了前瞻性的信息获取监督和结果监督的学习机制。
+3. 在多种 MARL 框架和环境中进行了广泛评估。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Foundation Model-Aided Multi-Agent Reinforcement Learning for Wireless Random Access Network Optimization</div>
+<div class="meta-line">Authors: Myeung Suk Oh, Zhiyao Zhang, Alvaro Velasquez, Nathaniel D. Bastian, Jia Liu</div>
+<div class="meta-line">First: 2026-10-06T00:27:24+00:00 · Latest: 2026-10-06T00:27:24+00:00</div>
+<div class="meta-line">Comments: This paper has been accepted in ACM International Symposium on Theory, Algorithmic Foundations, and Protocol Design for Mobile Networks and Mobile Computing (MobiHoc) 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.07550v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.07550v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Random access (RA) is one of the most foundational medium access control (MAC) layer scheduling schemes for handling unpredictable data traffic from multiple terminals. While multi-agent reinforcement learning (MARL) has been explored to optimize RA-based wireless networks, its reliance on experience-driven, distributed policy learning incurs significant training overhead for each optimization task, limiting its feasibility in real-world applications. In this work, we propose to leverage a foundation model (FM) to improve MARL efficiency across diverse RA network optimization tasks. Specifically, we design an FM-aided actor-critic algorithm within a consensus-based decentralized MARL architecture and provide its convergence analysis under local reward exchanges and nonlinear value function approximations to show that our algorithm achieves the same convergence order as the conventional MARL with critic model exchanges and linear approximations. Our numerical results show that our FM-based approach significantly enhances MARL speed for RA network optimization.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>基于基础模型的多智能体强化学习在无线随机接入网络优化中的应用</div>
+<div class="mono" style="margin-top:8px">随机接入（RA）是处理来自多个终端的不可预测数据流量的最基础的介质访问控制（MAC）层调度方案之一。虽然多智能体强化学习（MARL）已被探索用于优化基于RA的无线网络，但其依赖于经验驱动的分布式策略学习，导致每个优化任务的训练开销显著，限制了其在实际应用中的可行性。在本文中，我们提出利用基础模型（FM）来提高MARL在各种RA网络优化任务中的效率。具体而言，我们设计了一种基于共识的分布式MARL架构中的FM辅助演员-评论者算法，并在局部奖励交换和非线性价值函数近似下提供了其收敛性分析，证明了我们的算法在评论者模型交换和线性近似下的收敛阶与传统MARL相同。我们的数值结果表明，基于FM的方法显著提高了RA网络优化的MARL速度。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This work addresses the efficiency challenge in multi-agent reinforcement learning (MARL) for optimizing wireless random access (RA) networks. By integrating a foundation model (FM) into an actor-critic algorithm within a consensus-based decentralized MARL framework, the authors achieve comparable convergence rates to traditional MARL methods. Numerical results demonstrate that this approach significantly accelerates the optimization process for RA networks.</div>
+<div class="mono" style="margin-top:8px">本文旨在利用多智能体强化学习（MARL）优化无线网络中的随机接入（RA）。提出利用基础模型（FM）来提升MARL的效率。在去中心化的MARL架构中设计了FM辅助的演员-评论家算法，并证明了其收敛性与传统MARL类似。数值结果表明，该方法显著提高了RA网络优化的MARL速度。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed FM-aided actor-critic algorithm
+2. Applied FM in decentralized MARL architecture
+3. Proved the convergence of the algorithm</div>
+<div class="mono" style="margin-top:8px">1. 提出了FM辅助的演员-评论家算法
+2. 在去中心化MARL架构中应用FM
+3. 证明了算法的收敛性</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Who Bears the Burden? Learning Responsibility for Shared Constraints in Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Xiaoyang Cao, Jingqi Li, Zhe Fu, Alexandre M. Bayen</div>
+<div class="meta-line">First: 2026-10-05T22:53:33+00:00 · Latest: 2026-10-05T22:53:33+00:00</div>
+<div class="meta-line">Comments: 20 pages, 2 figures, 4 tables. Project page with code: https://lira-marl.github.io</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.07491v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.07491v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://lira-marl.github.io">Project1</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">When multiple agents share a cost budget, a common Lagrange multiplier can enforce the aggregate constraint but does not determine how its penalty should be allocated across agents. Uniform penalties ignore heterogeneity in the rewards agents sacrifice, while agent-specific multipliers may still rely on the same aggregate cost signal. We introduce Lagrangian Responsibility Allocation (LiRA), which learns each agent&#x27;s share of a common multiplier by optimizing social welfare over a finite training horizon. The multiplier enforces the aggregate budget, while responsibility shares redistribute its influence without modifying the original rewards or constraints. For convex games under standard regularity conditions, varying these shares induces a smooth family of normalized generalized Nash equilibria in which active constraints remain at their budgets while welfare varies. To optimize responsibility before convergence, we derive a welfare gradient that accounts for both learning updates and the induced change in data distribution. Across CityLearn, MABIM, Harvest, and MetaDrive, spanning 3 to 400 agents, LiRA improves average social welfare by up to 29% over uniform and agent-specific multiplier baselines. Grid and driving costs remain within budget, inventory violations decrease, and Harvest makes more effective use of available budget.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>谁来承担负担？多智能体强化学习中共享约束的责任学习</div>
+<div class="mono" style="margin-top:8px">当多个智能体共享一个成本预算时，一个共同的拉格朗日乘子可以强制执行总约束，但不能确定其惩罚如何在智能体之间分配。均匀的惩罚忽略了智能体牺牲奖励的异质性，而智能体特定的乘子仍然依赖相同的总成本信号。我们引入了拉格朗日责任分配（LiRA），通过优化有限训练时段内的社会福利来学习每个智能体对共同乘子的份额。乘子强制执行总预算，而责任份额重新分配其影响，而不修改原始奖励或约束。在标准正则条件下，对于凸博弈，这些份额的变化会诱导出一个平滑的归一化广义纳什均衡族，在这种均衡中，活跃约束保持在预算内，而福利则变化。为了在收敛前优化责任，我们推导了一个考虑学习更新和数据分布变化的福利梯度。在CityLearn、MABIM、Harvest和MetaDrive中，涵盖3到400个智能体，LiRA在均匀和智能体特定乘子基线上的平均社会福利上提高了最多29%。网格和驾驶成本保持在预算内，库存违规减少，Harvest更有效地使用了可用预算。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses the challenge of allocating responsibility for shared constraints among multiple agents in multi-agent reinforcement learning. It proposes Lagrangian Responsibility Allocation (LiRA), which learns each agent&#x27;s share of a common multiplier to optimize social welfare. LiRA improves average social welfare by up to 29% across various environments, including CityLearn, MABIM, Harvest, and MetaDrive, with up to 400 agents. The method ensures that grid and driving costs remain within budget, reduces inventory violations, and enhances budget utilization.</div>
+<div class="mono" style="margin-top:8px">本文研究了在多智能体强化学习中，如何在多个智能体之间分配共享约束的责任。提出了一种名为Lagrangian Responsibility Allocation (LiRA)的方法，通过优化社会福利来学习每个智能体应承担的共同乘子份额。LiRA在不同环境中的平均社会福利提高了29%，确保了预算的遵守并更有效地利用了资源。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Proposed Lagrangian Responsibility Allocation (LiRA) to learn each agent&#x27;s share of a common multiplier.
+2. Optimized social welfare to allocate responsibility and ensure budget adherence and resource utilization.</div>
+<div class="mono" style="margin-top:8px">1. 提出了Lagrangian Responsibility Allocation (LiRA)方法，用于学习每个智能体应承担的共同乘子份额。
+2. 通过优化社会福利来分配责任，确保了预算的遵守和资源的有效利用。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">HARL-A: An Extensible Benchmark Framework for Heterogeneous Multi-Agent Adversarial Reinforcement Learning in IsaacLab</div>
+<div class="meta-line">Authors: Isaac Peterson, Christopher Allred, Jacob Morrey, Mario Harper</div>
+<div class="meta-line">First: 2025-09-26T03:16:48+00:00 · Latest: 2026-10-05T18:10:49+00:00</div>
+<div class="meta-line">Comments: 8 page, 9 figures, code https://github.com/DIRECTLab/IsaacLab-HARL</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2510.01264v2">Abs</a> · <a href="https://arxiv.org/pdf/2510.01264v2">PDF</a> · <a href="https://github.com/DIRECTLab/IsaacLab-HARL">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract / 摘要</summary>
+<div class="mono">Progress in adversarial multi-agent reinforcement learning (MARL) for robotics has been hampered by a lack of shared, extensible infrastructure that supports heterogeneous agent morphologies in high-fidelity physics simulation. Existing frameworks either focus on cooperative tasks, rely on simplified physics engines, or provide isolated implementations that are difficult to extend. We present HARL-A, an open-source, actively maintained framework built on IsaacLab that enables scalable training and benchmarking of adversarial policies across morphologically diverse robot teams with any number of teams and any mix of robot morphologies per team. HARL-A extends the HARL algorithm library and IsaacLab with adversarial multi-agent support and contributes three components: (1) a modular software architecture that reduces the engineering overhead of defining new heterogeneous adversarial environments, (2) a suite of three benchmark environments---Sumo, Soccer, and 3D Galaga---spanning contact-rich pushing, ball-skill competition, and pursuit/evasion, (3) over ten pretrained policies spanning homogeneous and heterogeneous team configurations, released publicly on Hugging Face to enable immediate exploration of adversarial learning dynamics without retraining from scratch. We demonstrate the framework across multiple competitive scenarios, showing that it reliably produces learned adversarial policies and emergent role specialization. All code environments, trained policies, and documentation are openly available at https://github.com/DIRECTLab/IsaacLab-HARL.</div>
+<div class="mono" style="margin-top:8px"><b>标题：</b>HARL-A：IsaacLab 上的一个可扩展基准框架，用于异构多智能体对抗强化学习</div>
+<div class="mono" style="margin-top:8px">机器人领域中的对抗多智能体强化学习（MARL）的进步受到缺乏共享且可扩展的基础架构的阻碍，该基础架构支持高保真物理模拟中的异构智能体形态。现有框架要么专注于合作任务，要么依赖于简化的物理引擎，要么提供孤立的实现，难以扩展。我们介绍了HARL-A，这是一个基于IsaacLab的开源且积极维护的框架，它使跨形态多样的机器人团队的对抗策略的可扩展训练和基准测试成为可能，团队数量和每个团队的智能体形态可以任意组合。HARL-A 扩展了HARL算法库和IsaacLab，增加了对抗多智能体支持，并贡献了三个组件：（1）一个模块化的软件架构，减少了定义新异构对抗环境的工程开销，（2）三个基准环境套件——Sumo、Soccer和3D Galaga，涵盖了丰富的接触推搡、球技竞争和追逐/逃避，（3）超过十个预训练策略，涵盖了同构和异构团队配置，已在Hugging Face上公开发布，以使用户无需从头开始重新训练即可立即探索对抗学习动力学。我们展示了该框架在多个竞争场景中的应用，展示了它可靠地生成了学习到的对抗策略和角色专业化。所有代码环境、训练策略和文档均公开可用，网址为https://github.com/DIRECTLab/IsaacLab-HARL。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">HARL-A is an open-source framework that addresses the limitations of existing MARL infrastructure by providing a scalable platform for training and benchmarking adversarial policies in heterogeneous multi-agent robotics. It extends IsaacLab with adversarial multi-agent support and includes modular software architecture, benchmark environments, and pretrained policies. The framework demonstrates reliable adversarial policy learning and role specialization across various scenarios.</div>
+<div class="mono" style="margin-top:8px">HARL-A 是一个开源框架，旨在解决现有 MARL 框架的局限性，提供一个支持机器人异构形态的高保真物理模拟环境下的可扩展和可扩展平台。它包含三个基准环境和预训练策略，并在多种场景中展示了可靠的对抗策略学习和角色专业化。</div>
+</details>
+<details class="detail" open><summary>关键技术与创新点 / Key Innovations</summary>
+<div class="mono">1. Provides a scalable platform supporting heterogeneous robot morphologies in high-fidelity physics simulation
+2. Includes three benchmark environments and pretrained policies
+3. Reduces the engineering overhead of defining new heterogeneous adversarial environments</div>
+<div class="mono" style="margin-top:8px">1. 提供支持异构机器人形态的高保真物理模拟环境的可扩展平台
+2. 包含三个基准环境和预训练策略
+3. 降低定义新异构对抗环境的工程开销</div>
 </details>
 </div></div>
     <details style="margin-top:16px" class="detail"><summary>History</summary>
-      <div class="history-list"><a href="archive/20260929_0046.html">20260929_0046</a>
+      <div class="history-list"><a href="archive/20261006_0108.html">20261006_0108</a>
+<a href="archive/20260929_0046.html">20260929_0046</a>
 <a href="archive/20260921_2306.html">20260921_2306</a>
 <a href="archive/20260907_2218.html">20260907_2218</a>
 <a href="archive/20260824_1700.html">20260824_1700</a>
